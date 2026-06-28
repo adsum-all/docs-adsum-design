@@ -1,0 +1,23 @@
+# adsum-design - deploy the static design deliverable to Cloudflare Pages.
+# Build: none (static). Output directory: repository root.
+# Basic Auth is enforced at the edge by functions/_middleware.js using the
+# SITE_USER and SITE_PASS variables defined on the Cloudflare Pages project
+# (Settings > Environment variables), never stored in this repository.
+#
+# Required GitLab CI/CD variables (Settings > CI/CD > Variables, masked + protected):
+#   CLOUDFLARE_API_TOKEN   Cloudflare API token allowed to edit Pages
+#   CLOUDFLARE_ACCOUNT_ID  Cloudflare account id
+# wrangler reads both from the environment automatically.
+stages:
+  - deploy
+
+deploy:cloudflare-pages:
+  stage: deploy
+  image: node:20-alpine
+  script:
+    - npx --yes wrangler@3 pages deploy . --project-name=adsum-design --branch=main --commit-dirty=true
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  environment:
+    name: production
+    url: https://adsum-design.pages.dev

@@ -1,25 +1,22 @@
 # adsum-design
 
-Part of the ADSUM platform (membership, QR check-in and attendance).
-Subgroup: `docs`.
+Design deliverable of the ADSUM platform, deployed as a static site on
+Cloudflare Pages and protected by Basic Auth at the edge.
 
-## Role
+## Content
 
-Design deliverable deployed on Cloudflare Pages, protected by Basic Auth (SITE_USER / SITE_PASS).
+- `index.html` and `support.js` - design hub.
+- `01-wireframes` to `07-financement` - design sections.
+- `functions/_middleware.js` - edge Basic Auth (Cloudflare Pages Functions).
 
-## Stack
+## Deployment
 
-Static site (HTML, JS), Cloudflare Pages, wrangler.
+- Build: none (static site). Output directory: repository root.
+- A push to `main` runs `.gitlab-ci.yml`, which deploys to Cloudflare Pages via
+  `wrangler pages deploy`.
+- Access is protected by `SITE_USER` and `SITE_PASS`, defined on the Cloudflare
+  Pages project (Settings > Environment variables). Without them the site stays
+  open; with them it is protected everywhere. No secret is stored in this repo.
 
-## Conventions
-
-- Branches: work on `feature/*` or `fix/*` from `develop`, then a merge request.
-  Merge order `feature/* -> develop -> main`. Never push to `main`.
-- Constitution (zero tolerance): no mock data, no file over 500 lines,
-  no em-dash (U+2014 / U+2013), no secret in clear. CI enforces these.
-- Commit messages in English, Conventional Commits.
-
-## CI
-
-Pipelines are defined in `.gitlab-ci.yml`, which includes the shared templates
-from `sr-media-ai/adsum/deployment/ci-templates`.
+Full procedure (URL, variables, rollback): see the `onboarding` repository,
+`cloudflare-pages-adsum-design.md`.

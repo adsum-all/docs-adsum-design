@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADSUM · Plateforme de suivi des présences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--acc:#c0673d;--ink:#1d1c1a;--ink2:#46453f;--mut:#6f6e67;--line:#e4e3dd;--bg:#f3f2ef;--surf:#fff;--board:#e9e7e2;--dot:#d7d4ce}
+  body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:64px 40px 80px}
+  .mono{font-family:'IBM Plex Mono',monospace}
+  .head{display:flex;align-items:center;gap:13px;margin-bottom:54px}
+  .logo{width:38px;height:38px;border:1.5px solid var(--acc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:19px;color:var(--acc)}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:44px;line-height:1.06;letter-spacing:-1px;margin-bottom:18px;max-width:20ch}
+  .lede{font-size:16px;line-height:1.6;color:var(--ink2);max-width:64ch;margin-bottom:10px}
+  .sub{font-size:14px;line-height:1.6;color:var(--mut);max-width:64ch;margin-bottom:48px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;min-height:280px;transition:transform .16s,box-shadow .16s,border-color .16s}
+  .card.live{cursor:pointer}
+  .card.live:hover{transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(0,0,0,.28);border-color:var(--acc)}
+  .card.soon{opacity:.62}
+  .num{font-family:'IBM Plex Mono';font-size:12px;letter-spacing:1px;color:var(--acc);margin-bottom:auto}
+  .badge{align-self:flex-start;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.5px;padding:3px 9px;border-radius:20px;margin-bottom:18px}
+  .badge.b-live{background:#e7f1ea;color:#2f7d57}
+  .badge.b-soon{background:#efece6;color:var(--mut);border:1px solid var(--line)}
+  .ico{width:46px;height:46px;border-radius:12px;background:var(--board);display:flex;align-items:center;justify-content:center;font-size:22px;margin:14px 0 16px}
+  .card h2{font-family:'Space Grotesk';font-weight:600;font-size:20px;margin-bottom:8px}
+  .card p{font-size:13px;line-height:1.55;color:var(--mut)}
+  .cta{margin-top:18px;font-family:'IBM Plex Mono';font-size:11px;color:var(--acc);display:flex;align-items:center;gap:6px}
+  .meta{margin-top:54px;display:flex;flex-wrap:wrap;gap:26px;padding-top:26px;border-top:1px solid var(--line)}
+  .meta div{font-size:12.5px;color:var(--mut)}
+  .meta strong{display:block;font-family:'Space Grotesk';font-weight:700;font-size:22px;color:var(--ink);margin-bottom:2px}
+  .foot{margin-top:46px;font-family:'IBM Plex Mono';font-size:10px;color:#9b9a92;letter-spacing:.5px}
+  @media(max-width:780px){.grid{grid-template-columns:1fr}h1{font-size:34px}.wrap{padding:44px 24px 60px}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="logo">A</div>
+      <div>
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:.4px;line-height:1">ADSUM</div>
+        <div class="mono" style="font-size:9.5px;letter-spacing:1.5px;color:var(--mut);margin-top:3px">SACERDOCE&nbsp;ROYAL · HUB&nbsp;PROJET</div>
+      </div>
+    </div>
+
+    <div class="mono" style="font-size:11px;letter-spacing:2px;color:var(--acc);margin-bottom:16px">PLATEFORME DE GESTION ET DE SUIVI DES PRÉSENCES</div>
+    <h1>Conception produit ADSUM</h1>
+    <p class="lede">Pointage présentiel par QR signé hors-ligne, espace membre &amp; carte numérique, participation en ligne, et back-office de pilotage temps réel - pour mobile, web et bureau.</p>
+    <p class="sub">Cet espace réunit les livrables du projet, organisés par phase. Chaque phase s'ouvre dans son propre dossier, déployable et partageable avec les collaborateurs.</p>
+
+    <div class="grid">
+      <a class="card live" href="01-wireframes/ADSUM%20Wireframes.dc.html">
+        <div class="num">PHASE 01</div>
+        <span class="badge b-live">● TERMINÉ</span>
+        <div class="ico">▢</div>
+        <h2>Wireframes</h2>
+        <p>Structure complète : 5 interfaces, ~135 écrans &amp; états, flux, audit, stack technique. Lo-fi, thèmes clair/sombre, palettes &amp; styles d'écriture.</p>
+        <div class="cta">Ouvrir les wireframes →</div>
+      </a>
+
+      <div class="card live" href="02-design-system/ADSUM%20Design%20System.dc.html" onclick="location.href='02-design-system/ADSUM%20Design%20System.dc.html'" style="cursor:pointer">
+        <div class="num">PHASE 02</div>
+        <span class="badge b-live">● TERMINÉ</span>
+        <div class="ico">◑</div>
+        <h2>Design System</h2>
+        <p>Système complet : base bleue, typographie, espacements, 40+ composants &amp; variantes, états, composants ADSUM, accessibilité. Clair &amp; sombre.</p>
+        <div class="cta">Ouvrir le design system →</div>
+      </div>
+
+      <a class="card live" href="03-prototype/ADSUM%20Controleur.dc.html">
+        <div class="num">PHASE 03</div>
+        <span class="badge b-live">● HAUTE-FIDÉLITÉ</span>
+        <div class="ico">◆</div>
+        <h2>Prototype · Contrôleur</h2>
+        <p>App Contrôleur interactive : scan → vérifier → confirmer, hors-ligne, base bleue. Le geste signature d'ADSUM.</p>
+        <div class="cta">Ouvrir le contrôleur →</div>
+      </a>
+
+      <a class="card live" href="04-documentation/ADSUM%20Documentation.dc.html">
+        <div class="num">PHASE 04</div>
+        <span class="badge b-live">● TERMINÉ</span>
+        <div class="ico">📖</div>
+        <h2>Documentation</h2>
+        <p>Référence <strong>fonctionnelle</strong> : périmètre, rôles, parcours, flux, exigences, tests, cahier des charges, glossaire.</p>
+        <div class="cta">Ouvrir la documentation →</div>
+      </a>
+
+      <a class="card live" href="04-documentation/ADSUM%20Audit%20Conformite.dc.html">
+        <div class="num">PHASE 04 ·</div>
+        <span class="badge b-live">● AUDIT</span>
+        <div class="ico">✓</div>
+        <h2>Audit de conformité</h2>
+        <p>Vérification que chaque promesse de la présentation a son écran : 12/12 promesses couvertes, 47 écrans inventoriés, conformité au squelette wireframe.</p>
+        <div class="cta">Ouvrir l'audit →</div>
+      </a>
+
+      <a class="card live" href="05-technique/ADSUM%20DAT.dc.html">
+        <div class="num">PHASE 05</div>
+        <span class="badge b-live">● TERMINÉ</span>
+        <div class="ico">⚙</div>
+        <h2>Dossier technique (DAT)</h2>
+        <p>Architecture, stack &amp; langages (TS + Python), arborescence du dépôt, DDL, pipeline de données, API, sécurité, CI/CD, observabilité, traçabilité &amp; ADR.</p>
+        <div class="cta">Ouvrir le DAT →</div>
+      </a>
+
+      <a class="card live" href="06-pitch/ADSUM%20Pitch.dc.html">
+        <div class="num">PHASE 06</div>
+        <span class="badge b-live">● TERMINÉ</span>
+        <div class="ico">▲</div>
+        <h2>Présentation</h2>
+        <p>Le deck de présentation de la solution : problème, solution, application sur téléphone &amp; ordinateur, sécurité, modèle soutenable. Couleurs Sacerdoce Royal.</p>
+        <div class="cta">Ouvrir la présentation →</div>
+      </a>
+
+      <a class="card live" href="07-financement/ADSUM%20Financement.dc.html">
+        <div class="num">PHASE 07</div>
+        <span class="badge b-live">● TERMINÉ</span>
+        <div class="ico">🤝</div>
+        <h2>Modèle de soutien</h2>
+        <p>Le service est gratuit ; l'infrastructure est soutenue ensemble par une contribution libre et symbolique des membres, en toute transparence.</p>
+        <div class="cta">Ouvrir le modèle de soutien →</div>
+      </a>
+    </div>
+
+    <div style="font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1.5px;color:var(--acc);margin:40px 0 16px">PROTOTYPES HAUTE-FIDÉLITÉ INTERACTIFS</div>
+    <div class="grid">
+      <a class="card live" href="03-prototype/ADSUM%20Membre.dc.html">
+        <div class="num">APP MOBILE</div>
+        <span class="badge b-live">● NAVIGABLE</span>
+        <div class="ico">▣</div>
+        <h2>Espace Membre</h2>
+        <p>App mobile complète : carte &amp; QR, activités, session en ligne, historique, profil, validation, notifications. Barre d'onglets fonctionnelle.</p>
+        <div class="cta">Ouvrir l'app membre →</div>
+      </a>
+      <a class="card live" href="03-prototype/ADSUM%20Back-office.dc.html">
+        <div class="num">DESKTOP</div>
+        <span class="badge b-live">● NAVIGABLE</span>
+        <div class="ico">▦</div>
+        <h2>Back-office</h2>
+        <p>Console d'administration : tableau de bord temps réel, annuaire, fiche membre détaillée. Rail latéral &amp; navigation réelles.</p>
+        <div class="cta">Ouvrir le back-office →</div>
+      </a>
+      <a class="card live" href="03-prototype/ADSUM%20Controleur.dc.html">
+        <div class="num">APP MOBILE</div>
+        <span class="badge b-live">● COMPLET</span>
+        <div class="ico">◉</div>
+        <h2>Contrôleur complet</h2>
+        <p>Tous les écrans : appairage, événement, scan, résultat, erreur, saisie manuelle, file de synchro, mode sortie, comptage volet B.</p>
+        <div class="cta">Ouvrir le contrôleur complet →</div>
+      </a>
+      <a class="card live" href="03-prototype/ADSUM%20Collaboration.dc.html">
+        <div class="num">DESKTOP</div>
+        <span class="badge b-live">● NAVIGABLE</span>
+        <div class="ico">◇</div>
+        <h2>Collaboration du comité</h2>
+        <p>Calendrier partagé, fiche de préparation (édition à plusieurs, commentaires, versions), tâches &amp; publication en événement.</p>
+        <div class="cta">Ouvrir la collaboration →</div>
+      </a>
+      <a class="card live" href="03-prototype/ADSUM%20Direction.dc.html">
+        <div class="num">DESKTOP</div>
+        <span class="badge b-live">● NAVIGABLE</span>
+        <div class="ico">◷</div>
+        <h2>Direction</h2>
+        <p>Tableau de bord décisionnel temps réel : affluence consolidée, tendances, répartition salle/en ligne, décrochage, par commission.</p>
+        <div class="cta">Ouvrir la direction →</div>
+      </a>
+    </div>
+
+    <div class="meta">
+      <div><strong>5</strong>interfaces (contrôleur, membre, back-office, direction, collaboration)</div>
+      <div><strong>~135</strong>écrans &amp; états inventoriés</div>
+      <div><strong>6</strong>rôles + collaborateur de planification</div>
+      <div><strong>3/3</strong>phases livrées · wireframe · design system · prototypes</div>
+    </div>
+
+    <div class="foot">ADSUM · SACERDOCE ROYAL · STRICTEMENT CONFIDENTIEL · JUIN 2026</div>
+  </div>
+</body>
+</html>
