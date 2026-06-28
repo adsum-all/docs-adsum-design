@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  :root{--fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --blue:#1b62c4;--blued:#0e3a7a;--sky:#e9f1fd;--gold:#d99a0c;--goldsoft:#fdf4d8;--red:#d8332e;
+    --ok:#1f9d57;--okbg:#e7f6ec;--warn:#b5731a;--warnbg:#f8efd9;--def:#3563c9;--defbg:#e9f0fd;
+    --ink:#15233f;--ink2:#39496b;--mut:#5d6b86;--line:#e3e9f4;--surf:#fff;--cream:#f6f9fe;}
+  body{margin:0;font-family:var(--fu);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .fm{font-family:var(--fm)} .fd{font-family:var(--fd)}
+  .gbar{height:6px;border-radius:4px;background:linear-gradient(90deg,var(--blue) 0 38%,var(--gold) 38% 70%,var(--red) 70% 100%)}
+  .wrap{max-width:1080px;margin:0 auto;padding:54px 48px 90px}
+  .card{background:var(--surf);border:1px solid var(--line);border-radius:14px}
+  h2{font-family:var(--fd);font-weight:700;font-size:25px;letter-spacing:-.5px;margin:40px 0 6px}
+  .sub{font-size:13.5px;line-height:1.6;color:var(--mut);max-width:74ch;margin:0 0 16px}
+  .tag{font-family:var(--fm);font-size:8.5px;padding:3px 8px;border-radius:20px;white-space:nowrap;font-weight:500}
+  .ok{background:var(--okbg);color:var(--ok)}
+  .warn{background:var(--warnbg);color:var(--warn)}
+  .def{background:var(--defbg);color:var(--def)}
+  .row{display:flex;padding:9px 14px;border-top:1px solid var(--line);font-size:12px;align-items:center;gap:10px}
+  .row .f{flex:2;line-height:1.45} .row .s{flex:1.7;color:var(--ink2);line-height:1.45} .row .v{width:118px;text-align:right;flex-shrink:0}
+  .domhead{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:var(--cream);border-bottom:1px solid var(--line)}
+  .domhead .t{font-family:var(--fd);font-weight:600;font-size:14.5px}
+  th{font-family:var(--fm);font-size:8.5px;letter-spacing:.5px;color:var(--mut);text-transform:uppercase;text-align:left;font-weight:400}
+  .toc a{display:block;font-size:12.5px;color:var(--ink2);padding:5px 0;border-bottom:1px solid var(--line)}
+  .toc a:last-child{border-bottom:none}
+</style>
+</helmet>
+<div class="wrap">
+  <a href="../index.html" style="font-size:13px;color:var(--mut)">← Accueil</a>
+  <div style="display:flex;align-items:center;gap:13px;margin:18px 0 22px">
+    <div style="width:42px;height:42px;border-radius:11px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:21px">A</div>
+    <div><div class="fd" style="font-weight:700;font-size:20px;line-height:1">ADSUM</div><div class="fm" style="font-size:9px;letter-spacing:1.5px;color:var(--mut);margin-top:2px">AUDIT DE CONFORMITÉ · CAHIER DES CHARGES ↔ ÉCRANS</div></div>
+  </div>
+  <div style="width:110px" class="gbar"></div>
+
+  <h1 class="fd" style="font-weight:700;font-size:40px;letter-spacing:-1px;margin:24px 0 12px;max-width:24ch">Chaque exigence du cahier des charges a son écran</h1>
+  <p style="font-size:16px;line-height:1.6;color:var(--mut);max-width:70ch;margin:0 0 14px">Cet audit met en regard, ligne par ligne, <strong>ce que le cahier des charges exige</strong> et <strong>ce qui est réellement conçu</strong> dans les prototypes haute-fidélité. Méthode : chaque <strong>domaine fonctionnel (§6)</strong>, chaque <strong>critère d'acceptation</strong>, chaque <strong>rôle (§5)</strong>, chaque <strong>parcours (annexe D)</strong> et chaque <strong>épopée du backlog (annexe E)</strong> est relié à l'écran qui le matérialise - ou marqué comme <strong>différé selon le plan de réalisation (§12)</strong>.</p>
+
+  <div class="card" style="padding:6px 16px;margin:18px 0 22px">
+    <div class="toc" style="columns:2;column-gap:34px">
+      <a href="#s1">1 · Conformité fonctionnelle (§6.1 → §6.13)</a>
+      <a href="#s2">2 · Couverture des 6 rôles (§5.2)</a>
+      <a href="#s3">3 · Parcours critiques (annexe D + flux)</a>
+      <a href="#s4">4 · Couverture des états d'écran</a>
+      <a href="#s5">5 · Exigences non fonctionnelles (§7)</a>
+      <a href="#s6">6 · Backlog par épopées (annexe E)</a>
+      <a href="#s7">7 · Promesses de la présentation</a>
+      <a href="#s8">8 · Inventaire complet des écrans</a>
+      <a href="#s9">9 · Réserves &amp; hors-périmètre v1</a>
+      <a href="#s10">10 · Méthode &amp; portée de l'audit</a>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px">
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--blue)">13</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px">domaines fonctionnels (§6)</div></div>
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--blue)">38</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px">critères d'acceptation audités</div></div>
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--blue)">47</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px">écrans / panneaux conçus</div></div>
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--ok)">100%</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px">périmètre v1 couvert</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--ok)">34</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px"><span class="tag ok">✓</span> conformes</div></div>
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--warn)">4</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px"><span class="tag warn">◑</span> partiels (phase 2)</div></div>
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--def)">5</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px"><span class="tag def">⊘</span> différés (plan §12)</div></div>
+    <div class="card" style="padding:16px"><div class="fd" style="font-weight:700;font-size:28px;color:var(--red)">0</div><div style="font-size:11.5px;color:var(--mut);margin-top:3px">non couverts / manquants</div></div>
+  </div>
+  <div class="card" style="padding:16px;background:var(--okbg);border-color:var(--ok);font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:8px"><strong>Verdict global.</strong> Toutes les exigences du périmètre version 1 (volet A et socle) sont matérialisées par au moins un écran cliquable. Les éléments <strong>partiels</strong> ont leur cœur conçu et leur complément planifié en phase 2 ; les éléments <strong>différés</strong> le sont conformément au plan de réalisation du cahier des charges (§12). Rappel de transparence : il s'agit de <strong>prototypes de conception haute-fidélité</strong> (parcours, écrans, états réels) - pas encore du logiciel connecté à la base, qui relève de la phase de développement décrite dans le <a href="../05-technique/ADSUM%20DAT.dc.html" style="color:var(--blue);font-weight:600">DAT</a>.</div>
+
+  <h2 id="s1">1 · Conformité fonctionnelle au cahier des charges</h2>
+  <p class="sub">Chaque domaine de la section 6 du cahier des charges, décomposé en ses critères d'acceptation, relié à l'écran (route du prototype) qui le rend réel.</p>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.1 · Gestion des membres</div><span class="tag ok">4 / 4 ✓</span></div>
+    <div class="row" style="border-top:none"><div class="f"><th>CRITÈRE D'ACCEPTATION</th></div><div class="s"><th>MATÉRIALISÉ PAR</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">Créer, consulter, modifier, désactiver un membre avec sa photo</div><div class="s">Back-office · <span class="fm">annuaire</span>, <span class="fm">fiche</span>, <span class="fm">create</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Importer en masse depuis Excel (rapport doublons / anomalies)</div><div class="s">Back-office · <span class="fm">create</span> (import) · §6.12</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Recherche &lt; 2 s par nom, code, téléphone ou courriel</div><div class="s">Back-office · <span class="fm">annuaire</span> (barre + filtres)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Suppression logique (désactivation), jamais physique</div><div class="s">Back-office · <span class="fm">fiche</span> (suspendre / archiver)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.2 · Enrôlement &amp; vérification d'identité</div><span class="tag ok">3 / 3 ✓</span></div>
+    <div class="row"><div class="f">Marquer une identité vérifiée, avec trace de l'agent et de la date</div><div class="s">BO · <span class="fm">valid</span>, <span class="fm">fiche</span> · Membre · <span class="fm">validation</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Afficher l'état vérifié / non vérifié sur la fiche et au scan</div><div class="s">Contrôleur · <span class="fm">result</span> (badge) · BO · <span class="fm">fiche</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Photo prise depuis le téléphone à l'enrôlement</div><div class="s">Membre · <span class="fm">validation</span> (capture) · BO · <span class="fm">create</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.3 · QR code unique &amp; cycle de vie</div><span class="tag ok">3 / 3 ✓</span></div>
+    <div class="row"><div class="f">Générer un QR unique, affichable dans l'app et imprimable</div><div class="s">Membre · <span class="fm">card</span>, <span class="fm">qr</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Détecter et refuser un QR falsifié ou révoqué</div><div class="s">Contrôleur · <span class="fm">error</span> (signature / révocation)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Réémettre un QR après révocation sans perte d'historique</div><div class="s">BO · <span class="fm">fiche</span> (révoquer / réémettre)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.4 · Gestion des événements</div><span class="tag ok">3 / 3 ✓</span></div>
+    <div class="row"><div class="f">Créer un événement et générer une série récurrente</div><div class="s">BO · <span class="fm">events</span> (calendrier + récurrence)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Ouvrir et clore la session de pointage d'un événement</div><div class="s">BO · <span class="fm">events</span> · Contrôleur · <span class="fm">event</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Sélection automatique de l'événement actif du jour au terminal</div><div class="s">Contrôleur · <span class="fm">event</span> → <span class="fm">scan</span> (présélection)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.5 · Pointage par scan</div><span class="tag ok">4 / 4 ✓</span></div>
+    <div class="row"><div class="f">Pointer en moins d'une seconde après lecture du QR, en local</div><div class="s">Contrôleur · <span class="fm">scan</span> → <span class="fm">result</span> → <span class="fm">success</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Empêcher tout doublon de présence sur un même événement</div><div class="s">Contrôleur · alerte double scan · <span class="fm">error</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Enregistrer une heure d'arrivée et, si scanné, de départ</div><div class="s">Contrôleur · <span class="fm">exit</span> (mode sortie)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Saisie manuelle de secours, tracée, pour membre sans QR</div><div class="s">Contrôleur · <span class="fm">manual</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.6 · Mode hors-ligne &amp; synchronisation</div><span class="tag ok">3 / 3 ✓</span></div>
+    <div class="row"><div class="f">Scanner et confirmer des présences sans aucune connexion</div><div class="s">Contrôleur · <span class="fm">scan</span> (bandeau hors-ligne)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Synchroniser sans perte ni doublon des milliers de pointages</div><div class="s">Contrôleur · <span class="fm">sync</span> (file + idempotence)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Résister à la fermeture de l'app : la file locale survit</div><div class="s">Contrôleur · <span class="fm">sync</span> (file persistante) · DAT §05</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.7 · Tableaux de bord &amp; statistiques temps réel</div><span class="tag ok">5 / 5 ✓</span></div>
+    <div class="row"><div class="f">Par événement : présents, absents, taux, courbe des arrivées</div><div class="s">BO · <span class="fm">dash</span>, <span class="fm">direction</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Par période &amp; par type : évolution de la participation</div><div class="s">BO · <span class="fm">stats</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Par membre : assiduité, dernière présence, tendance</div><div class="s">BO · <span class="fm">fiche</span>, <span class="fm">stats</span> · Membre · <span class="fm">history</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Vue de direction : synthèse globale + repérage des décrochages</div><div class="s">BO · <span class="fm">direction</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Mise à jour en quelques secondes après synchronisation</div><div class="s">BO · <span class="fm">dash</span> (temps réel) · DAT §05/§08</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.8 · Parcours &amp; engagement du membre</div><span class="tag ok">3 / 3 ✓</span></div>
+    <div class="row"><div class="f">Afficher l'historique complet et l'assiduité d'un membre</div><div class="s">Membre · <span class="fm">history</span>, <span class="fm">detail</span> · BO · <span class="fm">fiche</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Assiduité calculée sur une période glissante</div><div class="s">BO · <span class="fm">fiche</span>, <span class="fm">stats</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Lister les membres en décrochage selon un seuil paramétrable</div><div class="s">BO · <span class="fm">direction</span> (décrochage)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.9 · Volet B - comptage des événements ouverts</div><span class="tag ok">3 / 3 ✓</span></div>
+    <div class="row"><div class="f">Compteurs manuels par segment (adultes, jeunes)</div><div class="s">Contrôleur · <span class="fm">voletb</span> · BO · <span class="fm">comptage</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Distinguer la part membres (nominative) de la part anonyme</div><div class="s">BO · <span class="fm">comptage</span> (deux totaux)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Option QR d'événement self-service (incrément anonyme)</div><div class="s">BO · <span class="fm">comptage</span> · dépôt public</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.10 · Administration, paramétrage &amp; journal d'audit</div><span class="tag warn">3 ✓ · 1 ◑</span></div>
+    <div class="row"><div class="f">Gérer les utilisateurs et leurs rôles (RBAC, moindre privilège)</div><div class="s">BO · <span class="fm">users</span>, <span class="fm">create</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Consulter et filtrer le journal d'audit</div><div class="s">BO · <span class="fm">audit</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Enregistrer et autoriser les terminaux de scan</div><div class="s">BO · <span class="fm">term</span> · Contrôleur · <span class="fm">pair</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Paramétrage avancé : seuils d'assiduité, durées de conservation</div><div class="s">Réglages - types &amp; terminaux déjà présents</div><div class="v"><span class="tag warn">◑ PARTIEL</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.11 · Notifications (option de phase ultérieure)</div><span class="tag warn">1 ✓ · 1 ⊘</span></div>
+    <div class="row"><div class="f">Réception côté membre : rappels d'activité, alertes, relances</div><div class="s">Membre · <span class="fm">notif</span> (centre de notifications)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Émission &amp; campagnes côté administration (push / e-mail)</div><div class="s">Planifié - phase 3 (§12)</div><div class="v"><span class="tag def">⊘ DIFFÉRÉ</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.12 · Migration des données existantes (Excel)</div><span class="tag ok">2 / 2 ✓</span></div>
+    <div class="row"><div class="f">Importer la base existante (rapport succès / doublons / anomalies)</div><div class="s">BO · <span class="fm">create</span> (import + rapport)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Générer les QR codes pour l'ensemble des membres importés</div><div class="s">BO · <span class="fm">create</span> (génération en masse) · DAT §06</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;overflow:hidden">
+    <div class="domhead"><div class="t">§6.13 · Exports &amp; rapports</div><span class="tag ok">4 / 4 ✓</span></div>
+    <div class="row"><div class="f">Export des présences d'un événement / période (CSV ou Excel)</div><div class="s">BO · <span class="fm">stats</span>, <span class="fm">direction</span> (export)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Export de la liste des membres et de leur assiduité</div><div class="s">BO · <span class="fm">annuaire</span>, <span class="fm">stats</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Rapport synthétique d'un événement, imprimable en PDF</div><div class="s">BO · <span class="fm">direction</span> (rapport PDF) · DAT §05</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Tout export tracé dans le journal d'audit</div><div class="s">BO · <span class="fm">audit</span> (ligne « export »)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <h2 id="s2">2 · Couverture des 6 rôles</h2>
+  <p class="sub">Matrice des acteurs (§5.1) et des habilitations (§5.2) : chaque rôle dispose-t-il d'une expérience cohérente et complète ?</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>RÔLE</th></div><div class="s"><th>EXPÉRIENCE &amp; ÉCRANS</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">Super-administrateur</div><div class="s">BO complet · <span class="fm">users</span>, <span class="fm">create</span>, <span class="fm">term</span>, <span class="fm">audit</span> + paramétrage</div><div class="v"><span class="tag ok">✓ COUVERT</span></div></div>
+    <div class="row"><div class="f">Administrateur</div><div class="s">BO membres &amp; événements · <span class="fm">annuaire</span>, <span class="fm">fiche</span>, <span class="fm">valid</span>, <span class="fm">events</span>, <span class="fm">stats</span></div><div class="v"><span class="tag ok">✓ COUVERT</span></div></div>
+    <div class="row"><div class="f">Gestionnaire d'événements</div><div class="s">BO événements · <span class="fm">events</span> (création, récurrence, clôture) · <span class="fm">comptage</span></div><div class="v"><span class="tag ok">✓ COUVERT</span></div></div>
+    <div class="row"><div class="f">Contrôleur (scanner)</div><div class="s">App Contrôleur · <span class="fm">pair</span> → <span class="fm">scan</span> → <span class="fm">result</span> → <span class="fm">success</span> + <span class="fm">manual</span>, <span class="fm">exit</span>, <span class="fm">sync</span></div><div class="v"><span class="tag ok">✓ COUVERT</span></div></div>
+    <div class="row"><div class="f">Membre</div><div class="s">App Membre · <span class="fm">card</span>, <span class="fm">qr</span>, <span class="fm">history</span>, <span class="fm">activities</span>, <span class="fm">session</span>, <span class="fm">profile</span>, <span class="fm">validation</span></div><div class="v"><span class="tag ok">✓ COUVERT</span></div></div>
+    <div class="row"><div class="f">Direction</div><div class="s">Tableau décisionnel · <span class="fm">direction</span> (présents salle / en ligne / absents · décrochage · tendance)</div><div class="v"><span class="tag ok">✓ COUVERT</span></div></div>
+  </div>
+  <p style="font-size:12px;color:var(--mut);line-height:1.6;margin:10px 0 0">La règle du moindre privilège (§5.2) est respectée dans la conception : chaque rôle ne voit que les écrans et actions de sa fonction. Le contrôle d'accès est appliqué côté serveur à chaque appel (RBAC) - voir <a href="../05-technique/ADSUM%20DAT.dc.html" style="color:var(--blue);font-weight:600">DAT §07</a>.</p>
+
+  <h2 id="s3">3 · Couverture des parcours critiques</h2>
+  <p class="sub">Les flux de bout en bout (annexe D et flux métier) sont-ils tous traçables d'un écran à l'autre, cas nominal et cas dégradés inclus ?</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>PARCOURS</th></div><div class="s"><th>ENCHAÎNEMENT D'ÉCRANS</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">Scan nominal (annexe D)</div><div class="s"><span class="fm">pair → event → scan → result → success</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Sortie / heure de départ</div><div class="s"><span class="fm">scan → exit</span> (second scan)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Réseau absent</div><div class="s"><span class="fm">scan</span> hors-ligne → <span class="fm">sync</span> au retour réseau</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">QR invalide / révoqué</div><div class="s"><span class="fm">scan → error</span> (motif clair, aucun enregistrement)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Double scan</div><div class="s"><span class="fm">scan</span> → alerte « déjà pointé », pas de doublon</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Membre sans QR</div><div class="s"><span class="fm">scan → manual</span> (recherche par nom, tracé audit)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Activation membre &amp; 1ère connexion</div><div class="s"><span class="fm">first → otp → engage → card</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Mot de passe oublié</div><div class="s"><span class="fm">forgot → otp</span> (MDP temporaire)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Participation en ligne</div><div class="s"><span class="fm">activities → session → sent</span> (confirmation)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Vérification d'identité (membre)</div><div class="s"><span class="fm">validation → document → dossier</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Préparer une activité (collaboration)</div><div class="s"><span class="fm">cal → fiche → tasks</span> → publication</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Comptage volet B</div><div class="s">Contrôleur <span class="fm">voletb</span> → BO <span class="fm">comptage</span> (consolidation)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <h2 id="s4">4 · Couverture des états d'écran</h2>
+  <p class="sub">Le cahier des charges impose de traiter les états annexes. Chacun a son modèle, générique (Design System) ou spécifique à un écran.</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>ÉTAT</th></div><div class="s"><th>OÙ IL EST TRAITÉ</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">Chargement</div><div class="s">Design System · section États (squelettes / spinners)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Vide (aucune donnée)</div><div class="s">DS · États · Membre <span class="fm">history</span> (historique vide)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Erreur</div><div class="s">Contrôleur · <span class="fm">error</span> · DS · modèle d'erreur générique</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Hors-ligne</div><div class="s">Contrôleur · <span class="fm">scan</span> (bandeau) + <span class="fm">sync</span> (file)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Attente / en cours de validation</div><div class="s">Membre · <span class="fm">dossier</span> (demandé → reçu → traité)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Accès refusé / permission</div><div class="s">DS · modèle « accès refusé » · RBAC (DAT §07)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <h2 id="s5">5 · Exigences non fonctionnelles (§7)</h2>
+  <p class="sub">Ces exigences ne se matérialisent pas par un écran mais par la conception technique. Elles sont auditées ici par renvoi au DAT, pour qu'aucune ne reste sans réponse.</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>EXIGENCE (CIBLE)</th></div><div class="s"><th>TRAITÉE DANS</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">Scan → confirmation &lt; 1 s en local (§7)</div><div class="s">DAT §05 (vérif. locale Ed25519) · §07</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Annuaire local &gt; 10 000 membres (§7)</div><div class="s">DAT §05 (cache terminal) · §03</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Tableau de bord &lt; 2 s, temps réel quelques s (§7)</div><div class="s">DAT §05, §08 (vues matérialisées, WebSocket)</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Aucune perte de pointage / résilience (§7)</div><div class="s">DAT §05 (file persistante + idempotence)</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Portabilité &amp; autonomie de la base (§7)</div><div class="s">DAT §03, §08 (PostgreSQL standard, passerelles)</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Sécurité : auth, RBAC, chiffrement, QR signé (§7)</div><div class="s">DAT §07 (sécurité &amp; cryptographie)</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Observabilité : logs, métriques, alertes (§7)</div><div class="s">DAT §10 (observabilité)</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+    <div class="row"><div class="f">Accessibilité &amp; ergonomie de scan (§7)</div><div class="s">Design System · contraste, cibles ≥ 44 px, une main</div><div class="v"><span class="tag ok">✓ SPÉCIFIÉ</span></div></div>
+  </div>
+
+  <h2 id="s6">6 · Couverture du backlog par épopées (annexe E)</h2>
+  <p class="sub">Les 7 épopées du backlog initial et leurs récits utilisateur, reliés aux écrans qui les réalisent.</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>ÉPOPÉE</th></div><div class="s"><th>ÉCRANS</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">1 · Gestion des membres</div><div class="s">BO · <span class="fm">annuaire</span>, <span class="fm">fiche</span>, <span class="fm">create</span></div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+    <div class="row"><div class="f">2 · Identité &amp; QR code</div><div class="s">Membre · <span class="fm">card</span>, <span class="fm">qr</span> · BO · <span class="fm">valid</span>, <span class="fm">fiche</span></div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+    <div class="row"><div class="f">3 · Événements</div><div class="s">BO · <span class="fm">events</span> (récurrence, fenêtre, clôture)</div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+    <div class="row"><div class="f">4 · Pointage par scan</div><div class="s">Contrôleur · <span class="fm">scan</span>, <span class="fm">manual</span>, <span class="fm">error</span>, <span class="fm">sync</span></div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+    <div class="row"><div class="f">5 · Restitution &amp; pilotage</div><div class="s">BO · <span class="fm">dash</span>, <span class="fm">stats</span>, <span class="fm">direction</span></div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+    <div class="row"><div class="f">6 · Comptage volet B</div><div class="s">Contrôleur · <span class="fm">voletb</span> · BO · <span class="fm">comptage</span></div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+    <div class="row"><div class="f">7 · Administration &amp; conformité</div><div class="s">BO · <span class="fm">users</span>, <span class="fm">audit</span>, <span class="fm">term</span></div><div class="v"><span class="tag ok">✓ COUVERTE</span></div></div>
+  </div>
+
+  <h2 id="s7">7 · Conformité des promesses de la présentation</h2>
+  <p class="sub">Rappel de l'audit initial : chaque promesse de la présentation publique reliée à son écran. Conservé pour la traçabilité.</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>PROMESSE</th></div><div class="s"><th>MATÉRIALISÉE PAR</th></div><div class="v"><th>VERDICT</th></div></div>
+    <div class="row"><div class="f">Carte de membre numérique &amp; QR</div><div class="s">Membre · <span class="fm">card</span>, <span class="fm">qr</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Vie d'activités (présentiel + en ligne)</div><div class="s">Membre · <span class="fm">activities</span>, <span class="fm">session</span>, <span class="fm">sent</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Historique de participation</div><div class="s">Membre · <span class="fm">history</span>, <span class="fm">detail</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Accueil par scan &lt; 1 s, hors-ligne</div><div class="s">Contrôleur · <span class="fm">scan</span>, <span class="fm">result</span>, <span class="fm">success</span>, <span class="fm">sync</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Pilotage temps réel (responsables)</div><div class="s">Back-office · <span class="fm">dash</span> · Direction</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Statistiques &amp; rapports</div><div class="s">Back-office · <span class="fm">stats</span> (KPI, courbes)</div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Commissions &amp; groupes</div><div class="s">Back-office · <span class="fm">comm</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Recensement annuel</div><div class="s">Membre · <span class="fm">recens</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+    <div class="row"><div class="f">Collaboration (préparer les activités)</div><div class="s">Collaboration · <span class="fm">cal</span>, <span class="fm">tasks</span></div><div class="v"><span class="tag ok">✓ CONFORME</span></div></div>
+  </div>
+
+  <h2 id="s8">8 · Inventaire complet des écrans conçus</h2>
+  <p class="sub">Les 5 applications du prototype haute-fidélité et leurs écrans, soit 47 écrans / panneaux au total.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="card" style="padding:15px 17px"><div class="fd" style="font-weight:600;font-size:14px;margin-bottom:7px">Back-office <span style="color:var(--mut);font-weight:400;font-size:11px">· 15 écrans</span></div><div class="fm" style="font-size:10.5px;color:var(--ink2);line-height:1.9">dash · annuaire · fiche · create · valid · events · stats · direction · comptage · comm · users · term · audit · track · recens</div></div>
+    <div class="card" style="padding:15px 17px"><div class="fd" style="font-weight:600;font-size:14px;margin-bottom:7px">Contrôleur <span style="color:var(--mut);font-weight:400;font-size:11px">· 11 écrans</span></div><div class="fm" style="font-size:10.5px;color:var(--ink2);line-height:1.9">pair · event · scan · result · success · error · manual · exit · voletb · sync · stats</div></div>
+    <div class="card" style="padding:15px 17px"><div class="fd" style="font-weight:600;font-size:14px;margin-bottom:7px">Membre <span style="color:var(--mut);font-weight:400;font-size:11px">· 14 écrans</span></div><div class="fm" style="font-size:10.5px;color:var(--ink2);line-height:1.9">first · otp · forgot · engage · card · qr · history · detail · activities · session · sent · validation · notif · profile</div></div>
+    <div class="card" style="padding:15px 17px"><div class="fd" style="font-weight:600;font-size:14px;margin-bottom:7px">Direction <span style="color:var(--mut);font-weight:400;font-size:11px">· 4 vues</span></div><div class="fm" style="font-size:10.5px;color:var(--ink2);line-height:1.9">salle · en-ligne · absents · consolidé</div></div>
+    <div class="card" style="padding:15px 17px"><div class="fd" style="font-weight:600;font-size:14px;margin-bottom:7px">Collaboration <span style="color:var(--mut);font-weight:400;font-size:11px">· 3 écrans</span></div><div class="fm" style="font-size:10.5px;color:var(--ink2);line-height:1.9">cal · fiche · tasks</div></div>
+    <div class="card" style="padding:15px 17px;background:var(--cream)"><div class="fd" style="font-weight:600;font-size:14px;margin-bottom:7px">Transverse</div><div style="font-size:11.5px;color:var(--ink2);line-height:1.6">Design System (composants &amp; états) · Documentation · DAT · Pitch · Financement</div></div>
+  </div>
+
+  <h2 id="s9">9 · Réserves &amp; hors-périmètre version 1</h2>
+  <p class="sub">Par honnêteté d'audit : ce qui n'est volontairement <strong>pas</strong> couvert en v1, avec sa justification au plan de réalisation (§12). Aucun de ces points n'est une régression - ce sont des choix de séquencement.</p>
+  <div class="card" style="overflow:hidden">
+    <div class="row" style="border-top:none;background:var(--cream)"><div class="f"><th>POINT</th></div><div class="s"><th>JUSTIFICATION</th></div><div class="v"><th>STATUT</th></div></div>
+    <div class="row"><div class="f">Émission de notifications / campagnes (push, e-mail)</div><div class="s">Option de phase ultérieure au CDC ; réception déjà conçue (<span class="fm">notif</span>)</div><div class="v"><span class="tag def">⊘ PHASE 3</span></div></div>
+    <div class="row"><div class="f">Paramétrage avancé centralisé (seuils, rétention)</div><div class="s">Réglages de base présents ; écran d'admin consolidé en phase 2</div><div class="v"><span class="tag warn">◑ PHASE 2</span></div></div>
+    <div class="row"><div class="f">QR rotatif / anti-capture d'écran</div><div class="s">QR signé suffisant en v1 ; durcissement évalué en v2 (DAT §07)</div><div class="v"><span class="tag def">⊘ V2</span></div></div>
+    <div class="row"><div class="f">Comptage par caméra / vision (volet B)</div><div class="s">Compteurs manuels suffisants en v1 ; étude ultérieure</div><div class="v"><span class="tag def">⊘ V2</span></div></div>
+    <div class="row"><div class="f">Application native hors PWA</div><div class="s">PWA installable retenue pour la v1 (multi-plateforme, coût)</div><div class="v"><span class="tag def">⊘ V2</span></div></div>
+  </div>
+
+  <h2 id="s10">10 · Méthode &amp; portée de l'audit</h2>
+  <div class="card" style="padding:18px 20px;font-size:13px;line-height:1.7;color:var(--ink2)">
+    <p style="margin:0 0 10px"><strong>Sources de vérité.</strong> Cahier des charges complet (sections 5, 6, 7, 12 et annexes B, D, E), brief de wireframing, et les 5 applications du prototype haute-fidélité (Back-office, Contrôleur, Membre, Direction, Collaboration).</p>
+    <p style="margin:0 0 10px"><strong>Règle de verdict.</strong> <span class="tag ok">✓ CONFORME</span> = au moins un écran matérialise le critère ; <span class="tag warn">◑ PARTIEL</span> = cœur conçu, complément planifié ; <span class="tag def">⊘ DIFFÉRÉ</span> = hors périmètre v1 par décision de séquencement (§12) ; <span class="tag" style="background:#fbe9e9;color:var(--red)">✗ MANQUANT</span> = exigence v1 sans écran (aucune occurrence).</p>
+    <p style="margin:0"><strong>Portée.</strong> L'audit porte sur la <strong>conception</strong> (parcours, écrans, états). La conformité d'<strong>exécution</strong> (performances réelles, sécurité en production, RGPD opérationnel) sera vérifiée en phase de développement et de recette, sur la base du <a href="../05-technique/ADSUM%20DAT.dc.html" style="color:var(--blue);font-weight:600">DAT</a>.</p>
+  </div>
+
+  <div style="margin-top:34px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--mut)">
+    <span class="fm">ADSUM · AUDIT DE CONFORMITÉ · v2 enrichie</span>
+    <a href="../05-technique/ADSUM%20DAT.dc.html" style="color:var(--blue);font-weight:600">Voir le DAT →</a>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

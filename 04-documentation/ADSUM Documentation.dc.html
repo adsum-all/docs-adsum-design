@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  :root{--fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --b400:#5b82d8;--b500:#3563c9;--b600:#2a4fad;--b700:#223f8a;--b900:#172a5a;
+    --ink:#16181d;--ink2:#3d4047;--mut:#676b73;--faint:#9498a1;--line:#e7e9ee;--surf:#fff;--bg:#f4f5f8;--code:#eef1f7;
+    --sb:#fbfbfc;--sbink:#16181d;--sbmut:#878b93;--sbact:#eef0f4;--sbgrp:#a3a6ad;--sbline:#e6e8ec;
+    --ok:#1f8a5b;--okbg:#e6f3ec;--warn:#b5731a;--warnbg:#f7eede;--panel:#13151b;--panelink:#eef0f4;--panelsub:#9da1aa;--panelcard:#1e2129;--panelline:#2c2f38;}
+  :root[data-theme="dark"]{--ink:#eceef2;--ink2:#c7cad1;--mut:#9499a3;--faint:#6a6e78;--line:#2a2e38;--surf:#1a1d25;--bg:#101218;--code:#1e2230;--sb:#0c0e13;--sbink:#eceef2;--sbmut:#7e828c;--sbact:#23262f;--sbgrp:#5f636d;--sbline:#23262f;--okbg:#16271f;--warnbg:#2a2114;}
+  body{font-family:var(--fu);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+  a{color:inherit;text-decoration:none}
+  .sx::-webkit-scrollbar{width:9px}.sx::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px;border:2px solid transparent;background-clip:padding-box}
+  #dn a[data-on="1"]{background:var(--sbact);color:var(--ink);font-weight:600}
+  #dn a[data-on="1"] .ix{color:var(--b600)}
+  code{font-family:var(--fm);font-size:.88em;background:var(--code);padding:1px 6px;border-radius:5px}
+  .tap{cursor:pointer}
+</style>
+</helmet>
+<div style="display:flex;min-height:100vh;background:var(--bg)" class="sx">
+  <aside style="position:sticky;top:0;align-self:flex-start;width:248px;height:100vh;background:var(--sb);color:var(--sbink);flex-shrink:0;display:flex;flex-direction:column;padding:18px 14px;border-right:1px solid var(--sbline)" class="sx">
+    <a href="../index.html" style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mut);margin-bottom:14px;padding:0 6px">← Accueil</a>
+    <div style="display:flex;align-items:center;gap:10px;padding:0 6px;margin-bottom:14px">
+      <div style="width:30px;height:30px;border-radius:8px;background:var(--b600);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:15px;color:#fff">A</div>
+      <div><div style="font-family:var(--fd);font-weight:700;font-size:15px;line-height:1">ADSUM</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:1.2px;color:var(--sbmut);margin-top:2px">DOCUMENTATION</div></div>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:1px" id="dn">
+      <a href="#x0" data-sec="x0" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">00</span>Vue d'ensemble</a>
+      <a href="#x1" data-sec="x1" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">01</span>Périmètre fonctionnel</a>
+      <a href="#x2" data-sec="x2" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">02</span>Rôles &amp; permissions</a>
+      <a href="#x3" data-sec="x3" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">03</span>Architecture technique</a>
+      <a href="#x4" data-sec="x4" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">04</span>Modèle de données</a>
+      <a href="#x5" data-sec="x5" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">05</span>QR &amp; pointage hors-ligne</a>
+      <a href="#x6" data-sec="x6" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">06</span>API (aperçu)</a>
+      <a href="#x7" data-sec="x7" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">07</span>Sécurité &amp; RGPD</a>
+      <a href="#x8" data-sec="x8" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">08</span>Déploiement</a>
+      <a href="#x9" data-sec="x9" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">09</span>Feuille de route</a>
+      <a href="#x10" data-sec="x10" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">10</span>Diagrammes &amp; flux</a>
+      <a href="#x11" data-sec="x11" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">11</span>Exigences non-fonct.</a>
+      <a href="#x12" data-sec="x12" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">12</span>Tests &amp; qualité</a>
+      <a href="#x13" data-sec="x13" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">13</span>Cahier des charges</a>
+      <a href="#x14" data-sec="x14" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">14</span>Glossaire</a>
+    </nav>
+    <div style="margin-top:auto;padding-top:14px"><div onClick="{{ toggleTheme }}" class="tap" style="display:flex;gap:6px;border:1px solid var(--sbline);border-radius:9px;padding:4px"><div style="flex:1;text-align:center;font-size:11px;padding:5px 0;border-radius:6px;background:{{ lightBg }};color:{{ lightCol }}">☀</div><div style="flex:1;text-align:center;font-size:11px;padding:5px 0;border-radius:6px;background:{{ darkBg }};color:{{ darkCol }}">☾</div></div><div style="font-family:var(--fm);font-size:8px;color:var(--sbgrp);margin-top:9px;line-height:1.6">v1.0 · PHASE 04<br>RÉF. TECHNIQUE</div></div>
+  </aside>
+  <main style="flex:1;min-width:0">
+    <section id="x0" style="padding:52px 48px 40px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:14px">PHASE 04 · DOCUMENTATION FONCTIONNELLE &amp; TECHNIQUE</div>
+      <h1 style="font-family:var(--fd);font-weight:700;font-size:36px;line-height:1.06;letter-spacing:-.8px;margin:0 0 16px">Documentation ADSUM</h1>
+      <p style="font-size:15px;line-height:1.65;color:var(--ink2);max-width:64ch;margin:0 0 14px">Référence complète de la plateforme de gestion et de suivi des présences du <strong>Sacerdoce Royal</strong> : périmètre fonctionnel, rôles, architecture, modèle de données, sécurité et déploiement. Destinée à l'équipe produit et aux développeurs.</p>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--mut);max-width:64ch;margin:0 0 30px">Stack 100 % open-source : React + TypeScript + Capacitor (mobile/web/desktop), Python/FastAPI, PostgreSQL, QR signé Ed25519. Pointage hors-ligne par conception.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px;color:var(--b600)">5</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">interfaces, 1 socle</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">6</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">rôles + collaborateur</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">~135</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">écrans conçus</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">100%</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">open-source</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- X1 PÉRIMÈTRE -->
+    <section id="x1" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">01 - PÉRIMÈTRE FONCTIONNEL</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Ce que fait la plateforme</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14.5px;margin:0 0 10px">Volet A - suivi nominatif</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li>Pointage présentiel par QR signé, hors-ligne</li><li>Vérification d'identité à l'entrée (photo)</li><li>Participation en ligne (lien de suivi + questionnaire)</li><li>Carte numérique &amp; profil membre</li><li>Historique &amp; assiduité par membre</li><li>Recensement annuel, absences excusées</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14.5px;margin:0 0 10px">Volet B - comptage public</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li>Grands événements ouverts au public</li><li>QR public self-service (sans compte ni app)</li><li>Compteurs manuels par segment</li><li>Total = part nominative + part anonyme</li></ul><h3 style="font-family:var(--fd);font-weight:600;font-size:14.5px;margin:16px 0 10px">Pilotage</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li>Statistiques temps réel, KPI, rapports</li><li>Rapport présence/absence (a suivi / n'a pas suivi)</li><li>Tracking des connexions (géoloc, sécurité)</li></ul></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X2 RÔLES -->
+    <section id="x2" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">02 - RÔLES &amp; PERMISSIONS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Matrice des accès (moindre privilège)</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:10px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1.4">RÔLE</div><div style="flex:2.4">DROITS PRINCIPAUX</div></div>
+        <div style="display:flex;padding:11px 14px;border-bottom:1px solid var(--line);align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">Super-admin</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Configuration plateforme, utilisateurs, habilitations, sécurité, sauvegardes, audit</div></div><div style="display:flex;padding:11px 14px;border-bottom:1px solid var(--line);align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">Administrateur</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Membres, validation d'identité, contrats, événements, exports, demandes de documents</div></div><div style="display:flex;padding:11px 14px;border-bottom:1px solid var(--line);align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">Gestionnaire évt</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Création/planification, ouverture &amp; clôture des sessions de pointage</div></div><div style="display:flex;padding:11px 14px;border-bottom:1px solid var(--line);align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">Contrôleur</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Scan à l'entrée, comparaison photo, confirmation de présence (souvent bénévole)</div></div><div style="display:flex;padding:11px 14px;border-bottom:1px solid var(--line);align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">Membre</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Carte &amp; QR, profil, pièces, historique, participation en ligne, recensement</div></div><div style="display:flex;padding:11px 14px;border-bottom:1px solid var(--line);align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">Direction</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Tableaux de bord &amp; tendances (lecture seule) - jamais le scan</div></div><div style="display:flex;padding:11px 14px;;align-items:center"><div style="flex:1.4"><span style="font-family:var(--fm);font-size:10px;font-weight:600;color:var(--b600)">+ Collaborateur</span></div><div style="flex:2.4;font-size:12px;color:var(--ink2);line-height:1.5">Accès nominatif &amp; supervisé à l'espace de collaboration du comité (annexe)</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X3 ARCHI -->
+    <section id="x3" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">03 - ARCHITECTURE TECHNIQUE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Un socle, cinq surfaces</h2>
+      <div style="background:var(--panel);border-radius:14px;padding:22px;color:var(--panelink);margin-bottom:16px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">CLIENTS (CAPACITOR + REACT/TS)</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">App Contrôleur (iOS/Android)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Espace Membre (PWA + natif)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Back-office (web)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Direction · Collaboration (web)</span></div></div>
+          <div style="text-align:center;color:var(--panelsub);font-size:14px">↕ HTTPS / REST + WebSocket (temps réel)</div>
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">API (PYTHON · FASTAPI)</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Auth + RBAC</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Membres &amp; identités</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Événements &amp; présences</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">QR Ed25519</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Workers arq/Redis</span></div></div>
+          <div style="text-align:center;color:var(--panelsub);font-size:14px">↕</div>
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">DONNÉES &amp; SERVICES</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">PostgreSQL</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Redis (file/cache)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Stockage S3 (pièces chiffrées)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">SMTP / Web Push</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">geo-IP GeoLite</span></div></div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;font-size:12.5px;color:var(--ink2);line-height:1.6"><strong>Hors-ligne par conception :</strong> l'app Contrôleur embarque l'annuaire en cache + la clé publique de vérification. Le scan vérifie la signature localement et place la présence dans une file persistante (survit au redémarrage), synchronisée de façon idempotente au retour réseau - zéro doublon.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- X4 MODÈLE DE DONNÉES -->
+    <section id="x4" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">04 - MODÈLE DE DONNÉES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Entités principales (PostgreSQL)</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><div style="font-family:var(--fm);font-size:11px;font-weight:600;color:var(--b600);margin-bottom:9px">membre</div><div style="font-family:var(--fm);font-size:10.5px;line-height:1.85;color:var(--ink2)">id · matricule (unique) · nom · prénoms<br>email (unique) · téléphone · adresse<br>commission_id · groupe · photo_url<br>statut (actif/inactif) · vérifié (bool)<br>ancienneté · créé_le · désactivé_le</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><div style="font-family:var(--fm);font-size:11px;font-weight:600;color:var(--b600);margin-bottom:9px">evenement</div><div style="font-family:var(--fm);font-size:10.5px;line-height:1.85;color:var(--ink2)">id · titre · type · début · fin · lieu<br>récurrence_id · mode (salle/ligne/hybride)<br>volet (A/B) · statut · créé_par</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><div style="font-family:var(--fm);font-size:11px;font-weight:600;color:var(--b600);margin-bottom:9px">presence</div><div style="font-family:var(--fm);font-size:10.5px;line-height:1.85;color:var(--ink2)">id · membre_id · evenement_id<br>mode (salle/en_ligne) · arrivée · départ<br>méthode (scan/manuel/lien) · terminal_id<br>vérifié_à_l_entrée · <em>UNIQUE(membre,évt)</em></div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><div style="font-family:var(--fm);font-size:11px;font-weight:600;color:var(--b600);margin-bottom:9px">jeton_qr</div><div style="font-family:var(--fm);font-size:10.5px;line-height:1.85;color:var(--ink2)">id · membre_id · payload signé (Ed25519)<br>émis_le · révoqué (bool) · révoqué_le<br>version_clé</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><div style="font-family:var(--fm);font-size:11px;font-weight:600;color:var(--b600);margin-bottom:9px">engagement &amp; document</div><div style="font-family:var(--fm);font-size:10.5px;line-height:1.85;color:var(--ink2)">contrat_id · membre_id · type · version<br>signé_le · code_signature<br>document : statut (demandé/reçu/lu/traité)</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><div style="font-family:var(--fm);font-size:11px;font-weight:600;color:var(--b600);margin-bottom:9px">utilisateur · session · audit</div><div style="font-family:var(--fm);font-size:10.5px;line-height:1.85;color:var(--ink2)">utilisateur : rôle · 2FA · hash MDP<br>session : ip · pays · appareil · début/fin<br>audit : acteur · action · objet · ts · ip</div></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:13px;font-size:11.5px;color:var(--mut);line-height:1.6;margin-top:14px">La contrainte <code>UNIQUE(membre, événement)</code> garantit la règle <strong>« 1 membre = 1 présence »</strong> (salle ou en ligne, jamais les deux). Les pièces d'identité ne sont <strong>pas</strong> une table durable : stockées chiffrées temporairement puis supprimées à la validation, seule la preuve subsiste.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X5 QR -->
+    <section id="x5" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">05 - QR &amp; POINTAGE HORS-LIGNE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Chaîne de confiance Ed25519</h2>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:13px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="width:24px;height:24px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.55"><strong>Émission.</strong> Le serveur signe un payload (matricule + version) avec la <strong>clé privée Ed25519</strong>. Le QR encode payload + signature. La clé privée ne quitte jamais le serveur.</div></div>
+        <div style="display:flex;gap:13px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="width:24px;height:24px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.55"><strong>Distribution.</strong> Le terminal Contrôleur télécharge l'annuaire + la <strong>clé publique</strong> au démarrage (cache local chiffré).</div></div>
+        <div style="display:flex;gap:13px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="width:24px;height:24px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.55"><strong>Vérification locale.</strong> Au scan, la signature est vérifiée <strong>hors-ligne</strong> avec la clé publique (&lt; 1 s). Un jeton révoqué (liste de révocation en cache) est rejeté.</div></div>
+        <div style="display:flex;gap:13px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;font-family:var(--fm);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.55"><strong>File &amp; synchro.</strong> La présence est mise en file persistante locale, puis synchronisée de façon <strong>idempotente</strong> (clé : membre+événement) au retour réseau - zéro doublon, même multi-terminaux.</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X6 API -->
+    <section id="x6" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">06 - API (APERÇU REST)</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Principaux points d'entrée</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden;font-family:var(--fm);font-size:11.5px">
+        <div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/auth/login</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Connexion (jeton Bearer) + 2FA e-mail</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/auth/forgot</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">MDP temporaire auto par e-mail</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#1f8a5b;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">GET</span><span style="color:var(--ink);flex-shrink:0">/membres</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Annuaire paginé + filtres (rôle requis)</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/membres</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Créer un compte (admin)</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#1f8a5b;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">GET</span><span style="color:var(--ink);flex-shrink:0">/membres/{id}</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Fiche détaillée + historique</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/validations/{id}</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Valider/refuser une identité</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/evenements</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Créer événement / récurrence</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/presences</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Enregistrer présence (scan/manuel) - idempotent</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/presences/sync</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Vidage de la file hors-ligne (lot)</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#1f8a5b;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">GET</span><span style="color:var(--ink);flex-shrink:0">/statistiques</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">KPI consolidés + rapport présence/absence</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#2a4fad;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">POST</span><span style="color:var(--ink);flex-shrink:0">/qr/{membre}/revoquer</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Révoquer / réémettre un jeton QR</span></div><div style="display:flex;gap:11px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><span style="color:#fff;background:#1f8a5b;border-radius:5px;padding:2px 7px;font-size:9px;width:42px;text-align:center;flex-shrink:0">GET</span><span style="color:var(--ink);flex-shrink:0">/audit</span><span style="color:var(--mut);font-family:var(--fu);font-size:11px;margin-left:auto;text-align:right">Journal d'audit filtrable (super-admin)</span></div>
+      </div>
+      <div style="font-size:11.5px;color:var(--mut);line-height:1.6;margin-top:12px">Authentification par jeton (Bearer) ; RBAC appliqué à chaque route. Réponses paginées. Temps réel via WebSocket <code>/ws/evenements/{id}</code>.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X7 SÉCURITÉ -->
+    <section id="x7" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">07 - SÉCURITÉ &amp; RGPD</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Protection des données &amp; des accès</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Accès</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li>Comptes créés par l'admin (pas d'auto-inscription)</li><li>Mot de passe temporaire → changement obligatoire</li><li>2FA par code e-mail (option, recommandée admin)</li><li>RBAC moindre privilège, verrouillage anti-force-brute</li><li>Journal d'audit de toute action sensible</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Données (RGPD)</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li><strong>Minimisation</strong> : pièces supprimées après validation</li><li>Chiffrement au repos (pièces) &amp; en transit (TLS)</li><li>Durées de conservation paramétrables</li><li>Consentement &amp; engagements signés (preuve horodatée)</li><li>Export &amp; suppression des données sur demande</li></ul></div>
+      </div>
+      <div style="background:var(--warnbg);border:1px solid var(--warn);border-radius:11px;padding:13px;font-size:11.5px;color:var(--ink2);line-height:1.6;margin-top:14px"><strong>Tracking sécurité :</strong> géolocalisation des connexions (pays/continent via geo-IP), heures connexion/déconnexion, détection de session inhabituelle ; le membre peut signaler « ce n'est pas moi » et fermer les autres sessions.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X8 DÉPLOIEMENT -->
+    <section id="x8" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">08 - DÉPLOIEMENT</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Mise en production</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Serveur</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li>Conteneurs Docker (API, workers, Redis)</li><li>PostgreSQL managé ou auto-hébergé</li><li>Reverse-proxy TLS (Caddy/Nginx)</li><li>Sauvegardes auto chiffrées + restauration testée</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Clients</h3><ul style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7;color:var(--ink2)"><li>Web : build statique + CDN</li><li>PWA installable (membre)</li><li>Android : Google Play (Capacitor)</li><li>iOS : App Store (Capacitor)</li></ul></div>
+      </div>
+      <div style="background:var(--panel);border-radius:13px;padding:18px;color:var(--panelink)"><div style="font-family:var(--fm);font-size:9.5px;color:var(--b400);letter-spacing:.5px;margin-bottom:9px">PREMIER DÉMARRAGE</div><div style="font-size:12.5px;line-height:1.65;color:var(--panelsub)">À l'installation, un <strong style="color:var(--panelink)">compte super-administrateur de semence</strong> est créé (identifiants fournis hors-bande / variables d'environnement, changés à la 1ʳᵉ connexion). Il crée ensuite les autres utilisateurs, configure commissions, types d'événements, seuils et contrats. <strong style="color:var(--panelink)">Aucun identifiant en clair n'est stocké dans le code ni dans cette documentation.</strong></div></div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X9 ROADMAP -->
+    <section id="x9" style="padding:40px 48px 30px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">09 - FEUILLE DE ROUTE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">État des phases</h2>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;gap:13px;align-items:center;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:4px 9px;border-radius:20px">✓ FAIT</span><div style="font-size:12.5px;color:var(--ink2)"><strong>Conception</strong> - wireframes, design system, prototypes hi-fi des 5 interfaces, documentation.</div></div>
+        <div style="display:flex;gap:13px;align-items:center;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><span style="font-family:var(--fm);font-size:9px;background:var(--bg);color:var(--mut);padding:4px 9px;border-radius:20px;border:1px solid var(--line)">À VENIR</span><div style="font-size:12.5px;color:var(--ink2)"><strong>Développement</strong> - implémentation FastAPI + PostgreSQL + clients Capacitor, connexion réelle, base de données, déploiement en production.</div></div>
+        <div style="display:flex;gap:13px;align-items:center;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><span style="font-family:var(--fm);font-size:9px;background:var(--bg);color:var(--mut);padding:4px 9px;border-radius:20px;border:1px solid var(--line)">À VENIR</span><div style="font-size:12.5px;color:var(--ink2)"><strong>Durcissement</strong> - tests de charge, autonomie hors-ligne, sécurité, conformité, recette.</div></div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:14px;font-size:11.5px;color:var(--mut);line-height:1.6;margin-top:16px">Cette documentation couvre la <strong>conception</strong> (design + spécification). Le passage en production relève de la phase de <strong>développement logiciel</strong> : écriture du code serveur/clients, mise en place de la base de données et déploiement - étapes distinctes de l'outil de conception.</div>
+    </section>
+
+    <!-- X10 DIAGRAMMES -->
+    <section id="x10" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">10 - DIAGRAMMES &amp; FLUX</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Schémas de séquence</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;margin-bottom:14px">
+        <div style="font-size:12.5px;font-weight:600;margin-bottom:14px">Pointage par scan (hors-ligne)</div>
+        <div style="display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;font-size:11px">
+          <div style="flex:1;min-width:90px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:8px;color:var(--b600)">CONTRÔLEUR</div><div style="margin-top:6px;color:var(--ink2)">Scanne le QR</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:90px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:8px;color:var(--b600)">APP (LOCAL)</div><div style="margin-top:6px;color:var(--ink2)">Vérifie signature Ed25519</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:90px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:8px;color:var(--b600)">FILE LOCALE</div><div style="margin-top:6px;color:var(--ink2)">Présence mise en file</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:90px;background:var(--okbg);border:1px solid var(--ok);border-radius:9px;padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:8px;color:var(--ok)">SERVEUR</div><div style="margin-top:6px;color:var(--ink2)">Sync idempotente au réseau</div></div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;margin-bottom:14px">
+        <div style="font-size:12.5px;font-weight:600;margin-bottom:14px">Activation du compte membre</div>
+        <div style="display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;font-size:11px">
+          <div style="flex:1;min-width:84px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Admin crée compte</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:84px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">MDP temp. → 1ʳᵉ connexion</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:84px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Profil + pièces + selfie</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:84px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Signature engagements</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:84px;background:var(--okbg);border:1px solid var(--ok);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Admin valide · pièce supprimée</div></div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px">
+        <div style="font-size:12.5px;font-weight:600;margin-bottom:14px">Comptage public (volet B)</div>
+        <div style="display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;font-size:11px">
+          <div style="flex:1;min-width:90px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Admin génère QR public signé</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:90px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Visiteur scanne (app native)</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:90px;background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">Page web · bouton « Je suis présent »</div></div>
+          <div style="display:flex;align-items:center;color:var(--faint)">→</div>
+          <div style="flex:1;min-width:90px;background:var(--okbg);border:1px solid var(--ok);border-radius:9px;padding:10px;text-align:center"><div style="color:var(--ink2)">+1 anonyme · anti-abus</div></div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X11 EXIGENCES NON-FONCTIONNELLES -->
+    <section id="x11" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">11 - EXIGENCES NON-FONCTIONNELLES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Performance, charge, disponibilité</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:10px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1.4">CRITÈRE</div><div style="flex:1.6">CIBLE</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1.4;color:var(--ink2)">Latence du scan</div><div style="flex:1.6;color:var(--mut)">&lt; 1 s (idéal &lt; 300 ms), 100 % hors-ligne</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1.4;color:var(--ink2)">Recherche annuaire</div><div style="flex:1.6;color:var(--mut)">&lt; 2 s sur &gt; 28 000 membres</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1.4;color:var(--ink2)">Charge événement</div><div style="flex:1.6;color:var(--mut)">plusieurs milliers de pointages / heure, multi-terminaux</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1.4;color:var(--ink2)">Temps réel</div><div style="flex:1.6;color:var(--mut)">tableaux de bord MAJ en quelques secondes</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1.4;color:var(--ink2)">Disponibilité</div><div style="flex:1.6;color:var(--mut)">99,5 % visée · dégradation gracieuse hors-ligne</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1.4;color:var(--ink2)">Autonomie terminal</div><div style="flex:1.6;color:var(--mut)">une journée d'événement sans réseau</div></div>
+        <div style="display:flex;padding:10px 14px;font-size:12px"><div style="flex:1.4;color:var(--ink2)">Sauvegarde / restauration</div><div style="flex:1.6;color:var(--mut)">RPO ≤ 6 h · RTO ≤ 2 h · restauration testée</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X12 STRATÉGIE DE TEST -->
+    <section id="x12" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">12 - STRATÉGIE DE TEST &amp; QUALITÉ</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Pyramide de tests</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Niveaux</h3><ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li><strong>Unitaires</strong> - signature QR, idempotence, RBAC, dédoublonnage</li><li><strong>Intégration</strong> - API + base, file hors-ligne → sync</li><li><strong>E2E</strong> - parcours scan, activation, recensement</li><li><strong>Charge</strong> - pic de pointages, recherche annuaire</li><li><strong>Sécurité</strong> - pénétration, fuzzing, audit accès</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Recette &amp; CI</h3><ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>Pipeline CI : lint + tests + build à chaque commit</li><li>Couverture cible ≥ 80 % sur la logique métier</li><li>Tests hors-ligne simulés (coupure réseau)</li><li>Recette utilisateur avant chaque mise en production</li><li>Tests d'accessibilité (contraste, clavier, lecteurs d'écran)</li></ul></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X13 CAHIER DES CHARGES -->
+    <section id="x13" style="padding:40px 48px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">13 - SYNTHÈSE CAHIER DES CHARGES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Exigences &amp; couverture</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:10px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:2.4">EXIGENCE</div><div style="width:90px;text-align:center">COUVERTURE</div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Sortir d'Excel · tout en base PostgreSQL</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Pointage &lt; 1 s, hors-ligne, vérif. photo</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Statistiques temps réel + parcours membre</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Participation en ligne + questionnaire</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Comptage grands événements (volet B)</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+        <div style="display:flex;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Minimisation RGPD · sécurité · audit</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+        <div style="display:flex;padding:10px 14px;font-size:12px;align-items:center"><div style="flex:2.4;color:var(--ink2)">Collaboration comité · recensement annuel</div><div style="width:90px;text-align:center"><span style="font-family:var(--fm);font-size:8px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">✓ conçu</span></div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- X14 GLOSSAIRE -->
+    <section id="x14" style="padding:40px 48px 30px;max-width:920px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">14 - GLOSSAIRE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Termes &amp; définitions</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;line-height:1.5">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>Volet A</strong> - suivi nominatif des membres (scan + en ligne).</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>Volet B</strong> - comptage public anonyme des grands événements.</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>Ed25519</strong> - schéma de signature cryptographique du QR.</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>Idempotence</strong> - une présence répétée n'est comptée qu'une fois.</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>RBAC</strong> - contrôle d'accès par rôle (moindre privilège).</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>RPO / RTO</strong> - perte de données / délai de reprise admissibles.</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>Recensement</strong> - confirmation annuelle d'engagement du membre.</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:13px"><strong>Capacitor</strong> - runtime produisant les apps iOS/Android/web.</div>
+      </div>
+    </section>
+    <footer style="padding:8px 48px 44px;max-width:920px"><div style="font-family:var(--fm);font-size:9.5px;color:var(--faint);letter-spacing:.5px">ADSUM · DOCUMENTATION v1.1 · SACERDOCE ROYAL · JUIN 2026</div></footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { theme:'light' };
+  componentDidMount(){
+    try{ const t=localStorage.getItem('adsum_doc_theme'); if(t) this.setState({theme:t}); }catch(e){}
+    this.apply();
+    const ids=['x0','x1','x2','x3','x4','x5','x6','x7','x8','x9','x10','x11','x12','x13','x14'];
+    const nav=document.getElementById('dn');
+    const onScroll=()=>{let cur=ids[0];for(const id of ids){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)cur=id;}if(nav)nav.querySelectorAll('a').forEach(a=>a.setAttribute('data-on',a.getAttribute('data-sec')===cur?'1':'0'));};
+    this._on=onScroll;window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  }
+  componentDidUpdate(){ this.apply(); }
+  componentWillUnmount(){ if(this._on) window.removeEventListener('scroll',this._on); }
+  apply(){ document.documentElement.setAttribute('data-theme',this.state.theme); try{localStorage.setItem('adsum_doc_theme',this.state.theme);}catch(e){} }
+  renderVals(){
+    const d=this.state.theme==='dark';
+    return {
+      toggleTheme:()=>this.setState(s=>({theme:s.theme==='light'?'dark':'light'})),
+      lightBg:d?'transparent':'var(--ink)', lightCol:d?'var(--mut)':'var(--surf)',
+      darkBg:d?'var(--ink)':'transparent', darkCol:d?'var(--surf)':'var(--mut)',
+    };
+  }
+}
+</script>
+</body>
+</html>
