@@ -1,0 +1,13 @@
+# Dependencies and tooling
+node_modules/
+.wrangler/
+dist/
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
