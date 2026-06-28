@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  :root{
+    --fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --blue:#1b62c4;--blue2:#114a99;--blued:#0e3a7a;--sky:#e9f1fd;--skyline:#cfe0f7;
+    --gold:#f4b521;--goldd:#d99a0c;--goldsoft:#fdf4d8;--red:#d8332e;--ok:#1f9d57;
+    --ink:#15233f;--mut:#5d6b86;--line:#e3e9f4;--paper:#ffffff;--cream:#f6f9fe;
+    --type-title:64px;--type-big:118px;--type-subtitle:42px;--type-body:32px;--type-small:26px;--type-mono:25px;
+    --pad-x:104px;--pad-y:90px;
+  }
+  .slide{position:absolute;inset:0;font-family:var(--fu);color:var(--ink);overflow:hidden}
+  .ey{font-family:var(--fm);font-size:var(--type-mono);letter-spacing:3px;text-transform:uppercase}
+  .ti{font-family:var(--fd);font-weight:700;letter-spacing:-1.5px;line-height:1.03}
+  .num{font-family:var(--fd);font-weight:700;letter-spacing:-3px;line-height:.9}
+  .chip{font-family:var(--fm);font-size:24px;letter-spacing:1px;border-radius:30px;padding:12px 22px;display:inline-flex;align-items:center;gap:9px}
+  .qr{background:repeating-linear-gradient(0deg,currentColor 0 5px,transparent 5px 10px),repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 10px);background-blend-mode:multiply}
+  .gbar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--blue) 0 38%,var(--gold) 38% 70%,var(--red) 70% 100%)}
+</style>
+<script type="application/json" id="speaker-notes">[
+"Bonjour. Aujourd'hui, je vous présente ADSUM : l'application qui fait vivre, relie et organise toute la communauté du Sacerdoce Royal, dans la main de chaque membre. Ce n'est pas un projet, ni une maquette : c'est une application complète, prête, que je vous montre telle qu'elle s'utilise au quotidien. Laissez-vous porter - à la fin, vous verrez tout ce qu'elle change.",
+"Commençons par ce qu'elle est vraiment. ADSUM n'est pas un outil de pointage. C'est l'application de la communauté : la carte de membre dans le téléphone, la vie des activités, le lien avec sa commission, la participation en ligne, et le pilotage pour les responsables. Une seule application, pour tout le monde, partout.",
+"Pourquoi maintenant. Une communauté de milliers de membres, ça vit intensément : des activités chaque semaine, des grands rassemblements, des formations, du présentiel et du en ligne. Mais sans outil commun, l'information se perd, les membres se sentent des numéros, et les responsables pilotent à l'aveugle. ADSUM répond à tout cela d'un coup.",
+"Voici le cœur de l'expérience membre : la carte numérique. Chaque membre porte son appartenance dans sa poche - sa carte, son QR personnel, son matricule. Fini la carte papier qu'on perd. C'est moderne, c'est fier, c'est à lui. Et c'est la clé qui ouvre tout le reste de l'application.",
+"L'application accompagne le membre dans toute sa vie communautaire. Il voit ses activités à venir, rejoint les sessions en ligne d'un geste, consulte son historique de participation, complète son profil, gère son identité et reçoit ses notifications. Il n'est plus spectateur : il est acteur, connecté, accompagné.",
+"Sur le terrain, l'entrée devient fluide. Le responsable scanne le QR du membre, sa photo s'affiche, il confirme - en moins d'une seconde, et même sans aucune connexion. Plus de files, plus de listes papier, plus d'erreurs. L'accueil est digne, rapide, et chaque présence est enregistrée sans effort.",
+"Et tout cela remonte, en direct, dans un tableau de bord clair. Les responsables voient l'affluence en temps réel, qui participe, qui s'éloigne, comment vivent les commissions. Ils éditent leurs rapports en un clic. Pour la première fois, on pilote la communauté avec des faits, pas des impressions.",
+"L'application va plus loin que la présence. Elle organise la vie commune : préparation des activités en équipe, gestion des membres et des commissions, participation en ligne avec questionnaire, recensement annuel, suivi des engagements. C'est une vraie plateforme de communauté, complète.",
+"Tout cela repose sur une exigence : la confiance. Les données des membres sont protégées, les QR sont infalsifiables, les pièces sensibles ne sont jamais conservées, et chaque action est tracée. Sur un sujet aussi précieux que les personnes d'une communauté, la sécurité est au cœur de l'application.",
+"L'application est universelle dans la communauté : elle vit sur le téléphone de chaque membre - iPhone comme Android - et sur l'ordinateur des responsables, via un simple navigateur. Une seule application, la même pour tous, accessible partout, tout le temps.",
+"Et le plus beau : l'application est prête, et elle est offerte à la communauté. Pas d'abonnement à l'application, pas de licence. Le seul besoin, c'est de la faire vivre - l'héberger quelque part. Une petite contribution libre des membres, de l'ordre d'un café par mois, y suffit largement. La communauté fait vivre son propre outil.",
+"En une image : ADSUM, c'est l'application qui relie chaque membre, simplifie chaque activité, et éclaire chaque responsable. Elle est prête. Elle est belle. Elle est à vous. Mettons-la entre les mains de la communauté - commençons dès aujourd'hui."
+]</script>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<!-- 1 COUVERTURE -->
+<section data-label="Couverture" data-screen-label="01 Couverture" style="background:linear-gradient(135deg,#1b62c4 0%,#114a99 55%,#0e3a7a 100%)">
+  <div class="slide" style="display:flex;padding:var(--pad-y) var(--pad-x);gap:60px;align-items:center;color:#fff">
+    <div style="flex:1.1">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:38px">
+        <div style="width:54px;height:54px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:28px;color:var(--blue)">A</div>
+        <div><div class="ey" style="font-size:24px;color:var(--gold);letter-spacing:2px">Apostolat Catholique d'Évangélisation</div><div style="font-family:var(--fd);font-weight:700;font-size:25px;letter-spacing:1px;margin-top:2px">SACERDOCE ROYAL</div></div>
+      </div>
+      <div style="width:120px" class="gbar"></div>
+      <h1 class="ti" style="font-size:128px;color:#fff;margin:26px 0 0">ADSUM</h1>
+      <p style="font-family:var(--fd);font-weight:500;font-size:44px;color:#cfe0f7;margin:18px 0 0;letter-spacing:-.5px;max-width:24ch">L'application qui relie, anime et pilote toute la communauté.</p>
+      <div style="display:flex;gap:13px;flex-wrap:wrap;margin-top:38px">
+        <span class="chip" style="background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff">Carte de membre numérique</span>
+        <span class="chip" style="background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff">Vie de communauté</span>
+        <span class="chip" style="background:var(--gold);color:var(--blued)">Prête &amp; offerte</span>
+      </div>
+    </div>
+    <!-- hero phone: carte membre -->
+    <div style="flex:0 0 340px;display:flex;justify-content:center">
+      <div style="width:330px;height:680px;background:#0a1430;border-radius:46px;padding:13px;box-shadow:0 50px 90px -28px rgba(0,0,0,.5)">
+        <div style="width:100%;height:100%;border-radius:34px;background:var(--cream);overflow:hidden;display:flex;flex-direction:column;padding:24px 20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="font-family:var(--fd);font-weight:700;font-size:24px;color:var(--ink)">Ma carte</div><div style="width:36px;height:36px;border-radius:50%;background:#dfe8f7"></div></div>
+          <div style="background:linear-gradient(150deg,var(--blue),var(--blued));border-radius:22px;padding:22px;color:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-family:var(--fm);font-size:13px;letter-spacing:1.5px;color:var(--gold)">SACERDOCE ROYAL</div><div style="font-family:var(--fd);font-weight:600;font-size:24px;margin-top:10px">Marie Koffi</div><div style="font-size:15px;color:#cfe0f7;margin-top:4px">Commission Accueil</div></div><div style="width:46px;height:46px;border-radius:11px;background:rgba(255,255,255,.15)"></div></div>
+            <div style="background:#fff;border-radius:14px;padding:16px;margin-top:18px;display:flex;justify-content:center"><div class="qr" style="width:140px;height:140px;color:var(--blued);border-radius:4px"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:14px;font-family:var(--fm);font-size:13px;color:var(--gold)"><span>ADS-000123</span><span style="color:#7be0a0">● VÉRIFIÉ</span></div>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:10px">
+            <div style="flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center"><div class="num" style="font-size:30px;color:var(--blue)">82%</div><div style="font-size:13px;color:var(--mut);margin-top:2px">assiduité</div></div>
+            <div style="flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center"><div class="num" style="font-size:30px;color:var(--blue)">47</div><div style="font-size:13px;color:var(--mut);margin-top:2px">présences</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 CE QUE C'EST -->
+<section data-label="Ce que c'est" data-screen-label="02 Ce que c'est" style="background:var(--paper)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x)">
+    <div style="width:120px" class="gbar"></div>
+    <div class="ey" style="color:var(--blue);margin:28px 0 24px">Bien plus qu'un pointage</div>
+    <h2 class="ti" style="font-size:66px;max-width:22ch;margin:0 0 48px">L'application de toute la vie communautaire.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <div style="background:var(--sky);border-radius:18px;padding:30px"><div style="font-size:34px">▣</div><div style="font-size:28px;font-weight:600;margin:14px 0 8px">Mon appartenance</div><div style="font-size:23px;color:var(--mut);line-height:1.4">Carte numérique, QR personnel, profil &amp; historique.</div></div>
+      <div style="background:var(--goldsoft);border-radius:18px;padding:30px"><div style="font-size:34px">◷</div><div style="font-size:28px;font-weight:600;margin:14px 0 8px">Ma vie d'activités</div><div style="font-size:23px;color:var(--mut);line-height:1.4">Présentiel &amp; en ligne, rappels, participation, engagements.</div></div>
+      <div style="background:var(--sky);border-radius:18px;padding:30px"><div style="font-size:34px">▦</div><div style="font-size:28px;font-weight:600;margin:14px 0 8px">Le pilotage</div><div style="font-size:23px;color:var(--mut);line-height:1.4">Membres, commissions, statistiques &amp; rapports en temps réel.</div></div>
+    </div>
+    <p style="font-size:28px;color:var(--ink);margin:46px 0 0;max-width:54ch;line-height:1.4;font-weight:500">Une seule application - pour le membre, le responsable et tout le comité.</p>
+  </div>
+</section>
+
+<!-- 3 LE BESOIN -->
+<section data-label="Le besoin" data-screen-label="03 Le besoin" style="background:var(--cream)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x)">
+    <div class="ey" style="color:var(--red);margin-bottom:28px">Le besoin</div>
+    <h2 class="ti" style="font-size:64px;max-width:24ch;margin:0 0 50px">Une communauté qui vit fort mérite un outil à sa hauteur.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="background:#fff;border-radius:18px;padding:32px;border-top:5px solid var(--red)"><div style="font-size:27px;font-weight:600;margin-bottom:10px">L'information se perd</div><div style="font-size:24px;color:var(--mut);line-height:1.4">Feuilles, fichiers épars, aucun historique fiable.</div></div>
+      <div style="background:#fff;border-radius:18px;padding:32px;border-top:5px solid var(--red)"><div style="font-size:27px;font-weight:600;margin-bottom:10px">Le membre se sent un numéro</div><div style="font-size:24px;color:var(--mut);line-height:1.4">Pas de carte, pas de lien, pas de reconnaissance.</div></div>
+      <div style="background:#fff;border-radius:18px;padding:32px;border-top:5px solid var(--red)"><div style="font-size:27px;font-weight:600;margin-bottom:10px">On pilote à l'aveugle</div><div style="font-size:24px;color:var(--mut);line-height:1.4">Aucune vue d'ensemble, aucune décision sur des faits.</div></div>
+    </div>
+    <p style="font-size:30px;color:var(--ink);margin:50px 0 0;font-weight:500">ADSUM répond aux trois, d'un seul geste.</p>
+  </div>
+</section>
+
+<!-- 4 CARTE MEMBRE -->
+<section data-label="Carte membre" data-screen-label="04 Carte membre" style="background:var(--paper)">
+  <div class="slide" style="display:flex;padding:var(--pad-y) var(--pad-x);gap:70px;align-items:center">
+    <div style="flex:1">
+      <div class="ey" style="color:var(--blue);margin-bottom:24px">L'expérience membre</div>
+      <h2 class="ti" style="font-size:60px;max-width:16ch;margin:0 0 28px">Son appartenance, dans sa poche.</h2>
+      <p style="font-size:30px;color:var(--mut);max-width:30ch;line-height:1.4;margin:0 0 28px">Chaque membre porte sa carte numérique et son QR personnel. Moderne, fier, à lui - et la clé de toute l'application.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:14px;font-size:26px"><span style="color:var(--ok);font-size:30px">✓</span> Carte &amp; matricule officiels</div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:26px"><span style="color:var(--ok);font-size:30px">✓</span> QR personnel infalsifiable</div>
+        <div style="display:flex;align-items:center;gap:14px;font-size:26px"><span style="color:var(--ok);font-size:30px">✓</span> Identité vérifiée &amp; sécurisée</div>
+      </div>
+    </div>
+    <div style="flex:0 0 360px;display:flex;justify-content:center">
+      <div style="width:330px;height:670px;background:#0a1430;border-radius:46px;padding:13px;box-shadow:0 40px 80px -28px rgba(17,74,153,.45)">
+        <div style="width:100%;height:100%;border-radius:34px;background:#fff;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:30px 24px">
+          <div style="font-family:var(--fm);font-size:14px;color:var(--mut);align-self:flex-end">⛶ Plein écran</div>
+          <div class="qr" style="width:210px;height:210px;color:var(--blued);border-radius:6px;margin:48px 0 30px"></div>
+          <div style="font-family:var(--fd);font-weight:700;font-size:26px">Marie Koffi</div>
+          <div style="font-family:var(--fm);font-size:17px;color:var(--mut);margin-top:8px">ADS-000123</div>
+          <div style="margin-top:14px;font-family:var(--fm);font-size:14px;color:var(--ok);background:#e7f6ec;padding:7px 16px;border-radius:20px">● ACTIF · VÉRIFIÉ</div>
+          <div style="margin-top:auto;font-family:var(--fm);font-size:13px;color:#aab4c8">Présentez ce code à l'entrée</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 VIE D'ACTIVITÉS -->
+<section data-label="Vie d'activités" data-screen-label="05 Vie d'activités" style="background:var(--cream)">
+  <div class="slide" style="display:flex;padding:var(--pad-y) var(--pad-x);gap:60px;align-items:center">
+    <div style="flex:0 0 360px;display:flex;justify-content:center">
+      <div style="width:330px;height:670px;background:#0a1430;border-radius:46px;padding:13px;box-shadow:0 40px 80px -28px rgba(17,74,153,.45)">
+        <div style="width:100%;height:100%;border-radius:34px;background:var(--cream);overflow:hidden;display:flex;flex-direction:column;padding:24px 18px">
+          <div style="font-family:var(--fd);font-weight:700;font-size:24px;margin-bottom:16px">À venir</div>
+          <div style="background:#fff;border:2px solid var(--blue);border-radius:16px;padding:16px;margin-bottom:12px"><div style="display:flex;justify-content:space-between"><span style="font-family:var(--fm);font-size:12px;color:var(--blue)">EN LIGNE · AUJOURD'HUI</span><span style="font-family:var(--fm);font-size:12px;color:var(--ok)">● OUVERT</span></div><div style="font-size:19px;font-weight:600;margin-top:10px">Formation du dimanche</div><div style="height:46px;background:var(--blue);border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:600;margin-top:12px">▶ Rejoindre</div></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px"><span style="font-family:var(--fm);font-size:12px;color:var(--mut)">SALLE · DIMANCHE</span><div style="font-size:19px;font-weight:600;margin-top:8px">Rencontre du dimanche</div><div style="font-size:15px;color:var(--mut);margin-top:4px">10:00 · Salle principale</div></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;opacity:.75"><span style="font-family:var(--fm);font-size:12px;color:var(--mut)">FORMATION · MARDI</span><div style="font-size:19px;font-weight:600;margin-top:8px">Catéchèse</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="ey" style="color:var(--blue);margin-bottom:24px">Accompagner chaque membre</div>
+      <h2 class="ti" style="font-size:58px;max-width:16ch;margin:0 0 28px">Toute la vie de la communauté, au même endroit.</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;font-size:24px;font-weight:600">📅 Activités à venir</div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;font-size:24px;font-weight:600">▶ Sessions en ligne</div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;font-size:24px;font-weight:600">↻ Mon historique</div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;font-size:24px;font-weight:600">🔔 Mes notifications</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 SCAN -->
+<section data-label="L'accueil" data-screen-label="06 Accueil scan" style="background:var(--paper)">
+  <div class="slide" style="display:flex;padding:var(--pad-y) var(--pad-x);gap:70px;align-items:center">
+    <div style="flex:1">
+      <div class="ey" style="color:var(--blue);margin-bottom:24px">L'accueil, sur le terrain</div>
+      <h2 class="ti" style="font-size:60px;margin:0 0 26px;max-width:15ch">Une entrée fluide, digne, sans file.</h2>
+      <div class="num" style="font-size:var(--type-big);color:var(--blue)">&lt; 1<span style="font-size:46px;letter-spacing:0;color:var(--ink)"> seconde</span></div>
+      <p style="font-size:30px;color:var(--mut);margin:24px 0 0;max-width:30ch;line-height:1.4">On scanne, la photo s'affiche, on confirme. Même sans réseau. <span style="color:var(--ink);font-weight:600">Chaque présence enregistrée sans effort.</span></p>
+    </div>
+    <div style="flex:0 0 360px;display:flex;justify-content:center">
+      <div style="width:330px;height:670px;background:#0a1430;border-radius:46px;padding:13px;box-shadow:0 40px 80px -28px rgba(17,74,153,.45)">
+        <div style="width:100%;height:100%;border-radius:34px;background:#0c1730;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative">
+          <div style="position:absolute;top:24px;left:22px;right:22px;display:flex;justify-content:space-between;font-family:var(--fm);font-size:24px;color:var(--gold)"><span>● HORS-LIGNE</span><span>142</span></div>
+          <div style="width:218px;height:218px;position:relative">
+            <div style="position:absolute;top:0;left:0;width:46px;height:46px;border-top:4px solid var(--gold);border-left:4px solid var(--gold);border-radius:8px 0 0 0"></div>
+            <div style="position:absolute;top:0;right:0;width:46px;height:46px;border-top:4px solid var(--gold);border-right:4px solid var(--gold);border-radius:0 8px 0 0"></div>
+            <div style="position:absolute;bottom:0;left:0;width:46px;height:46px;border-bottom:4px solid var(--gold);border-left:4px solid var(--gold);border-radius:0 0 0 8px"></div>
+            <div style="position:absolute;bottom:0;right:0;width:46px;height:46px;border-bottom:4px solid var(--gold);border-right:4px solid var(--gold);border-radius:0 0 8px 0"></div>
+            <div class="qr" style="position:absolute;inset:40px;color:#3a6ec0;border-radius:6px"></div>
+          </div>
+          <div style="position:absolute;bottom:122px;color:#aac6ee;font-size:24px">Visez le QR du membre</div>
+          <div style="position:absolute;bottom:34px;left:24px;right:24px;height:66px;background:var(--gold);border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--blued);font-weight:700;font-size:22px">✓ Confirmer la présence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 TABLEAU DE BORD (ordinateur) -->
+<section data-label="Pilotage" data-screen-label="07 Pilotage" style="background:var(--cream)">
+  <div class="slide" style="display:flex;padding:var(--pad-y) var(--pad-x);gap:60px;align-items:center">
+    <div style="flex:0 0 660px;display:flex;justify-content:center">
+      <div style="width:660px">
+        <div style="background:#0a1430;border-radius:18px 18px 0 0;padding:12px 16px;display:flex;gap:8px;align-items:center"><span style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></span><span style="width:12px;height:12px;border-radius:50%;background:#febc2e"></span><span style="width:12px;height:12px;border-radius:50%;background:#28c840"></span><span style="margin-left:14px;font-family:var(--fm);font-size:14px;color:#8aa6d4">adsum.app · Direction</span></div>
+        <div style="background:#fff;border:1px solid var(--line);border-top:none;display:flex;height:390px">
+          <div style="width:152px;background:#0e3a7a;color:#cfe0f7;padding:18px 12px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="width:24px;height:24px;border-radius:6px;background:#fff;color:var(--blue);font-family:var(--fd);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">A</div><span style="font-family:var(--fd);font-weight:700;font-size:15px;color:#fff">ADSUM</span></div><div style="background:rgba(255,255,255,.15);border-radius:7px;padding:8px 10px;font-size:14px;color:#fff">▦ Tableau de bord</div><div style="padding:8px 10px;font-size:14px;color:#9fc0ee">◔ Membres</div><div style="padding:8px 10px;font-size:14px;color:#9fc0ee">▤ Événements</div><div style="padding:8px 10px;font-size:14px;color:#9fc0ee">⬡ Statistiques</div></div>
+          <div style="flex:1;padding:22px">
+            <div style="font-family:var(--fd);font-weight:700;font-size:22px">Vue de direction · temps réel</div>
+            <div style="display:flex;gap:12px;margin-top:16px">
+              <div style="flex:1;background:var(--sky);border-radius:12px;padding:14px"><div style="font-family:var(--fm);font-size:12px;color:var(--mut)">PRÉSENTS</div><div class="num" style="font-size:30px;color:var(--blue);margin-top:4px">1 248</div></div>
+              <div style="flex:1;background:var(--goldsoft);border-radius:12px;padding:14px"><div style="font-family:var(--fm);font-size:12px;color:var(--goldd)">EN LIGNE</div><div class="num" style="font-size:30px;color:var(--goldd);margin-top:4px">412</div></div>
+              <div style="flex:1;background:var(--blue);border-radius:12px;padding:14px"><div style="font-family:var(--fm);font-size:12px;color:#cfe0f7">TOTAL</div><div class="num" style="font-size:30px;color:#fff;margin-top:4px">1 660</div></div>
+            </div>
+            <div style="margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;height:160px;position:relative"><div style="font-size:14px;font-weight:600">Courbe des arrivées</div><svg style="position:absolute;left:14px;right:14px;bottom:14px;width:calc(100% - 28px);height:108px" viewBox="0 0 300 108" preserveAspectRatio="none"><polyline points="0,98 50,80 100,50 150,36 200,20 250,24 300,8" fill="none" stroke="var(--blue)" stroke-width="3"/></svg></div>
+          </div>
+        </div>
+        <div style="height:16px;background:#cdd7e8;border-radius:0 0 8px 8px;margin:0 60px"></div>
+        <div style="height:8px;background:#aab8d0;border-radius:0 0 14px 14px;margin:0 200px"></div>
+      </div>
+    </div>
+    <div style="flex:1">
+      <div class="ey" style="color:var(--blue);margin-bottom:24px">Pour les responsables</div>
+      <h2 class="ti" style="font-size:54px;max-width:15ch;margin:0 0 26px">Piloter avec des faits, pas des impressions.</h2>
+      <p style="font-size:28px;color:var(--mut);max-width:28ch;line-height:1.4">Affluence en direct, membres en décrochage, vie des commissions, rapports en un clic - <span style="color:var(--ink);font-weight:600">depuis n'importe quel ordinateur.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 RICHESSE FONCTIONNELLE -->
+<section data-label="Tout-en-un" data-screen-label="08 Tout-en-un" style="background:var(--paper)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x)">
+    <div class="ey" style="color:var(--blue);margin-bottom:24px">Une vraie plateforme</div>
+    <h2 class="ti" style="font-size:60px;max-width:24ch;margin:0 0 46px">Bien plus qu'une présence : la communauté entière.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+      <div style="background:var(--sky);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Carte &amp; profil</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">L'identité numérique du membre</div></div>
+      <div style="background:var(--sky);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Présence salle</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Scan hors-ligne &lt; 1 s</div></div>
+      <div style="background:var(--sky);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Participation en ligne</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Sessions + questionnaire</div></div>
+      <div style="background:var(--sky);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Commissions</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Groupes &amp; responsables</div></div>
+      <div style="background:var(--goldsoft);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Statistiques</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Temps réel &amp; rapports</div></div>
+      <div style="background:var(--goldsoft);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Recensement annuel</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Réengagement des membres</div></div>
+      <div style="background:var(--goldsoft);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Collaboration</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Préparer les activités</div></div>
+      <div style="background:var(--goldsoft);border-radius:16px;padding:24px"><div style="font-size:28px;font-weight:600">Grands événements</div><div style="font-size:21px;color:var(--mut);margin-top:8px;line-height:1.35">Comptage public</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 CONFIANCE -->
+<section data-label="Confiance" data-screen-label="09 Confiance" style="background:var(--cream)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x)">
+    <div class="ey" style="color:var(--red);margin-bottom:24px">La confiance avant tout</div>
+    <h2 class="ti" style="font-size:60px;max-width:22ch;margin:0 0 46px">Les membres sont précieux. Leurs données aussi.</h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:1520px">
+      <div style="display:flex;gap:20px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px"><div style="font-size:30px;color:var(--blue)">🔐</div><div><div style="font-size:28px;font-weight:600">QR infalsifiable</div><div style="font-size:23px;color:var(--mut);margin-top:6px;line-height:1.4">Impossible à copier ou falsifier.</div></div></div>
+      <div style="display:flex;gap:20px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px"><div style="font-size:30px;color:var(--blue)">🗑</div><div><div style="font-size:28px;font-weight:600">Pièces non conservées</div><div style="font-size:23px;color:var(--mut);margin-top:6px;line-height:1.4">Supprimées dès la vérification.</div></div></div>
+      <div style="display:flex;gap:20px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px"><div style="font-size:30px;color:var(--blue)">📋</div><div><div style="font-size:28px;font-weight:600">Tout est tracé</div><div style="font-size:23px;color:var(--mut);margin-top:6px;line-height:1.4">Chaque action est enregistrée.</div></div></div>
+      <div style="display:flex;gap:20px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px"><div style="font-size:30px;color:var(--blue)">🛡</div><div><div style="font-size:28px;font-weight:600">Accès protégé</div><div style="font-size:23px;color:var(--mut);margin-top:6px;line-height:1.4">Double validation, anti-fraude.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 PARTOUT -->
+<section data-label="Partout" data-screen-label="10 Partout" style="background:var(--paper)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x)">
+    <div class="ey" style="color:var(--blue);margin-bottom:24px">Une seule application, pour tous</div>
+    <h2 class="ti" style="font-size:62px;max-width:20ch;margin:0 0 50px">Sur chaque téléphone. Sur chaque ordinateur.</h2>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:46px">
+      <span class="chip" style="background:var(--sky);color:var(--blue2);font-size:26px;padding:16px 28px">📱 iPhone</span>
+      <span class="chip" style="background:var(--sky);color:var(--blue2);font-size:26px;padding:16px 28px">🤖 Android</span>
+      <span class="chip" style="background:var(--sky);color:var(--blue2);font-size:26px;padding:16px 28px">💻 Ordinateur</span>
+      <span class="chip" style="background:var(--gold);color:var(--blued);font-size:26px;padding:16px 28px">🌐 Navigateur web</span>
+    </div>
+    <p style="font-size:30px;color:var(--mut);max-width:48ch;line-height:1.4">La même application, accessible à chaque membre et à chaque responsable, partout et tout le temps.</p>
+  </div>
+</section>
+
+<!-- 11 PRÊTE & OFFERTE -->
+<section data-label="Prête & offerte" data-screen-label="11 Prête & offerte" style="background:var(--cream)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x)">
+    <div class="ey" style="color:var(--blue);margin-bottom:24px">La bonne nouvelle</div>
+    <h2 class="ti" style="font-size:62px;max-width:22ch;margin:0 0 30px">L'application est prête. Et offerte à la communauté.</h2>
+    <p style="font-size:30px;color:var(--mut);max-width:48ch;line-height:1.4;margin:0 0 40px">Pas d'abonnement à l'application, pas de licence. Le seul besoin : la faire vivre, en couvrant un hébergement modeste - par une contribution libre des membres, de l'ordre d'un café par mois.</p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 38px"><div class="num" style="font-size:60px;color:var(--ok)">Offerte</div><div style="font-size:24px;color:var(--mut);margin-top:8px">l'application, prête à l'emploi</div></div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 38px"><div class="num" style="font-size:60px;color:var(--blue)">≈ 1 € / mois</div><div style="font-size:24px;color:var(--mut);margin-top:8px">contribution libre pour l'hébergement</div></div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 38px"><div class="num" style="font-size:60px;color:var(--goldd)">Ensemble</div><div style="font-size:24px;color:var(--mut);margin-top:8px">la communauté fait vivre son outil</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 CLÔTURE -->
+<section data-label="Clôture" data-screen-label="12 Clôture" style="background:linear-gradient(135deg,#1b62c4 0%,#114a99 55%,#0e3a7a 100%)">
+  <div class="slide" style="display:flex;flex-direction:column;justify-content:center;padding:var(--pad-y) var(--pad-x);color:#fff">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:42px"><div style="width:52px;height:52px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:27px;color:var(--blue)">A</div><div class="ey" style="font-size:24px;color:var(--gold)">ADSUM · Sacerdoce Royal</div></div>
+    <div style="width:120px" class="gbar"></div>
+    <h2 class="ti" style="font-size:80px;max-width:20ch;margin:28px 0 0">Relier. Animer. Éclairer.</h2>
+    <p style="font-size:var(--type-subtitle);color:#cfe0f7;max-width:38ch;margin:34px 0 0;line-height:1.35">L'application de la communauté est prête. Mettons-la entre les mains de chaque membre.</p>
+    <div style="margin-top:54px;display:inline-flex;align-self:flex-start;align-items:center;gap:16px;background:var(--gold);color:var(--blued);border-radius:16px;padding:24px 38px;font-family:var(--fd);font-weight:700;font-size:30px">Lançons ADSUM dès aujourd'hui →</div>
+  </div>
+</section>
+
+</x-import>
+</x-dc>
+</body>
+</html>
