@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  :root{--fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --b400:#5b82d8;--b500:#3563c9;--b600:#2a4fad;--b700:#223f8a;--b900:#172a5a;
+    --ink:#16181d;--ink2:#3d4047;--mut:#676b73;--faint:#9498a1;--line:#e7e9ee;--surf:#fff;--bg:#f4f5f8;--code:#0d1017;
+    --sb:#fbfbfc;--sbink:#16181d;--sbmut:#878b93;--sbact:#eef0f4;--sbgrp:#a3a6ad;--sbline:#e6e8ec;
+    --ok:#1f8a5b;--okbg:#e6f3ec;--warn:#b5731a;--warnbg:#f7eede;--dng:#c0392b;--panel:#13151b;--panelink:#eef0f4;--panelsub:#9da1aa;--panelcard:#1e2129;--panelline:#2c2f38;}
+  :root[data-theme="dark"]{--ink:#eceef2;--ink2:#c7cad1;--mut:#9499a3;--faint:#6a6e78;--line:#2a2e38;--surf:#1a1d25;--bg:#101218;--sb:#0c0e13;--sbink:#eceef2;--sbmut:#7e828c;--sbact:#23262f;--sbgrp:#5f636d;--sbline:#23262f;--okbg:#16271f;--warnbg:#2a2114;}
+  body{font-family:var(--fu);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+  a{color:inherit;text-decoration:none}
+  .sx::-webkit-scrollbar{width:9px}.sx::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px;border:2px solid transparent;background-clip:padding-box}
+  #tn a[data-on="1"]{background:var(--sbact);color:var(--ink);font-weight:600}
+  #tn a[data-on="1"] .ix{color:var(--b600)}
+  code{font-family:var(--fm);font-size:.86em;background:var(--sbact);padding:1px 6px;border-radius:5px}
+  pre{font-family:var(--fm);font-size:11px;line-height:1.65;background:var(--code);color:#cdd6e8;border-radius:11px;padding:16px 18px;overflow-x:auto;margin:0}
+  pre .c{color:#7e8aa8} pre .k{color:#8aa8e6} pre .s{color:#7ed99a} pre .d{color:#e0b074} pre .ok{color:#7ed99a;font-weight:600}
+  .tap{cursor:pointer}
+</style>
+</helmet>
+<div style="display:flex;min-height:100vh;background:var(--bg)" class="sx">
+  <aside style="position:sticky;top:0;align-self:flex-start;width:252px;height:100vh;background:var(--sb);color:var(--sbink);flex-shrink:0;display:flex;flex-direction:column;padding:18px 14px;border-right:1px solid var(--sbline)" class="sx">
+    <a href="../index.html" style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mut);margin-bottom:14px;padding:0 6px">← Accueil</a>
+    <div style="display:flex;align-items:center;gap:10px;padding:0 6px;margin-bottom:14px">
+      <div style="width:30px;height:30px;border-radius:8px;background:var(--b600);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:15px;color:#fff">A</div>
+      <div><div style="font-family:var(--fd);font-weight:700;font-size:15px;line-height:1">ADSUM</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:1.2px;color:var(--sbmut);margin-top:2px">DOSSIER TECHNIQUE · DAT</div></div>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:1px" id="tn">
+      <a href="#t0" data-sec="t0" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">00</span>Préambule</a>
+      <a href="#t1" data-sec="t1" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">01</span>Vue d'architecture</a>
+      <a href="#t2" data-sec="t2" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">02</span>Stack &amp; langages</a>
+      <a href="#t3" data-sec="t3" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">03</span>Arborescence repository</a>
+      <a href="#t4" data-sec="t4" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">04</span>Modèle de données (DDL)</a>
+      <a href="#t5" data-sec="t5" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">05</span>Pipeline de données</a>
+      <a href="#t6" data-sec="t6" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">06</span>API &amp; contrats</a>
+      <a href="#t7" data-sec="t7" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">07</span>Sécurité &amp; crypto</a>
+      <a href="#t8" data-sec="t8" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">08</span>Infrastructure &amp; CI/CD</a>
+      <a href="#t9" data-sec="t9" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">09</span>Environnements &amp; config</a>
+      <a href="#t10" data-sec="t10" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">10</span>Observabilité</a>
+      <a href="#t11" data-sec="t11" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">11</span>Traçabilité &amp; conformité</a>
+      <a href="#t12" data-sec="t12" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">12</span>Décisions (ADR)</a>
+    </nav>
+    <div style="margin-top:auto;padding-top:14px"><div onClick="{{ toggleTheme }}" class="tap" style="display:flex;gap:6px;border:1px solid var(--sbline);border-radius:9px;padding:4px"><div style="flex:1;text-align:center;font-size:11px;padding:5px 0;border-radius:6px;background:{{ lightBg }};color:{{ lightCol }}">☀</div><div style="flex:1;text-align:center;font-size:11px;padding:5px 0;border-radius:6px;background:{{ darkBg }};color:{{ darkCol }}">☾</div></div><div style="font-family:var(--fm);font-size:8px;color:var(--sbgrp);margin-top:9px;line-height:1.6">DAT v1.0 · PHASE 05<br>SOURCE DE VÉRITÉ TECH</div></div>
+  </aside>
+  <main style="flex:1;min-width:0">
+    <section id="t0" style="padding:52px 48px 36px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:14px">DOSSIER D'ARCHITECTURE TECHNIQUE (DAT)</div>
+      <h1 style="font-family:var(--fd);font-weight:700;font-size:34px;line-height:1.06;letter-spacing:-.7px;margin:0 0 16px">Référence technique ADSUM</h1>
+      <p style="font-size:14.5px;line-height:1.65;color:var(--ink2);max-width:66ch;margin:0 0 12px">Document unique et faisant autorité pour toute question technique : architecture, technologies, arborescence du dépôt, modèle de données, pipeline, API, sécurité, infrastructure, CI/CD, observabilité et décisions d'architecture (ADR). Conçu pour qu'<strong>aucun audit, vérification ou développeur</strong> ne reste jamais bloqué faute d'information.</p>
+      <div style="background:var(--warnbg);border:1px solid var(--warn);border-radius:11px;padding:13px;font-size:12px;color:var(--ink2);line-height:1.6;max-width:66ch;margin-bottom:22px"><strong>Portée &amp; non-duplication.</strong> Ce DAT couvre le <strong>« comment » technique</strong>. Le « quoi » fonctionnel (périmètre, rôles, parcours) vit dans la <a href="../04-documentation/ADSUM%20Documentation.dc.html" style="color:var(--b600);font-weight:600">Documentation (phase 04)</a>. Aucune information n'est répétée : la doc renvoie au DAT pour la technique, le DAT renvoie à la doc pour le métier.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="font-family:var(--fd);font-weight:700;font-size:20px;color:var(--b600)">2</div><div style="font-size:11px;color:var(--mut);margin-top:2px;line-height:1.35">langages : TypeScript + Python</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="font-family:var(--fd);font-weight:700;font-size:20px">17</div><div style="font-size:11px;color:var(--mut);margin-top:2px;line-height:1.35">tables de données</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="font-family:var(--fd);font-weight:700;font-size:20px">100%</div><div style="font-size:11px;color:var(--mut);margin-top:2px;line-height:1.35">open-source</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><div style="font-family:var(--fd);font-weight:700;font-size:20px">5</div><div style="font-size:11px;color:var(--mut);margin-top:2px;line-height:1.35">ADR documentées</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- T1 ARCHI -->
+    <section id="t1" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">01 - VUE D'ARCHITECTURE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Architecture en couches</h2>
+      <div style="background:var(--panel);border-radius:14px;padding:20px;color:var(--panelink)">
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">COUCHE PRÉSENTATION · TypeScript / React / Capacitor</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">App Contrôleur (iOS/Android)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Espace Membre (PWA+natif)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Back-office / Direction / Collaboration (web)</span></div></div>
+          <div style="text-align:center;color:var(--panelsub);font-size:13px">↕ HTTPS · REST + WebSocket · JWT Bearer</div>
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">COUCHE APPLICATIVE · Python / FastAPI</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Routeurs API + validation Pydantic</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Services métier</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">RBAC / Auth</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Signature QR Ed25519</span></div></div>
+          <div style="text-align:center;color:var(--panelsub);font-size:13px">↕</div>
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">COUCHE ASYNCHRONE · Python / arq + Redis</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Workers (récurrences, invitations, recensement)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Génération PDF (WeasyPrint)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Envois e-mail / push</span></div></div>
+          <div style="text-align:center;color:var(--panelsub);font-size:13px">↕</div>
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:10px;padding:13px"><div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:.5px;margin-bottom:7px">COUCHE PERSISTANCE</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">PostgreSQL (source de vérité)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Redis (file, cache, pub/sub)</span><span style="font-size:11px;background:#23262f;border:1px solid var(--panelline);padding:4px 10px;border-radius:20px">Stockage objet S3 (pièces chiffrées, temporaire)</span></div></div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px;font-size:12px;color:var(--ink2);line-height:1.6;margin-top:14px"><strong>Pourquoi deux langages.</strong> <strong>TypeScript</strong> côté client (un seul code pour iOS, Android, web via Capacitor/React) ; <strong>Python/FastAPI</strong> côté serveur (rapidité de développement, écosystème crypto/données mûr, typage Pydantic). Communication par contrats REST/JSON typés - découplage total client/serveur.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T2 STACK -->
+    <section id="t2" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">02 - STACK &amp; LANGAGES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Technologies retenues (toutes open-source)</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:10px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1.2">DOMAINE</div><div style="flex:1.4">TECHNOLOGIE</div><div style="flex:1">LANGAGE</div><div style="flex:1.6">RÔLE</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Front</div><div style="flex:1.4;color:var(--mut)">React + Vite</div><div style="flex:1"><code>TypeScript</code></div><div style="flex:1.6;color:var(--mut)">UI des 5 interfaces</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Mobile/desktop</div><div style="flex:1.4;color:var(--mut)">Capacitor</div><div style="flex:1"><code>TypeScript</code></div><div style="flex:1.6;color:var(--mut)">iOS, Android, PWA, desktop</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">API</div><div style="flex:1.4;color:var(--mut)">FastAPI + Uvicorn</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">REST + WebSocket</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Validation</div><div style="flex:1.4;color:var(--mut)">Pydantic</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">schémas typés requête/réponse</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">ORM</div><div style="flex:1.4;color:var(--mut)">SQLAlchemy + Alembic</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">accès données + migrations</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Tâches async</div><div style="flex:1.4;color:var(--mut)">arq</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">workers planifiés sur Redis</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Base</div><div style="flex:1.4;color:var(--mut)">PostgreSQL 16</div><div style="flex:1"><code>SQL</code></div><div style="flex:1.6;color:var(--mut)">source de vérité</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Cache/file</div><div style="flex:1.4;color:var(--mut)">Redis</div><div style="flex:1"><code>-</code></div><div style="flex:1.6;color:var(--mut)">file, cache, pub/sub temps réel</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Crypto</div><div style="flex:1.4;color:var(--mut)">PyNaCl (libsodium)</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">signature/vérif. Ed25519</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">PDF</div><div style="flex:1.4;color:var(--mut)">WeasyPrint</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">rapports depuis gabarits HTML</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Géo-IP</div><div style="flex:1.4;color:var(--mut)">MaxMind GeoLite2</div><div style="flex:1"><code>Python</code></div><div style="flex:1.6;color:var(--mut)">tracking connexions</div></div>
+        <div style="display:flex;padding:9px 14px;font-size:11.5px;align-items:center"><div style="flex:1.2;color:var(--ink2)">Conteneurs</div><div style="flex:1.4;color:var(--mut)">Docker + Compose</div><div style="flex:1"><code>-</code></div><div style="flex:1.6;color:var(--mut)">build &amp; déploiement</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T3 ARBORESCENCE -->
+    <section id="t3" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">03 - ARBORESCENCE DU REPOSITORY</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 10px">Multi-dépôts organisés en groupe &amp; sous-groupes</h2>
+      <p style="font-size:13px;color:var(--ink2);line-height:1.6;margin:0 0 12px;max-width:74ch">Un <strong>groupe racine</strong> contient des <strong>sous-groupes</strong> (organisation logique, pas de code), qui contiennent les <strong>dépôts</strong> (repositories Git où vit le code). Les applications sont séparées du back-office ; les services Python sont isolés ; la base partagée est pilotée par <strong>un seul dépôt de migrations</strong> (source unique du schéma). Cela permet à plusieurs équipes de travailler sans collision et de déployer chaque socle indépendamment.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-family:var(--fm);font-size:10.5px">
+        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--b600)"></span>Groupe</span>
+        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--goldd)"></span>Sous-groupe</span>
+        <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--ok)"></span>Dépôt (code)</span>
+      </div>
+      <pre><span class="c"># GitLab - groupe racine ADSUM</span>
+<span class="k">adsum/</span>                              <span class="c"># [GROUPE] organisation, gouvernance des accès</span>
+├── <span class="d">applications/</span>                  <span class="c"># [SOUS-GROUPE] code applicatif</span>
+│   ├── <span class="ok">adsum-mobile/</span>              <span class="c"># [DÉPÔT] App Android + iOS - React + Capacitor / TS ★ priorité</span>
+│   ├── <span class="ok">adsum-web-membre/</span>          <span class="c"># [DÉPÔT] Espace membre web (mobile+desktop) - React / TS</span>
+│   ├── <span class="ok">adsum-controleur/</span>          <span class="c"># [DÉPÔT] App de scan terrain (hors-ligne) - React + Capacitor / TS</span>
+│   ├── <span class="ok">adsum-back-office/</span>         <span class="c"># [DÉPÔT] Admin · direction · collaboration - React / TS</span>
+│   └── <span class="ok">adsum-public/</span>              <span class="c"># [DÉPÔT] Pages publiques (QR événement volet B) - React / TS</span>
+├── <span class="d">services/</span>                      <span class="c"># [SOUS-GROUPE] back-end Python (isolé par domaine)</span>
+│   ├── <span class="ok">adsum-api/</span>                 <span class="c"># [DÉPÔT] API métier - Python / FastAPI</span>
+│   ├── <span class="ok">adsum-workers/</span>             <span class="c"># [DÉPÔT] Tâches planifiées (récurrences, recensement) - Python</span>
+│   └── <span class="ok">adsum-gateway/</span>             <span class="c"># [DÉPÔT] Passerelle services externes (e-mail, SMS, paiement)</span>
+├── <span class="d">packages/</span>                      <span class="c"># [SOUS-GROUPE] paquets partagés (registre privé)</span>
+│   ├── <span class="ok">core/</span>                      <span class="c"># [DÉPÔT] @adsum/core - types, métier, client API, i18n</span>
+│   ├── <span class="ok">ui-native/</span>                 <span class="c"># [DÉPÔT] @adsum/ui-native - composants UI mobiles (Capacitor)</span>
+│   ├── <span class="ok">ui-web/</span>                    <span class="c"># [DÉPÔT] @adsum/ui-web - composants web (Design System)</span>
+│   ├── <span class="ok">qr/</span>                        <span class="c"># [DÉPÔT] @adsum/qr - signature/vérif Ed25519 hors-ligne</span>
+│   └── <span class="ok">tokens/</span>                    <span class="c"># [DÉPÔT] @adsum/tokens - source unique des tokens design</span>
+├── <span class="d">deployment/</span>                    <span class="c"># [SOUS-GROUPE] base de données &amp; infrastructure</span>
+│   ├── <span class="ok">database/</span>                  <span class="c"># [DÉPÔT] migrations PostgreSQL + seed - SOURCE UNIQUE DU SCHÉMA</span>
+│   ├── <span class="ok">infrastructure/</span>           <span class="c"># [DÉPÔT] IaC - Supabase, buckets S3, DNS, secrets</span>
+│   ├── <span class="ok">ci-templates/</span>             <span class="c"># [DÉPÔT] pipelines CI réutilisables</span>
+│   └── <span class="ok">runbooks/</span>                  <span class="c"># [DÉPÔT] exploitation : incident, rollback, restauration</span>
+└── <span class="d">docs/</span>                          <span class="c"># [SOUS-GROUPE] documentation vivante</span>
+    ├── <span class="ok">design/</span>                    <span class="c"># [DÉPÔT] livrables de design (wireframes, DS, prototypes)</span>
+    ├── <span class="ok">adsum-design/</span>              <span class="c"># [DÉPÔT] livrable design déployé sur Cloudflare Pages (Basic Auth)</span>
+    ├── <span class="ok">dat/</span>                       <span class="c"># [DÉPÔT] ce DAT + doc technique</span>
+    ├── <span class="ok">adr/</span>                       <span class="c"># [DÉPÔT] décisions d'architecture (ADR)</span>
+    └── <span class="ok">onboarding/</span>                <span class="c"># [DÉPÔT] guide développeur</span></pre>
+
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-top:14px">
+        <div style="display:flex;background:var(--surf2);padding:9px 14px;font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="width:96px">NIVEAU</div><div style="flex:1.2">ÉLÉMENT</div><div style="flex:2">RÔLE</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="width:96px"><span style="font-family:var(--fm);font-size:8.5px;background:rgba(42,79,173,.12);color:var(--b600);padding:3px 8px;border-radius:20px">Groupe</span></div><div style="flex:1.2;font-family:var(--fm);color:var(--b600)">adsum/</div><div style="flex:2;color:var(--ink2)">Organisation racine, gouvernance des accès - 4 sous-groupes</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="width:96px"><span style="font-family:var(--fm);font-size:8.5px;background:rgba(217,154,12,.14);color:var(--goldd);padding:3px 8px;border-radius:20px">Sous-grp</span></div><div style="flex:1.2;font-family:var(--fm);color:var(--goldd)">applications/</div><div style="flex:2;color:var(--ink2)">Code applicatif - 5 dépôts (mobile prioritaire)</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="width:96px"><span style="font-family:var(--fm);font-size:8.5px;background:rgba(217,154,12,.14);color:var(--goldd);padding:3px 8px;border-radius:20px">Sous-grp</span></div><div style="flex:1.2;font-family:var(--fm);color:var(--goldd)">services/</div><div style="flex:2;color:var(--ink2)">Back-end Python isolé - 3 dépôts (API, workers, passerelle)</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="width:96px"><span style="font-family:var(--fm);font-size:8.5px;background:rgba(217,154,12,.14);color:var(--goldd);padding:3px 8px;border-radius:20px">Sous-grp</span></div><div style="flex:1.2;font-family:var(--fm);color:var(--goldd)">packages/</div><div style="flex:2;color:var(--ink2)">Paquets partagés, registre privé - 5 dépôts</div></div>
+        <div style="display:flex;padding:9px 14px;font-size:11.5px;align-items:center"><div style="width:96px"><span style="font-family:var(--fm);font-size:8.5px;background:rgba(217,154,12,.14);color:var(--goldd);padding:3px 8px;border-radius:20px">Sous-grp</span></div><div style="flex:1.2;font-family:var(--fm);color:var(--goldd)">deployment/</div><div style="flex:2;color:var(--ink2)">Base de données &amp; infra - 4 dépôts (database = source du schéma)</div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><h3 style="font-family:var(--fd);font-weight:600;font-size:13.5px;margin:0 0 8px">Application &amp; back-office séparés</h3><p style="font-size:11.5px;color:var(--ink2);line-height:1.6;margin:0">Deux dépôts distincts (<code>adsum-mobile</code> côté membre/terrain, <code>adsum-back-office</code> côté admin) : deux cycles de déploiement, deux surfaces d'attaque. Ils <strong>partagent la même base et les mêmes paquets</strong>. La priorité est l'<strong>application Android</strong> (React + Capacitor), déclinée ensuite en iOS, web mobile et web desktop depuis le même socle.</p></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px"><h3 style="font-family:var(--fd);font-weight:600;font-size:13.5px;margin:0 0 8px">Une seule source de vérité pour la base</h3><p style="font-size:11.5px;color:var(--ink2);line-height:1.6;margin:0">Le schéma vit dans <strong>un seul dépôt</strong> (<code>deployment/database</code>) : migrations versionnées + seed. Aucun autre dépôt ne modifie la structure. PostgreSQL est <strong>100 % autonome et auto-porteur</strong> : hébergé sur Supabase aujourd'hui, migrable vers n'importe quel PostgreSQL standard sans réécriture (pas de dépendance propriétaire).</p></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T4 DDL -->
+    <section id="t4" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">04 - MODÈLE DE DONNÉES (DDL)</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 12px">Schéma PostgreSQL - modèle complet</h2>
+      <p style="font-size:13px;color:var(--ink2);line-height:1.6;margin:0 0 14px;max-width:74ch">Le modèle compte <strong>17 tables</strong> réparties en quatre domaines : <strong>identité &amp; appartenance</strong> (membre, commission, appartenance&nbsp;M-N, engagement, document), <strong>activité &amp; présence</strong> (événement, présence, jeton&nbsp;QR, terminal, comptage volet&nbsp;B), <strong>compte &amp; traçabilité</strong> (utilisateur, session, audit, notification) et <strong>paramétrage &amp; campagnes</strong> (parametre, import_lot, recensement, recensement_reponse). Conventions communes : clé primaire <code>uuid</code> (<code>gen_random_uuid()</code>), dates en <code>timestamptz</code>, suppression <strong>logique uniquement</strong>, et <code>cree_le</code> systématique. Les pièces d'identité ne sont jamais une table (voir RGPD plus bas).</p>
+
+      <!-- ERD -->
+      <div style="background:var(--panel);border-radius:14px;padding:18px;color:var(--panelink);margin-bottom:16px">
+        <div style="font-family:var(--fm);font-size:9px;color:var(--b400);letter-spacing:1px;margin-bottom:12px">DIAGRAMME ENTITÉS-RELATIONS · PK en gras · ↗ = clé étrangère</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:var(--fm);font-size:8.5px;color:var(--panelsub);letter-spacing:.5px">IDENTITÉ &amp; APPARTENANCE</div>
+            <div style="background:var(--panelcard);border:1px solid var(--b600);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">membre</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">matricule · email · commission_id↗ · verifie · statut</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">commission</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">nom · responsable_id↗</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">engagement</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">membre_id↗ · type · version · hash_preuve</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">document</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">membre_id↗ · statut · traite_par↗</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:var(--fm);font-size:8.5px;color:var(--panelsub);letter-spacing:.5px">ACTIVITÉ &amp; PRÉSENCE</div>
+            <div style="background:var(--panelcard);border:1px solid var(--b600);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">evenement</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">titre · volet · mode · serie_id · session_ouverte</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--b600);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">presence</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">membre_id↗ · evenement_id↗ · terminal_id↗ · mode</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">jeton_qr</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">membre_id↗ · payload · version_cle · revoque</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">terminal</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">appareil_id · controleur_id↗ · version_cle_pub</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">comptage_volet_b</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">evenement_id↗ · segment · total_membres · total_anonyme</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="font-family:var(--fm);font-size:8.5px;color:var(--panelsub);letter-spacing:.5px">COMPTE &amp; TRAÇABILITÉ</div>
+            <div style="background:var(--panelcard);border:1px solid var(--b600);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">utilisateur</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">email · role · membre_id↗ · double_facteur</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">session</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">utilisateur_id↗ · ip · geo · expire_le</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">audit</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">acteur_id · action · objet_type · objet_id</div></div>
+            <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:9px 11px"><div style="font-family:var(--fm);font-size:11px;color:#fff;font-weight:600;margin-bottom:3px">notification</div><div style="font-family:var(--fm);font-size:9px;color:var(--panelsub);line-height:1.55">membre_id↗ · type · lu · envoye_le</div></div>
+          </div>
+        </div>
+        <div style="margin-top:13px;padding-top:12px;border-top:1px solid var(--panelline);font-family:var(--fm);font-size:10px;color:var(--panelsub);line-height:1.95">
+          membre <span style="color:var(--b400)">1 ──&lt; N</span> presence <span style="color:var(--b400)">N &gt;── 1</span> evenement &nbsp;·&nbsp; membre <span style="color:var(--b400)">1 ──&lt; N</span> jeton_qr (1 seul actif)<br>
+          membre <span style="color:var(--b400)">N &gt;──&lt; N</span> commission (via <strong>appartenance</strong>) &nbsp;·&nbsp; evenement <span style="color:var(--b400)">1 ──&lt; N</span> comptage_volet_b &nbsp;·&nbsp; terminal <span style="color:var(--b400)">1 ──&lt; N</span> presence<br>
+          recensement <span style="color:var(--b400)">1 ──&lt; N</span> recensement_reponse <span style="color:var(--b400)">N &gt;── 1</span> membre &nbsp;·&nbsp; import_lot → membre (lot de création)<br>
+          utilisateur <span style="color:var(--b400)">1 ──&lt; N</span> session &nbsp;·&nbsp; utilisateur <span style="color:var(--b400)">1 ──&lt; N</span> audit &nbsp;·&nbsp; utilisateur <span style="color:var(--b400)">N &gt;── 1</span> membre (compte lié, option)
+        </div>
+      </div>
+
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:1px;margin-bottom:8px">① TABLES CŒUR · DDL</div>
+      <pre><span class="k">CREATE TABLE</span> membre (
+  id            <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  matricule     <span class="k">text</span> <span class="k">UNIQUE</span> <span class="k">NOT NULL</span>,   <span class="c">-- ADS-000123</span>
+  email         <span class="k">text</span> <span class="k">UNIQUE</span> <span class="k">NOT NULL</span>,
+  nom           <span class="k">text</span>, prenoms <span class="k">text</span>, telephone <span class="k">text</span>, adresse <span class="k">text</span>,
+  commission_id <span class="k">uuid</span> <span class="k">REFERENCES</span> commission(id),
+  groupe        <span class="k">text</span>, photo_url <span class="k">text</span>,
+  statut        <span class="k">text</span> <span class="k">DEFAULT</span> <span class="s">'actif'</span>,   <span class="c">-- actif|inactif</span>
+  verifie       <span class="k">boolean</span> <span class="k">DEFAULT</span> false,
+  cree_le       <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now(),
+  desactive_le  <span class="k">timestamptz</span>            <span class="c">-- suppression logique</span>
+);
+
+<span class="k">CREATE TABLE</span> presence (
+  id           <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  membre_id    <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  evenement_id <span class="k">uuid</span> <span class="k">REFERENCES</span> evenement(id),
+  mode         <span class="k">text</span>,   <span class="c">-- salle | en_ligne</span>
+  arrivee      <span class="k">timestamptz</span>, depart <span class="k">timestamptz</span>,
+  methode      <span class="k">text</span>,   <span class="c">-- scan | manuel | lien</span>
+  terminal_id  <span class="k">uuid</span> <span class="k">REFERENCES</span> terminal(id),
+  <span class="k">UNIQUE</span> (membre_id, evenement_id)   <span class="c">-- 1 membre = 1 présence</span>
+);
+
+<span class="k">CREATE TABLE</span> jeton_qr (
+  id          <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  membre_id   <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  payload     <span class="k">bytea</span>,   <span class="c">-- signé Ed25519</span>
+  version_cle <span class="k">int</span>,
+  revoque     <span class="k">boolean</span> <span class="k">DEFAULT</span> false, revoque_le <span class="k">timestamptz</span>
+);
+
+<span class="c">-- + commission, evenement, utilisateur, session, audit,</span>
+<span class="c">--   engagement, document, contrat (mêmes conventions)</span></pre>
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:1px;margin:16px 0 8px">② TABLES IDENTITÉ &amp; ACTIVITÉ · DDL</div>
+      <pre><span class="k">CREATE TABLE</span> commission (
+  id             <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  nom            <span class="k">text</span> <span class="k">NOT NULL</span>,
+  responsable_id <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  description    <span class="k">text</span>,
+  cree_le        <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+);
+
+<span class="k">CREATE TABLE</span> evenement (
+  id              <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  titre           <span class="k">text</span> <span class="k">NOT NULL</span>,
+  type            <span class="k">text</span>,                 <span class="c">-- culte|reunion|formation|ouvert</span>
+  volet           <span class="k">text</span> <span class="k">DEFAULT</span> <span class="s">'A'</span>,      <span class="c">-- A (nominatif) | B (comptage)</span>
+  mode            <span class="k">text</span>,                 <span class="c">-- salle|en_ligne|hybride</span>
+  debut           <span class="k">timestamptz</span> <span class="k">NOT NULL</span>, fin <span class="k">timestamptz</span>,
+  lieu            <span class="k">text</span>,
+  recurrence      <span class="k">jsonb</span>,                <span class="c">-- {freq,jour,fin} | null</span>
+  serie_id        <span class="k">uuid</span>,                 <span class="c">-- regroupe une série récurrente</span>
+  session_ouverte <span class="k">boolean</span> <span class="k">DEFAULT</span> false,
+  ouvert_le       <span class="k">timestamptz</span>, clos_le <span class="k">timestamptz</span>,
+  cree_par        <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id),
+  cree_le         <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+);
+
+<span class="k">CREATE TABLE</span> terminal (
+  id              <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  nom             <span class="k">text</span>,
+  appareil_id     <span class="k">text</span> <span class="k">UNIQUE</span>,         <span class="c">-- empreinte appareil</span>
+  controleur_id   <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id),
+  version_cle_pub <span class="k">int</span>,                  <span class="c">-- clé publique embarquée</span>
+  autorise        <span class="k">boolean</span> <span class="k">DEFAULT</span> false,
+  appaire_le      <span class="k">timestamptz</span>, dernier_sync <span class="k">timestamptz</span>
+);
+
+<span class="k">CREATE TABLE</span> comptage_volet_b (
+  id            <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  evenement_id  <span class="k">uuid</span> <span class="k">REFERENCES</span> evenement(id),
+  segment       <span class="k">text</span>,                   <span class="c">-- adultes|jeunes|enfants</span>
+  total_membres <span class="k">int</span> <span class="k">DEFAULT</span> 0,           <span class="c">-- part nominative (scannée)</span>
+  total_anonyme <span class="k">int</span> <span class="k">DEFAULT</span> 0,           <span class="c">-- part anonyme (manuel|lien)</span>
+  saisi_par     <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id),
+  horodatage    <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+);
+
+<span class="k">CREATE TABLE</span> engagement (
+  id          <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  membre_id   <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  type        <span class="k">text</span>,            <span class="c">-- consentement|confidentialite|lettre</span>
+  version     <span class="k">text</span> <span class="k">NOT NULL</span>,
+  signe_le    <span class="k">timestamptz</span>, hash_preuve <span class="k">text</span>   <span class="c">-- preuve horodatée</span>
+);
+
+<span class="k">CREATE TABLE</span> document (
+  id          <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  membre_id   <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  type        <span class="k">text</span>,
+  statut      <span class="k">text</span> <span class="k">DEFAULT</span> <span class="s">'demande'</span>,  <span class="c">-- demande|recu|lu|traite</span>
+  demande_le  <span class="k">timestamptz</span>, recu_le <span class="k">timestamptz</span>,
+  traite_le   <span class="k">timestamptz</span>, traite_par <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id)
+);</pre>
+
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:1px;margin:16px 0 8px">③ TABLES COMPTE &amp; TRAÇABILITÉ · DDL</div>
+      <pre><span class="k">CREATE TABLE</span> utilisateur (
+  id            <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  email         <span class="k">text</span> <span class="k">UNIQUE</span> <span class="k">NOT NULL</span>,
+  hash_mdp      <span class="k">text</span> <span class="k">NOT NULL</span>,            <span class="c">-- Argon2</span>
+  role          <span class="k">text</span> <span class="k">NOT NULL</span>,            <span class="c">-- super_admin|admin|gestionnaire|controleur|direction</span>
+  membre_id     <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),  <span class="c">-- compte lié (option)</span>
+  actif         <span class="k">boolean</span> <span class="k">DEFAULT</span> true,
+  double_facteur <span class="k">boolean</span> <span class="k">DEFAULT</span> true,
+  dernier_login <span class="k">timestamptz</span>, cree_le <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+);
+
+<span class="k">CREATE TABLE</span> session (
+  id             <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  utilisateur_id <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id),
+  jeton_hash     <span class="k">text</span>,            <span class="c">-- refresh token haché</span>
+  ip             <span class="k">inet</span>, geo <span class="k">text</span>,    <span class="c">-- MaxMind GeoLite2</span>
+  appareil       <span class="k">text</span>,
+  cree_le        <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now(),
+  expire_le      <span class="k">timestamptz</span>, revoque <span class="k">boolean</span> <span class="k">DEFAULT</span> false
+);
+
+<span class="k">CREATE TABLE</span> audit (
+  id          <span class="k">bigserial</span> <span class="k">PRIMARY KEY</span>,
+  acteur_id   <span class="k">uuid</span>, acteur_role <span class="k">text</span>,
+  action      <span class="k">text</span> <span class="k">NOT NULL</span>,       <span class="c">-- create|update|valider|export|revoquer…</span>
+  objet_type  <span class="k">text</span>, objet_id <span class="k">uuid</span>,
+  details     <span class="k">jsonb</span>,
+  ip          <span class="k">inet</span>,
+  horodatage  <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+) <span class="k">PARTITION BY RANGE</span> (horodatage);  <span class="c">-- partition mensuelle, append-only</span>
+
+<span class="k">CREATE TABLE</span> notification (
+  id          <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  membre_id   <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  type        <span class="k">text</span>,            <span class="c">-- rappel|alerte|relance|info</span>
+  titre       <span class="k">text</span>, corps <span class="k">text</span>,
+  lu          <span class="k">boolean</span> <span class="k">DEFAULT</span> false,
+  cree_le     <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now(), envoye_le <span class="k">timestamptz</span>
+);</pre>
+
+      <div style="font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:1px;margin:16px 0 8px">④ TABLES PARAMÉTRAGE &amp; CAMPAGNES · DDL</div>
+      <pre><span class="k">CREATE TABLE</span> appartenance (   <span class="c">-- M-N membre ↔ commission (anti-orphelin)</span>
+  membre_id     <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id) <span class="k">ON DELETE CASCADE</span>,
+  commission_id <span class="k">uuid</span> <span class="k">REFERENCES</span> commission(id) <span class="k">ON DELETE CASCADE</span>,
+  role_local    <span class="k">text</span>,            <span class="c">-- membre|responsable|secretaire</span>
+  depuis_le     <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now(),
+  <span class="k">PRIMARY KEY</span> (membre_id, commission_id)
+);
+
+<span class="k">CREATE TABLE</span> parametre (        <span class="c">-- réglages système (clé/valeur typée)</span>
+  cle         <span class="k">text</span> <span class="k">PRIMARY KEY</span>,   <span class="c">-- seuil_assiduite|retention_jours|fenetre_scan…</span>
+  valeur      <span class="k">jsonb</span> <span class="k">NOT NULL</span>,
+  categorie   <span class="k">text</span>,            <span class="c">-- assiduite|securite|rgpd|scan</span>
+  description <span class="k">text</span>,
+  maj_par     <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id),
+  maj_le      <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+);
+
+<span class="k">CREATE TABLE</span> import_lot (       <span class="c">-- traçabilité migration Excel (§6.12)</span>
+  id          <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  fichier     <span class="k">text</span>, lignes_total <span class="k">int</span>,
+  crees       <span class="k">int</span>, doublons <span class="k">int</span>, anomalies <span class="k">int</span>,
+  rapport     <span class="k">jsonb</span>,           <span class="c">-- détail ligne par ligne</span>
+  importe_par <span class="k">uuid</span> <span class="k">REFERENCES</span> utilisateur(id),
+  importe_le  <span class="k">timestamptz</span> <span class="k">DEFAULT</span> now()
+);
+
+<span class="k">CREATE TABLE</span> recensement (      <span class="c">-- campagne annuelle (§ présentation)</span>
+  id          <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  annee       <span class="k">int</span> <span class="k">UNIQUE</span> <span class="k">NOT NULL</span>,
+  ouvert_le   <span class="k">timestamptz</span>, clos_le <span class="k">timestamptz</span>,
+  statut      <span class="k">text</span> <span class="k">DEFAULT</span> <span class="s">'ouvert'</span>  <span class="c">-- ouvert|clos</span>
+);
+
+<span class="k">CREATE TABLE</span> recensement_reponse (
+  id             <span class="k">uuid</span> <span class="k">PRIMARY KEY</span> <span class="k">DEFAULT</span> gen_random_uuid(),
+  recensement_id <span class="k">uuid</span> <span class="k">REFERENCES</span> recensement(id),
+  membre_id      <span class="k">uuid</span> <span class="k">REFERENCES</span> membre(id),
+  reponses       <span class="k">jsonb</span>, soumis_le <span class="k">timestamptz</span>,
+  <span class="k">UNIQUE</span> (recensement_id, membre_id)   <span class="c">-- 1 réponse / membre / an</span>
+);</pre>
+
+      <!-- RELATIONS -->
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:22px 0 10px">Relations &amp; cardinalités</h3>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:9px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1.6">RELATION</div><div style="width:90px">CARDINALITÉ</div><div style="flex:2">RÈGLE MÉTIER</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">membre - presence</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">une présence par événement (contrainte UNIQUE)</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">evenement - presence</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">un événement réunit N présences nominatives</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">membre - jeton_qr</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">QR versionnés/révocables, un seul actif à la fois</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">membre - commission</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">N - N</div><div style="flex:2;color:var(--mut)">via <strong>appartenance</strong> : un membre dans plusieurs commissions, sans table orpheline</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">commission - membre</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">un membre rattaché à une commission</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">evenement - comptage_volet_b</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">un comptage par segment d'un événement ouvert</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">terminal - presence</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">trace le terminal ayant capturé chaque pointage</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">utilisateur - session</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">sessions multiples, révocables individuellement</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">utilisateur - audit</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">acteur identifié de chaque action sensible</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">membre - engagement / document / notification</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">1 - N</div><div style="flex:2;color:var(--mut)">historique d'engagements, dossier, et notifications</div></div>
+        <div style="display:flex;padding:9px 14px;font-size:11.5px;align-items:center"><div style="flex:1.6;font-family:var(--fm);color:var(--ink2)">utilisateur - membre</div><div style="width:90px;font-family:var(--fm);color:var(--b600)">N - 1</div><div style="flex:2;color:var(--mut)">compte d'accès optionnellement lié à un membre</div></div>
+      </div>
+
+      <!-- INDEX -->
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:22px 0 10px">Stratégie d'index &amp; performance</h3>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:9px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="width:150px">TABLE</div><div style="flex:1.7">INDEX / CONTRAINTE</div><div style="flex:1.5">OBJECTIF (NFR §7)</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">membre</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">UNIQUE(matricule), UNIQUE(email), GIN trigram(nom,prenoms)</div><div style="flex:1.5;color:var(--mut)">recherche &lt; 2 s</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">presence</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">UNIQUE(membre_id,evenement_id), idx(evenement_id)</div><div style="flex:1.5;color:var(--mut)">anti-doublon + agrégation</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">jeton_qr</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">idx(membre_id) WHERE revoque=false</div><div style="flex:1.5;color:var(--mut)">QR actif instantané</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">evenement</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">idx(serie_id), idx(debut)</div><div style="flex:1.5;color:var(--mut)">série récurrente + calendrier</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">audit</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">PARTITION mensuelle, idx(objet_type,objet_id)</div><div style="flex:1.5;color:var(--mut)">recherche de preuve rapide</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">session</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">idx(utilisateur_id) WHERE revoque=false</div><div style="flex:1.5;color:var(--mut)">sessions actives</div></div>
+        <div style="display:flex;padding:9px 14px;font-size:11px;align-items:center"><div style="width:150px;font-family:var(--fm);color:var(--ink2)">vues matérialisées</div><div style="flex:1.7;font-family:var(--fm);color:var(--mut)">mv_stats_evenement, mv_assiduite_membre (refresh concurrent)</div><div style="flex:1.5;color:var(--mut)">dashboard &lt; 2 s</div></div>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:14px;font-size:11.5px;color:var(--ink2);line-height:1.6;margin-top:14px">La contrainte <code>UNIQUE(membre_id, evenement_id)</code> est le garant technique de la règle métier « 1 membre = 1 présence ». Le journal <code>audit</code> est <strong>append-only</strong> (partitionné par mois, jamais modifié). Les <strong>pièces d'identité ne sont pas une table</strong> : objets chiffrés temporaires sur S3, supprimés à la validation (seule la preuve dans <code>engagement.hash_preuve</code> et <code>document.statut</code> reste en base) - voir ADR-04 et §07.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T5 PIPELINE -->
+    <section id="t5" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">05 - PIPELINE DE DONNÉES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Du scan à la statistique</h2>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div style="font-size:12px;color:var(--ink2);line-height:1.55"><strong>Capture.</strong> Le terminal lit le QR, vérifie la signature en local (<code>packages/qr</code>), écrit la présence dans une <strong>file persistante</strong> (IndexedDB/SQLite) - fonctionne 100 % hors-ligne.</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div style="font-size:12px;color:var(--ink2);line-height:1.55"><strong>Synchronisation.</strong> Au retour réseau, lot envoyé à <code>POST /presences/sync</code>. Clé d'idempotence <code>(membre_id, evenement_id)</code> → un rejeu n'insère jamais de doublon (UPSERT).</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div style="font-size:12px;color:var(--ink2);line-height:1.55"><strong>Persistance &amp; événement.</strong> FastAPI valide (Pydantic), écrit en PostgreSQL, publie un message Redis pub/sub.</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--b600);color:#fff;font-family:var(--fm);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div><div style="font-size:12px;color:var(--ink2);line-height:1.55"><strong>Temps réel.</strong> Le WebSocket <code>/ws/evenements/{id}</code> pousse la mise à jour ; les dashboards se rafraîchissent en quelques secondes.</div></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;background:var(--okbg);border:1px solid var(--ok);border-radius:12px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--ok);color:#fff;font-family:var(--fm);font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">5</div><div style="font-size:12px;color:var(--ink2);line-height:1.55"><strong>Agrégation &amp; restitution.</strong> Vues SQL matérialisées (taux, par commission, salle/en ligne dédoublonné) ; exports CSV/Excel et rapports PDF générés par worker.</div></div>
+      </div>
+
+      <!-- SÉQUENCE SYNC IDEMPOTENTE -->
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:26px 0 10px">Zoom - synchronisation idempotente (zéro perte, zéro doublon)</h3>
+      <div style="background:var(--panel);border-radius:14px;padding:18px;color:var(--panelink)">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;font-family:var(--fm);font-size:9px;color:var(--panelsub);letter-spacing:.5px;margin-bottom:10px"><div>TERMINAL (hors-ligne)</div><div style="text-align:center">RÉSEAU</div><div style="text-align:right">API + POSTGRESQL</div></div>
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:11px">
+          <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:8px 10px">Scan → vérif. Ed25519 locale → <code style="background:#23262f">file</code> (clé <code style="background:#23262f">membre_id+evt</code>)</div></div>
+          <div style="text-align:center;color:var(--panelsub);font-size:10px">⋯ accumulation hors-ligne (minutes ou heures) ⋯</div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:8px 10px">Retour réseau → envoi du <strong>lot</strong> entier</div><div style="color:var(--b400)">── POST /presences/sync ──▶</div></div>
+          <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div style="flex:1;background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:8px 10px;text-align:right">UPSERT <code style="background:#23262f">ON CONFLICT (membre_id,evenement_id) DO NOTHING</code> → écrit les nouveaux, ignore les rejeux</div></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="color:var(--b400)">◀── 200 {écrits, ignorés, refusés} ──</div><div style="flex:1;background:var(--panelcard);border:1px solid var(--panelline);border-radius:8px;padding:8px 10px">Accusé par ligne → la file <strong>purge uniquement les confirmés</strong></div></div>
+          <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end"><div style="flex:1;background:#16271f;border:1px solid var(--ok);border-radius:8px;padding:8px 10px;text-align:right;color:#7ed99a">Publication Redis → WebSocket → dashboards à jour</div></div>
+        </div>
+        <div style="margin-top:12px;padding-top:11px;border-top:1px solid var(--panelline);font-size:10.5px;color:var(--panelsub);line-height:1.7">Propriétés garanties : <strong style="color:#fff">idempotence</strong> (un rejeu n'a aucun effet) · <strong style="color:#fff">durabilité</strong> (la file survit au redémarrage de l'app) · <strong style="color:#fff">acquittement partiel</strong> (seules les lignes confirmées sont purgées) · <strong style="color:#fff">résolution de conflit</strong> (l'arrivée la plus ancienne fait foi).</div>
+      </div>
+
+      <!-- FLUX PAR DOMAINE -->
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:26px 0 12px">Flux par domaine</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px">
+          <div style="font-family:var(--fm);font-size:9px;color:var(--b600);letter-spacing:.5px;margin-bottom:8px">ENRÔLEMENT &amp; IDENTITÉ</div>
+          <div style="font-family:var(--fm);font-size:10.5px;color:var(--ink2);line-height:1.9">création/​import → photo → <code>jeton_qr</code> signé →<br>pièce chiffrée S3 (temporaire) → validation agent →<br><code>membre.verifie=true</code> + <code>engagement</code> horodaté →<br><strong>suppression de la pièce</strong> (RGPD)</div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px">
+          <div style="font-family:var(--fm);font-size:9px;color:var(--b600);letter-spacing:.5px;margin-bottom:8px">ÉVÉNEMENT &amp; RÉCURRENCE</div>
+          <div style="font-family:var(--fm);font-size:10.5px;color:var(--ink2);line-height:1.9">création + <code>recurrence</code> → worker arq génère la<br><code>serie_id</code> d'occurrences → ouverture session<br>(<code>session_ouverte=true</code>) → terminal présélectionne<br>l'événement actif du jour → clôture horodatée</div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px">
+          <div style="font-family:var(--fm);font-size:9px;color:var(--b600);letter-spacing:.5px;margin-bottom:8px">VOLET B - COMPTAGE</div>
+          <div style="font-family:var(--fm);font-size:10.5px;color:var(--ink2);line-height:1.9">scans nominatifs → <code>total_membres</code> ·<br>compteurs manuels + QR public anonyme →<br><code>total_anonyme</code> → consolidation par<br><code>segment</code> → tableau direction (deux parts)</div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px">
+          <div style="font-family:var(--fm);font-size:9px;color:var(--b600);letter-spacing:.5px;margin-bottom:8px">EXPORT &amp; RGPD</div>
+          <div style="font-family:var(--fm);font-size:10.5px;color:var(--ink2);line-height:1.9">demande export → worker (CSV/Excel/PDF) →<br>lien temporaire → <strong>trace <code>audit</code></strong> (action=export) ·<br>droit d'accès/effacement → purge selon<br>durée de conservation paramétrable</div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T6 API -->
+    <section id="t6" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">06 - API &amp; CONTRATS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Conventions REST</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px;font-size:12px;color:var(--ink2);line-height:1.7;margin-bottom:12px"><strong>Base</strong> <code>/api/v1</code> · <strong>Auth</strong> <code>Authorization: Bearer &lt;JWT&gt;</code> · <strong>Format</strong> JSON · <strong>Pagination</strong> <code>?page=&amp;size=</code> · <strong>Erreurs</strong> RFC 7807 (problem+json) · <strong>Versionné</strong> par préfixe d'URL · <strong>Contrat</strong> OpenAPI auto-généré par FastAPI (<code>/docs</code>).</div>
+      <pre><span class="d">POST</span>   /api/v1/auth/login         <span class="c"># JWT + déclenche 2FA e-mail</span>
+<span class="d">POST</span>   /api/v1/auth/forgot        <span class="c"># MDP temporaire auto</span>
+<span class="d">GET</span>    /api/v1/membres?page=1     <span class="c"># annuaire paginé (RBAC)</span>
+<span class="d">POST</span>   /api/v1/membres            <span class="c"># créer un compte (admin)</span>
+<span class="d">POST</span>   /api/v1/membres/bulk       <span class="c"># création en masse (CSV)</span>
+<span class="d">GET</span>    /api/v1/membres/{id}       <span class="c"># fiche détaillée</span>
+<span class="d">POST</span>   /api/v1/identites/{id}/valider   <span class="c"># valide + supprime pièce</span>
+<span class="d">POST</span>   /api/v1/evenements         <span class="c"># créer (récurrence)</span>
+<span class="d">POST</span>   /api/v1/presences/sync     <span class="c"># lot hors-ligne (idempotent)</span>
+<span class="d">GET</span>    /api/v1/stats/evenement/{id}     <span class="c"># KPI consolidés</span>
+<span class="d">WS</span>     /ws/evenements/{id}        <span class="c"># temps réel</span></pre>
+
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:16px;margin:24px 0 10px">Passerelles vers les services externes (anti-corruption)</h3>
+      <p style="font-size:13px;color:var(--ink2);line-height:1.6;margin:0 0 14px;max-width:78ch"><strong>Principe non négociable : aucune dépendance directe à un fournisseur externe.</strong> Tout service hors du système (e-mail, SMS, notifications push, paiement, géo-IP, stockage objet) est appelé <strong>uniquement</strong> au travers du dépôt <code>adsum-gateway</code>, via une <strong>interface interne stable</strong> (un « port »). Chaque fournisseur a son <strong>adaptateur</strong> dédié derrière ce port. Le code métier ne connaît jamais le fournisseur : il parle au port. Conséquence : on <strong>change de fournisseur sans toucher au métier</strong>, et une panne d'un fournisseur reste <strong>isolée</strong> (jamais de blocage global).</p>
+
+      <div style="background:var(--panel);border-radius:14px;padding:18px;color:var(--panelink);margin-bottom:14px">
+        <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;font-size:11px">
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:9px;padding:11px;text-align:center"><div style="font-family:var(--fm);font-size:8.5px;color:var(--b400);letter-spacing:.5px;margin-bottom:5px">MÉTIER</div>Services FastAPI<br>(ne connaissent que le port)</div>
+          <div style="text-align:center;color:var(--b400);font-family:var(--fm)">&rsaquo;</div>
+          <div style="background:#1a2a1f;border:1px solid var(--ok);border-radius:9px;padding:11px;text-align:center"><div style="font-family:var(--fm);font-size:8.5px;color:#7ed99a;letter-spacing:.5px;margin-bottom:5px">PORT (interface)</div>adsum-gateway<br>contrat interne stable</div>
+          <div style="text-align:center;color:var(--b400);font-family:var(--fm)">&rsaquo;</div>
+          <div style="background:var(--panelcard);border:1px solid var(--panelline);border-radius:9px;padding:11px;text-align:center"><div style="font-family:var(--fm);font-size:8.5px;color:var(--b400);letter-spacing:.5px;margin-bottom:5px">ADAPTATEURS</div>1 par fournisseur<br>(interchangeables)</div>
+        </div>
+        <div style="margin-top:12px;padding-top:11px;border-top:1px solid var(--panelline);font-size:10.5px;color:var(--panelsub);line-height:1.7">Chaque adaptateur applique <strong style="color:#fff">retry</strong> + <strong style="color:#fff">disjoncteur (circuit breaker)</strong> + <strong style="color:#fff">repli (fallback)</strong> + <strong style="color:#fff">délai borné (timeout)</strong>. Les appels et leurs échecs sont <strong style="color:#fff">tracés</strong> (journal d'audit + observabilité). Le fournisseur actif est choisi par <strong style="color:#fff">configuration</strong> (variable d'environnement), jamais en dur dans le code.</div>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--bg);padding:9px 14px;font-family:var(--fm);font-size:8.5px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1">BESOIN EXTERNE</div><div style="flex:1.1">PORT INTERNE</div><div style="flex:1.4">ADAPTATEURS POSSIBLES</div><div style="flex:1.2">REPLI EN CAS DE PANNE</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="flex:1;color:var(--ink2)">E-mail (2FA, invitations)</div><div style="flex:1.1;font-family:var(--fm);color:var(--b600)">EmailPort</div><div style="flex:1.4;color:var(--mut)">SMTP, Postmark, SES, Sendgrid</div><div style="flex:1.2;color:var(--mut)">file d'attente + relance</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="flex:1;color:var(--ink2)">SMS</div><div style="flex:1.1;font-family:var(--fm);color:var(--b600)">SmsPort</div><div style="flex:1.4;color:var(--mut)">Twilio, OVH, Vonage</div><div style="flex:1.2;color:var(--mut)">bascule e-mail</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="flex:1;color:var(--ink2)">Notifications push</div><div style="flex:1.1;font-family:var(--fm);color:var(--b600)">PushPort</div><div style="flex:1.4;color:var(--mut)">FCM, APNs, Web Push</div><div style="flex:1.2;color:var(--mut)">notification in-app</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="flex:1;color:var(--ink2)">Paiement (dons, cotisations)</div><div style="flex:1.1;font-family:var(--fm);color:var(--b600)">PaymentPort</div><div style="flex:1.4;color:var(--mut)">Stripe, HelloAsso, Mollie</div><div style="flex:1.2;color:var(--mut)">mise en attente, reprise</div></div>
+        <div style="display:flex;padding:9px 14px;border-bottom:1px solid var(--line);font-size:11px;align-items:center"><div style="flex:1;color:var(--ink2)">Stockage objet</div><div style="flex:1.1;font-family:var(--fm);color:var(--b600)">StoragePort</div><div style="flex:1.4;color:var(--mut)">Supabase S3, MinIO, AWS S3</div><div style="flex:1.2;color:var(--mut)">interface S3 standard</div></div>
+        <div style="display:flex;padding:9px 14px;font-size:11px;align-items:center"><div style="flex:1;color:var(--ink2)">Géo-IP</div><div style="flex:1.1;font-family:var(--fm);color:var(--b600)">GeoPort</div><div style="flex:1.4;color:var(--mut)">MaxMind local, IPinfo</div><div style="flex:1.2;color:var(--mut)">champ « inconnu » non bloquant</div></div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:14px;font-size:11.5px;color:var(--ink2);line-height:1.6;margin-top:12px">Même logique pour la persistance : PostgreSQL et le stockage S3 sont accédés derrière des interfaces standard (SQL, protocole S3), donc <strong>migrables vers tout hébergeur</strong> sans réécriture. ADSUM n'est <strong>captif d'aucun fournisseur</strong>.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- T7 SÉCURITÉ -->
+    <section id="t7" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">07 - SÉCURITÉ &amp; CRYPTOGRAPHIE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Mécanismes de protection</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">QR signé Ed25519</h3><ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>Clé privée sur serveur uniquement (jamais distribuée)</li><li>Clé publique en cache sur les terminaux</li><li>Vérification hors-ligne &lt; 1 s, jeton révocable</li><li>Rotation de clé versionnée (<code>version_cle</code>)</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Accès &amp; secrets</h3><ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>JWT court + refresh ; 2FA par code e-mail</li><li>Mots de passe : hachage Argon2</li><li>RBAC appliqué à chaque route (moindre privilège)</li><li>Secrets via variables d'env / coffre, jamais en dépôt</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Données</h3><ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>TLS en transit · chiffrement au repos (pièces)</li><li>Minimisation RGPD : pièces supprimées après validation</li><li>Conservation paramétrable · export/suppression sur demande</li></ul></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Durcissement</h3><ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>Rate-limiting + verrouillage anti-force-brute</li><li>CORS strict, en-têtes de sécurité (CSP, HSTS)</li><li>Validation stricte des entrées (Pydantic)</li><li>Journal d'audit immuable de toute action sensible</li></ul></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T8 INFRA -->
+    <section id="t8" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">08 - INFRASTRUCTURE &amp; CI/CD</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Conteneurs &amp; pipeline</h2>
+      <pre><span class="c"># Services (docker-compose)</span>
+services:
+  <span class="d">api</span>      <span class="c"># FastAPI/Uvicorn (Python)</span>
+  <span class="d">worker</span>   <span class="c"># arq (Python)</span>
+  <span class="d">web</span>      <span class="c"># build statique React (TS) servi par Caddy</span>
+  <span class="d">db</span>       <span class="c"># PostgreSQL 16</span>
+  <span class="d">redis</span>    <span class="c"># Redis (file/cache/pubsub)</span>
+  <span class="d">proxy</span>    <span class="c"># Caddy - TLS auto, reverse-proxy</span></pre>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px;margin-top:14px"><div style="font-size:12px;font-weight:600;margin-bottom:10px">Pipeline CI/CD (à chaque commit)</div><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:11px"><span style="background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 11px">Lint (ESLint + Ruff)</span><span style="color:var(--faint)">→</span><span style="background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 11px">Tests (Vitest + pytest)</span><span style="color:var(--faint)">→</span><span style="background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 11px">Build images Docker</span><span style="color:var(--faint)">→</span><span style="background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 11px">Scan sécurité</span><span style="color:var(--faint)">→</span><span style="background:var(--okbg);border:1px solid var(--ok);border-radius:8px;padding:6px 11px">Déploiement</span></div></div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px;margin-top:12px;font-size:12px;color:var(--ink2);line-height:1.6"><strong>Clients natifs.</strong> Web → build statique + CDN. PWA installable (membre). Android → bundle Google Play, iOS → App Store (via Capacitor). Mises à jour OTA du contenu web embarqué possibles.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T9 ENV -->
+    <section id="t9" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">09 - ENVIRONNEMENTS &amp; CONFIGURATION</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Trois environnements, config par variables</h2>
+      <div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+        <div style="flex:1;min-width:160px;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="font-family:var(--fm);font-size:9px;color:var(--b600)">DEV</div><div style="font-size:11.5px;color:var(--mut);margin-top:5px;line-height:1.5">Local · docker-compose · données de test · hot-reload</div></div>
+        <div style="flex:1;min-width:160px;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="font-family:var(--fm);font-size:9px;color:var(--b600)">STAGING</div><div style="font-size:11.5px;color:var(--mut);margin-top:5px;line-height:1.5">Pré-prod · données anonymisées · recette utilisateur</div></div>
+        <div style="flex:1;min-width:160px;background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="font-family:var(--fm);font-size:9px;color:var(--b600)">PROD</div><div style="font-size:11.5px;color:var(--mut);margin-top:5px;line-height:1.5">Production · sauvegardes auto · monitoring</div></div>
+      </div>
+      <pre><span class="c"># .env.example (documenté, jamais de secret réel en dépôt)</span>
+DATABASE_URL=<span class="s">postgresql://user:pass@db:5432/adsum</span>
+REDIS_URL=<span class="s">redis://redis:6379/0</span>
+JWT_SECRET=<span class="s">&lt;généré&gt;</span>
+QR_PRIVATE_KEY=<span class="s">&lt;Ed25519, coffre&gt;</span>
+S3_ENDPOINT=<span class="s">...</span>  S3_BUCKET=<span class="s">adsum-pieces</span>
+SMTP_URL=<span class="s">...</span>      GEOLITE_DB=<span class="s">/data/GeoLite2-City.mmdb</span>
+CENSUS_PERIOD_START=<span class="s">01-01</span>  CENSUS_AUTO=<span class="s">true</span></pre>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T10 OBSERVABILITÉ -->
+    <section id="t10" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">10 - OBSERVABILITÉ</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Logs, métriques, alertes</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><h3 style="font-family:var(--fd);font-weight:600;font-size:13px;margin:0 0 8px">Logs</h3><div style="font-size:11.5px;color:var(--mut);line-height:1.6">Structurés JSON, corrélés par <code>request_id</code>. Niveaux info/warn/error. Pas de donnée sensible en clair.</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><h3 style="font-family:var(--fd);font-weight:600;font-size:13px;margin:0 0 8px">Métriques</h3><div style="font-size:11.5px;color:var(--mut);line-height:1.6">Prometheus : latence API, débit pointages, taille file, santé workers, connexions WebSocket.</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:15px"><h3 style="font-family:var(--fd);font-weight:600;font-size:13px;margin:0 0 8px">Alertes</h3><div style="font-size:11.5px;color:var(--mut);line-height:1.6">Seuils sur erreurs 5xx, latence, file qui s'accumule, échec de sauvegarde → notification équipe.</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T11 TRAÇABILITÉ -->
+    <section id="t11" style="padding:36px 48px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">11 - TRAÇABILITÉ &amp; CONFORMITÉ</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Tout est démontrable</h2>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;font-size:12.5px;color:var(--ink2);line-height:1.7">
+        En cas d'audit ou de commission d'enquête, la chaîne de preuve est complète :
+        <ul style="margin:10px 0 0;padding-left:18px;line-height:1.8">
+          <li><strong>Journal d'audit</strong> immuable : acteur, action, objet, horodatage, IP - pour chaque opération sensible.</li>
+          <li><strong>Versionnage des engagements</strong> : preuve horodatée de signature (consentement, confidentialité, lettre).</li>
+          <li><strong>Suivi documentaire</strong> : statut demandé → reçu → lu → traité, daté des deux côtés.</li>
+          <li><strong>Tracking connexions</strong> : géolocalisation, heures, appareil.</li>
+          <li><strong>Migrations Alembic</strong> : historique complet des évolutions du schéma.</li>
+          <li><strong>Git</strong> : historique de tout changement de code, lié à la CI.</li>
+        </ul>
+        Aucune action n'est anonyme ou non datée ; aucune donnée n'est modifiée sans trace.
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- T12 ADR -->
+    <section id="t12" style="padding:36px 48px 30px;max-width:940px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--b600);margin-bottom:9px">12 - DÉCISIONS D'ARCHITECTURE (ADR)</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.4px;margin:0 0 16px">Choix structurants &amp; justifications</h2>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="display:flex;gap:9px;align-items:center;margin-bottom:5px"><span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">ADR-01 · ACTÉ</span><strong style="font-size:13px">Pointage hors-ligne par conception</strong></div><div style="font-size:11.5px;color:var(--mut);line-height:1.55">Réseau non garanti en événement. Décision : vérification QR locale + file persistante + sync idempotente. Conséquence : clé publique embarquée, logique QR dupliquée côté client (TS).</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="display:flex;gap:9px;align-items:center;margin-bottom:5px"><span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">ADR-02 · ACTÉ</span><strong style="font-size:13px">Deux langages : TypeScript + Python</strong></div><div style="font-size:11.5px;color:var(--mut);line-height:1.55">TS unifie les clients (Capacitor) ; Python/FastAPI accélère le back et offre un écosystème crypto/données mûr. Contrats REST typés au milieu.</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="display:flex;gap:9px;align-items:center;margin-bottom:5px"><span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">ADR-03 · ACTÉ</span><strong style="font-size:13px">Ed25519 plutôt que QR opaque</strong></div><div style="font-size:11.5px;color:var(--mut);line-height:1.55">Signature asymétrique → vérifiable hors-ligne sans appel serveur, infalsifiable, révocable. Alternative (QR en base interrogé) rejetée car dépend du réseau.</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="display:flex;gap:9px;align-items:center;margin-bottom:5px"><span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">ADR-04 · ACTÉ</span><strong style="font-size:13px">Minimisation des pièces d'identité</strong></div><div style="font-size:11.5px;color:var(--mut);line-height:1.55">Pièces chiffrées temporaires sur S3, supprimées à la validation. RGPD allégé, pas d'AIPD lourde. Seule la preuve de validation reste.</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px"><div style="display:flex;gap:9px;align-items:center;margin-bottom:5px"><span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 8px;border-radius:20px">ADR-05 · ACTÉ</span><strong style="font-size:13px">Codes par e-mail (pas de SMS au départ)</strong></div><div style="font-size:11.5px;color:var(--mut);line-height:1.55">E-mail + push couvrent gratuitement 2FA/MDP temporaire/signatures. SMS branchable plus tard si budget - l'architecture le prévoit en option.</div></div>
+      </div>
+      <div style="margin-top:18px;background:var(--panel);border-radius:14px;padding:22px;color:var(--panelink);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="font-family:var(--fm);font-size:11px;color:#7ed99a">● DAT v1.0 - COMPLET</div>
+        <div style="font-size:12.5px;color:var(--panelsub);flex:1;min-width:280px;line-height:1.5">Architecture, stack, arborescence, données, pipeline, API, sécurité, infra, CI/CD, environnements, observabilité, traçabilité et ADR. Source de vérité technique unique, sans ambiguïté.</div>
+      </div>
+    </section>
+    <footer style="padding:8px 48px 44px;max-width:940px"><div style="font-family:var(--fm);font-size:9.5px;color:var(--faint);letter-spacing:.5px">ADSUM · DAT v1.0 · DOSSIER D'ARCHITECTURE TECHNIQUE · SACERDOCE ROYAL · JUIN 2026</div></footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { theme:'light' };
+  componentDidMount(){
+    try{ const t=localStorage.getItem('adsum_dat_theme'); if(t) this.setState({theme:t}); }catch(e){}
+    this.apply();
+    const ids=['t0','t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12'];
+    const nav=document.getElementById('tn');
+    const onScroll=()=>{let cur=ids[0];for(const id of ids){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=140)cur=id;}if(nav)nav.querySelectorAll('a').forEach(a=>a.setAttribute('data-on',a.getAttribute('data-sec')===cur?'1':'0'));};
+    this._on=onScroll;window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  }
+  componentDidUpdate(){ this.apply(); }
+  componentWillUnmount(){ if(this._on) window.removeEventListener('scroll',this._on); }
+  apply(){ document.documentElement.setAttribute('data-theme',this.state.theme); try{localStorage.setItem('adsum_dat_theme',this.state.theme);}catch(e){} }
+  renderVals(){ const d=this.state.theme==='dark'; return { toggleTheme:()=>this.setState(s=>({theme:s.theme==='light'?'dark':'light'})), lightBg:d?'transparent':'var(--ink)', lightCol:d?'var(--mut)':'var(--surf)', darkBg:d?'var(--ink)':'transparent', darkCol:d?'var(--surf)':'var(--mut)' }; }
+}
+</script>
+</body>
+</html>
