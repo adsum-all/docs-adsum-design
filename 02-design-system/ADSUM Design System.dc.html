@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  :root{
+    --fd:'Space Grotesk','IBM Plex Sans',system-ui,sans-serif;
+    --fu:'IBM Plex Sans',system-ui,sans-serif;
+    --fm:'IBM Plex Mono',ui-monospace,monospace;
+    /* brand blue scale */
+    --b50:#eef3fc;--b100:#d9e4f8;--b200:#b4c8f0;--b300:#8aa8e6;--b400:#5b82d8;--b500:#3563c9;--b600:#2a4fad;--b700:#223f8a;--b800:#1d3470;--b900:#172a5a;
+    --acc:#2a4fad;--acc2:#1d3470;--accb:#8aa8e6;--acct:#eef3fc;--accw:#f5f8fd;--accl:#d9e4f8;
+    /* neutrals (light) */
+    --bg:#f4f5f7;--board:#e8eaee;--dot:#d4d7de;--ink:#16181d;--ink2:#3d4047;--mut:#676b73;--faint:#9498a1;--line:#e3e5ea;--surf:#ffffff;--surf2:#f8f9fb;
+    --sb:#fbfbfc;--sbink:#16181d;--sbmut:#878b93;--sbact:#eef0f4;--sbgrp:#a3a6ad;--sbline:#e6e8ec;
+    --ok:#1f8a5b;--okbg:#e6f3ec;--warn:#b5731a;--warnbg:#f7eede;--dng:#c0392b;--dngbg:#fae9e7;--info:#2a4fad;--infobg:#eef3fc;
+    --panel:#13151b;--panelink:#eef0f4;--panelsub:#9da1aa;--panelcard:#1e2129;--panelline:#2c2f38;
+  }
+  :root[data-theme="dark"]{
+    --bg:#101218;--board:#161922;--dot:#262a35;--ink:#eceef2;--ink2:#c7cad1;--mut:#9499a3;--faint:#6a6e78;--line:#2a2e38;--surf:#1a1d25;--surf2:#161922;
+    --sb:#0c0e13;--sbink:#eceef2;--sbmut:#7e828c;--sbact:#23262f;--sbgrp:#5f636d;--sbline:#23262f;
+    --acc:#5b82d8;--acc2:#8aa8e6;--accb:#8aa8e6;--acct:#1a2236;--accw:#161c2a;--accl:#2c3a5a;
+    --okbg:#16271f;--warnbg:#2a2114;--dngbg:#2a1715;--infobg:#1a2236;
+    --panel:#1a1d25;--panelink:#eceef2;--panelsub:#9499a3;--panelcard:#23262f;--panelline:#31353f;
+  }
+  body{background:var(--bg);font-family:var(--fu);color:var(--ink);-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+  ::selection{background:var(--accl)}
+  a{color:inherit;text-decoration:none}
+  .sx::-webkit-scrollbar{width:9px;height:9px}
+  .sx::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px;border:2px solid transparent;background-clip:padding-box}
+  #ds-nav a[data-on="1"]{background:var(--sbact);color:var(--ink);font-weight:600}
+  #ds-nav a[data-on="1"] .ix{color:var(--acc)}
+  [data-theme="light"] .mb--l,[data-theme="dark"] .mb--d{background:var(--ink);color:var(--surf);border-color:var(--ink)}
+  .swx{cursor:pointer;user-select:none;transition:all .15s}
+</style>
+</helmet>
+<div style="display:flex;min-height:100vh;background:var(--bg)" class="sx">
+
+  <!-- SIDEBAR -->
+  <aside style="position:sticky;top:0;align-self:flex-start;width:236px;height:100vh;background:var(--sb);color:var(--sbink);flex-shrink:0;display:flex;flex-direction:column;padding:18px 14px;border-right:1px solid var(--sbline)">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 6px;margin-bottom:16px">
+      <div style="width:30px;height:30px;border-radius:8px;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:15px;color:#fff">A</div>
+      <div>
+        <div style="font-family:var(--fd);font-weight:700;font-size:15px;letter-spacing:.3px;line-height:1">ADSUM</div>
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:1.3px;color:var(--sbmut);margin-top:2px">DESIGN SYSTEM</div>
+      </div>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:1px" id="ds-nav">
+      <a href="#d0" data-sec="d0" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">00</span>Introduction</a>
+      <a href="#d1" data-sec="d1" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">01</span>Fondations &amp; principes</a>
+      <a href="#d2" data-sec="d2" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">02</span>Couleurs</a>
+      <a href="#d3" data-sec="d3" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">03</span>Typographie</a>
+      <a href="#d4" data-sec="d4" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">04</span>Espacement &amp; grille</a>
+      <a href="#d5" data-sec="d5" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">05</span>Rayons &amp; ombres</a>
+      <a href="#d6" data-sec="d6" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">06</span>Iconographie</a>
+      <div style="font-family:var(--fm);font-size:8.5px;color:var(--sbgrp);letter-spacing:.8px;margin:9px 0 3px 9px">COMPOSANTS</div>
+      <a href="#d7" data-sec="d7" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">07</span>Boutons</a>
+      <a href="#d8" data-sec="d8" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">08</span>Formulaires</a>
+      <a href="#d9" data-sec="d9" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">09</span>Données &amp; cartes</a>
+      <a href="#d10" data-sec="d10" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">10</span>Navigation</a>
+      <a href="#d11" data-sec="d11" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">11</span>Retour &amp; overlays</a>
+      <a href="#d12" data-sec="d12" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">12</span>États</a>
+      <a href="#d13" data-sec="d13" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">13</span>Composants ADSUM</a>
+      <a href="#d14" data-sec="d14" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">14</span>Data-viz · Marque</a>
+      <a href="#d15" data-sec="d15" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink);border-top:1px solid var(--sbline);margin-top:3px;padding-top:9px"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">15</span>Motion · A11y · Ton</a>
+      <a href="#d16" data-sec="d16" style="display:flex;gap:9px;align-items:center;padding:6px 9px;border-radius:7px;font-size:12.5px;color:var(--sbink)"><span class="ix" style="font-family:var(--fm);font-size:10px;color:var(--sbgrp);width:16px">16</span>Anatomie &amp; jetons</a>
+    </nav>
+    <div style="margin-top:auto;padding-top:14px">
+      <div onClick="{{ toggleTheme }}" class="swx" style="display:flex;gap:6px;border:1px solid var(--sbline);border-radius:9px;padding:4px">
+        <div class="mb--l" style="flex:1;text-align:center;font-size:11px;padding:5px 0;border-radius:6px">☀ Clair</div>
+        <div class="mb--d" style="flex:1;text-align:center;font-size:11px;padding:5px 0;border-radius:6px">☾ Sombre</div>
+      </div>
+      <div style="font-family:var(--fm);font-size:8px;color:var(--sbgrp);line-height:1.6;margin-top:10px">v1.0 · BASE BLEUE<br>PHASE 02 · ADSUM</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main style="flex:1;min-width:0">
+
+    <!-- D0 INTRO -->
+    <section id="d0" style="padding:52px 48px 40px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:14px">PHASE 02 · SYSTÈME DE CONCEPTION</div>
+      <h1 style="font-family:var(--fd);font-weight:700;font-size:38px;line-height:1.05;letter-spacing:-.8px;margin:0 0 16px;max-width:20ch">Design System ADSUM</h1>
+      <p style="font-size:15px;line-height:1.6;color:var(--ink2);max-width:64ch;margin:0 0 10px">Le langage visuel unique de la plateforme : couleurs, typographie, espacements, composants et motifs. Une seule source de vérité, partagée entre les 5 interfaces et toutes les plateformes (mobile, web, desktop, Android, iOS).</p>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--mut);max-width:64ch;margin:0 0 30px">Direction retenue : <strong>base bleue</strong> (confiance, institution, sérénité), style d'écriture conservé (Space Grotesk + IBM Plex). Chaque jeton et chaque composant est documenté avec ses états, ses règles d'usage et ses valeurs exactes - prêt à être implémenté.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px;color:var(--acc)">10</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">teintes par couleur</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">8</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">échelons d'espacement</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">40+</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">composants &amp; variantes</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">2</div><div style="font-size:11.5px;color:var(--mut);margin-top:2px;line-height:1.35">modes : clair &amp; sombre</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D1 PRINCIPES -->
+    <section id="d1" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">01 - FONDATIONS &amp; PRINCIPES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 18px">Cinq principes qui guident chaque décision</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:var(--fm);font-size:11px;color:var(--acc);margin-bottom:9px">01</div><h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 6px">Clair avant beau</h3><p style="font-size:12.5px;color:var(--mut);line-height:1.55;margin:0">Un contrôleur bénévole, en plein soleil, doit comprendre en une seconde. Lisibilité et contraste priment sur l'esthétique.</p></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:var(--fm);font-size:11px;color:var(--acc);margin-bottom:9px">02</div><h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 6px">Le pouce d'abord</h3><p style="font-size:12.5px;color:var(--mut);line-height:1.55;margin:0">Cibles ≥ 44px, actions principales à portée du pouce, une main suffit. Le mobile dicte les tailles.</p></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:var(--fm);font-size:11px;color:var(--acc);margin-bottom:9px">03</div><h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 6px">Confiance &amp; sobriété</h3><p style="font-size:12.5px;color:var(--mut);line-height:1.55;margin:0">Le bleu institutionnel, des formes nettes, zéro esbroufe. On rassure : données sensibles, présence, identité.</p></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:var(--fm);font-size:11px;color:var(--acc);margin-bottom:9px">04</div><h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 6px">États explicites</h3><p style="font-size:12.5px;color:var(--mut);line-height:1.55;margin:0">Vide, chargement, erreur, hors-ligne, succès - jamais d'ambiguïté. Chaque écran sait dire où il en est.</p></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:var(--fm);font-size:11px;color:var(--acc);margin-bottom:9px">05</div><h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 6px">Un seul système</h3><p style="font-size:12.5px;color:var(--mut);line-height:1.55;margin:0">Les mêmes jetons et composants sur les 5 interfaces. On dessine une fois, on réutilise partout.</p></div>
+        <div style="background:var(--acct);border:1px solid var(--accl);border-radius:13px;padding:20px"><div style="font-family:var(--fm);font-size:11px;color:var(--acc);margin-bottom:9px">★</div><h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 6px;color:var(--acc2)">Jetons, pas valeurs</h3><p style="font-size:12.5px;color:var(--mut);line-height:1.55;margin:0">On ne code jamais une couleur en dur : on référence un jeton (<span style="font-family:var(--fm);font-size:11px">--acc</span>, <span style="font-family:var(--fm);font-size:11px">--ink</span>…). Le thème change, le code non.</p></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D2 COULEURS -->
+    <section id="d2" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">02 - COULEURS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 8px">Une palette bleue, des neutres calmes, des signaux nets</h2>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:70ch;margin:0 0 24px">Le bleu <span style="font-family:var(--fm);font-size:12px;color:var(--acc)">--b600</span> est la couleur de marque (actions, sélection, liens). Les neutres portent 90 % de l'interface. Les couleurs sémantiques sont réservées aux retours d'état. Tout est décliné en mode clair et sombre.</p>
+
+      <!-- brand scale -->
+      <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">BLEU DE MARQUE · 50 → 900</div>
+      <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-bottom:8px">
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#eef3fc;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">50</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#EEF3FC</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#d9e4f8;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">100</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#D9E4F8</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#b4c8f0;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">200</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#B4C8F0</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#8aa8e6;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">300</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#8AA8E6</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#5b82d8;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">400</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#5B82D8</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#3563c9;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">500</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#3563C9</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#2a4fad;border:1px solid var(--line);border-bottom:none;position:relative"><span style="position:absolute;top:5px;left:6px;font-family:var(--fm);font-size:7px;color:#fff;background:rgba(0,0,0,.25);padding:1px 4px;border-radius:3px">MARQUE</span></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">600</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#2A4FAD</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#223f8a;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">700</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#223F8A</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#1d3470;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">800</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#1D3470</div></div></div>
+        <div><div style="height:56px;border-radius:8px 8px 0 0;background:#172a5a;border:1px solid var(--line);border-bottom:none"></div><div style="background:var(--surf);border:1px solid var(--line);border-top:none;border-radius:0 0 8px 8px;padding:6px"><div style="font-family:var(--fm);font-size:9px;font-weight:600">900</div><div style="font-family:var(--fm);font-size:7.5px;color:var(--mut)">#172A5A</div></div></div>
+      </div>
+      <div style="font-size:11px;color:var(--mut);margin-bottom:26px;line-height:1.5">Usage : <strong>600</strong> = boutons &amp; liens · <strong>500/400</strong> = survol / accent sombre · <strong>50-100</strong> = fonds de sélection, badges · <strong>700-900</strong> = textes sur fond clair, dégradés de carte.</div>
+
+      <!-- neutrals -->
+      <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">NEUTRES · TEXTE &amp; SURFACES</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:26px">
+        <div><div style="height:48px;border-radius:8px;background:var(--ink);border:1px solid var(--line)"></div><div style="font-family:var(--fm);font-size:8.5px;margin-top:5px">--ink</div><div style="font-size:9px;color:var(--mut)">Texte principal</div></div>
+        <div><div style="height:48px;border-radius:8px;background:var(--ink2);border:1px solid var(--line)"></div><div style="font-family:var(--fm);font-size:8.5px;margin-top:5px">--ink2</div><div style="font-size:9px;color:var(--mut)">Texte secondaire</div></div>
+        <div><div style="height:48px;border-radius:8px;background:var(--mut);border:1px solid var(--line)"></div><div style="font-family:var(--fm);font-size:8.5px;margin-top:5px">--mut</div><div style="font-size:9px;color:var(--mut)">Atténué</div></div>
+        <div><div style="height:48px;border-radius:8px;background:var(--line);border:1px solid var(--line)"></div><div style="font-family:var(--fm);font-size:8.5px;margin-top:5px">--line</div><div style="font-size:9px;color:var(--mut)">Bordures</div></div>
+        <div><div style="height:48px;border-radius:8px;background:var(--surf2);border:1px solid var(--line)"></div><div style="font-family:var(--fm);font-size:8.5px;margin-top:5px">--surf2</div><div style="font-size:9px;color:var(--mut)">Surface 2</div></div>
+        <div><div style="height:48px;border-radius:8px;background:var(--surf);border:1px solid var(--line)"></div><div style="font-family:var(--fm);font-size:8.5px;margin-top:5px">--surf</div><div style="font-size:9px;color:var(--mut)">Surface</div></div>
+      </div>
+
+      <!-- semantic -->
+      <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">SÉMANTIQUE · SIGNAUX D'ÉTAT</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="background:var(--okbg);border:1px solid var(--ok);border-radius:11px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:9px">✓</div><div style="font-size:12.5px;font-weight:600;color:var(--ok)">Succès</div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-top:3px">--ok · présent, validé</div></div>
+        <div style="background:var(--warnbg);border:1px solid var(--warn);border-radius:11px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--warn);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:9px">!</div><div style="font-size:12.5px;font-weight:600;color:var(--warn)">Alerte</div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-top:3px">--warn · non vérifié, en attente</div></div>
+        <div style="background:var(--dngbg);border:1px solid var(--dng);border-radius:11px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--dng);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:9px">✕</div><div style="font-size:12.5px;font-weight:600;color:var(--dng)">Erreur</div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-top:3px">--dng · QR invalide, refus</div></div>
+        <div style="background:var(--infobg);border:1px solid var(--info);border-radius:11px;padding:14px"><div style="width:22px;height:22px;border-radius:50%;background:var(--info);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:9px">i</div><div style="font-size:12.5px;font-weight:600;color:var(--info)">Info</div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-top:3px">--info · en ligne, neutre</div></div>
+      </div>
+      <div style="margin-top:14px;background:var(--surf2);border:1px solid var(--line);border-radius:11px;padding:14px;font-size:11.5px;color:var(--mut);line-height:1.55">⚖ <strong style="color:var(--ink2)">Contraste AA garanti</strong> : texte sur fond ≥ 4.5:1, gros texte/icônes ≥ 3:1. Le bleu 600 sur blanc (7.1:1) et le blanc sur bleu 600 passent AAA pour le texte courant.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D3 TYPOGRAPHIE -->
+    <section id="d3" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">03 - TYPOGRAPHIE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Deux familles, une échelle, des rôles clairs</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:26px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:var(--fd);font-weight:700;font-size:40px;line-height:1;margin-bottom:10px">Aa</div><div style="font-family:var(--fd);font-weight:600;font-size:14px">Space Grotesk</div><div style="font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.5">Titres &amp; chiffres clés. Caractère, géométrie, lisible en grand. <span style="font-family:var(--fm);font-size:10px">--fd</span></div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:'IBM Plex Sans';font-weight:400;font-size:40px;line-height:1;margin-bottom:10px">Aa</div><div style="font-family:var(--fd);font-weight:600;font-size:14px">IBM Plex Sans</div><div style="font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.5">Texte courant, libellés, formulaires. Neutre, robuste. <span style="font-family:var(--fm);font-size:10px">--fu</span></div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px"><div style="font-family:'IBM Plex Mono';font-weight:400;font-size:38px;line-height:1;margin-bottom:10px">Aa</div><div style="font-family:var(--fd);font-weight:600;font-size:14px">IBM Plex Mono</div><div style="font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.5">Codes, matricules, étiquettes, horodatages. <span style="font-family:var(--fm);font-size:10px">--fm</span></div></div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;padding:9px 18px;background:var(--surf2);font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1.4">RÔLE</div><div style="width:90px">TAILLE</div><div style="width:80px">GRAISSE</div><div style="flex:1.6">APERÇU</div></div>
+        <div style="display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)"><div style="flex:1.4;font-size:11.5px;color:var(--mut)">Display</div><div style="width:90px;font-family:var(--fm);font-size:10px">34-38 px</div><div style="width:80px;font-family:var(--fm);font-size:10px">700</div><div style="flex:1.6;font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.5px">Présences</div></div>
+        <div style="display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)"><div style="flex:1.4;font-size:11.5px;color:var(--mut)">Titre H2</div><div style="width:90px;font-family:var(--fm);font-size:10px">24 px</div><div style="width:80px;font-family:var(--fm);font-size:10px">700</div><div style="flex:1.6;font-family:var(--fd);font-weight:700;font-size:20px">Annuaire des membres</div></div>
+        <div style="display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)"><div style="flex:1.4;font-size:11.5px;color:var(--mut)">Titre H3</div><div style="width:90px;font-family:var(--fm);font-size:10px">15-17 px</div><div style="width:80px;font-family:var(--fm);font-size:10px">600</div><div style="flex:1.6;font-family:var(--fd);font-weight:600;font-size:15px">Fiche de préparation</div></div>
+        <div style="display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)"><div style="flex:1.4;font-size:11.5px;color:var(--mut)">Corps</div><div style="width:90px;font-family:var(--fm);font-size:10px">13-14 px</div><div style="width:80px;font-family:var(--fm);font-size:10px">400</div><div style="flex:1.6;font-size:13.5px">Le contrôleur compare la photo et confirme.</div></div>
+        <div style="display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)"><div style="flex:1.4;font-size:11.5px;color:var(--mut)">Petit / libellé</div><div style="width:90px;font-family:var(--fm);font-size:10px">11-12 px</div><div style="width:80px;font-family:var(--fm);font-size:10px">500</div><div style="flex:1.6;font-size:11.5px;font-weight:500;color:var(--ink2)">Commission · Groupe</div></div>
+        <div style="display:flex;align-items:center;padding:12px 18px"><div style="flex:1.4;font-size:11.5px;color:var(--mut)">Mono / méta</div><div style="width:90px;font-family:var(--fm);font-size:10px">9-10 px</div><div style="width:80px;font-family:var(--fm);font-size:10px">500</div><div style="flex:1.6;font-family:var(--fm);font-size:10px;letter-spacing:.5px;color:var(--acc)">ADS-000123 · 09:41</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D4 ESPACEMENT -->
+    <section id="d4" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">04 - ESPACEMENT &amp; GRILLE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 8px">Une échelle de 4 px, partout</h2>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:70ch;margin:0 0 22px">Tous les espacements (marges, paddings, gaps) sont des multiples de 4. Cela garantit un rythme vertical cohérent et des composants alignables sans réflexion.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:26px">
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">4 · xs</div><div style="height:14px;width:4px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">icône↔texte serré</div></div>
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">8 · sm</div><div style="height:14px;width:8px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">éléments d'un groupe</div></div>
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">12 · md</div><div style="height:14px;width:12px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">padding interne compact</div></div>
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">16 · lg</div><div style="height:14px;width:16px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">padding de carte</div></div>
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">24 · xl</div><div style="height:14px;width:24px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">entre blocs</div></div>
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">32 · 2xl</div><div style="height:14px;width:32px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">sections</div></div>
+        <div style="display:flex;align-items:center;gap:14px"><div style="width:64px;font-family:var(--fm);font-size:10px;color:var(--mut)">48 · 3xl</div><div style="height:14px;width:48px;background:var(--acc);border-radius:2px"></div><div style="font-size:11px;color:var(--mut)">marges de page</div></div>
+      </div>
+      <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">GRILLE RESPONSIVE</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-size:12px;font-weight:600;margin-bottom:9px">Desktop · 12 colonnes</div><div style="display:grid;grid-template-columns:repeat(12,1fr);gap:3px"><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div><div style="height:40px;background:var(--acct);border-radius:3px"></div></div><div style="font-size:10.5px;color:var(--mut);margin-top:9px;line-height:1.5">Gouttière 16-24 px. Contenu max ~1140 px. Rail latéral hors grille.</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:16px"><div style="font-size:12px;font-weight:600;margin-bottom:9px">Mobile · 4 colonnes</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px"><div style="height:40px;background:var(--acct);border-radius:4px"></div><div style="height:40px;background:var(--acct);border-radius:4px"></div><div style="height:40px;background:var(--acct);border-radius:4px"></div><div style="height:40px;background:var(--acct);border-radius:4px"></div></div><div style="font-size:10.5px;color:var(--mut);margin-top:9px;line-height:1.5">Marge latérale 16-18 px. Cibles ≥ 44 px. Une colonne de contenu.</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D5 RAYONS & OMBRES -->
+    <section id="d5" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">05 - RAYONS &amp; OMBRES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Coins arrondis &amp; élévation</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">RAYONS</div>
+          <div style="display:flex;gap:12px;align-items:flex-end">
+            <div style="text-align:center"><div style="width:60px;height:60px;background:var(--acct);border:1.5px solid var(--acc);border-radius:6px"></div><div style="font-family:var(--fm);font-size:9px;margin-top:6px">6 · champs</div></div>
+            <div style="text-align:center"><div style="width:60px;height:60px;background:var(--acct);border:1.5px solid var(--acc);border-radius:9px"></div><div style="font-family:var(--fm);font-size:9px;margin-top:6px">9 · boutons</div></div>
+            <div style="text-align:center"><div style="width:60px;height:60px;background:var(--acct);border:1.5px solid var(--acc);border-radius:13px"></div><div style="font-family:var(--fm);font-size:9px;margin-top:6px">13 · cartes</div></div>
+            <div style="text-align:center"><div style="width:60px;height:60px;background:var(--acct);border:1.5px solid var(--acc);border-radius:50%"></div><div style="font-family:var(--fm);font-size:9px;margin-top:6px">plein · pills</div></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">ÉLÉVATION</div>
+          <div style="display:flex;gap:14px">
+            <div style="text-align:center"><div style="width:72px;height:56px;background:var(--surf);border:1px solid var(--line);border-radius:11px;box-shadow:0 1px 2px rgba(0,0,0,.06)"></div><div style="font-family:var(--fm);font-size:9px;margin-top:7px">sm · carte</div></div>
+            <div style="text-align:center"><div style="width:72px;height:56px;background:var(--surf);border:1px solid var(--line);border-radius:11px;box-shadow:0 6px 16px -8px rgba(0,0,0,.2)"></div><div style="font-family:var(--fm);font-size:9px;margin-top:7px">md · menu</div></div>
+            <div style="text-align:center"><div style="width:72px;height:56px;background:var(--surf);border:1px solid var(--line);border-radius:11px;box-shadow:0 16px 40px -16px rgba(0,0,0,.32)"></div><div style="font-family:var(--fm);font-size:9px;margin-top:7px">lg · modale</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--mut);margin-top:14px;line-height:1.5">Ombres sobres, jamais colorées. L'élévation distingue la hiérarchie (carte &lt; menu &lt; modale), pas la décoration.</div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D6 ICONOGRAPHIE -->
+    <section id="d6" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">06 - ICONOGRAPHIE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 8px">Des icônes au trait, cohérentes</h2>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:70ch;margin:0 0 20px">Style linéaire (stroke ~1.75 px), coins doux, grille 24 px. Tailles 16 / 20 / 24. Open-source recommandé : <strong>Lucide</strong> (gratuit, &gt; 1000 icônes, cohérent). Ci-dessous, le vocabulaire d'icônes ADSUM (ici en glyphes-repères lo-fi).</p>
+      <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:10px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">◉</div><div style="font-size:9px;color:var(--mut);text-align:center">Scanner</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">▣</div><div style="font-size:9px;color:var(--mut);text-align:center">Carte / QR</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">◔</div><div style="font-size:9px;color:var(--mut);text-align:center">Profil</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">▤</div><div style="font-size:9px;color:var(--mut);text-align:center">Activités</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">↻</div><div style="font-size:9px;color:var(--mut);text-align:center">Historique</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">✓</div><div style="font-size:9px;color:var(--mut);text-align:center">Valider</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">✕</div><div style="font-size:9px;color:var(--mut);text-align:center">Refuser</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⚠</div><div style="font-size:9px;color:var(--mut);text-align:center">Alerte</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">🔍</div><div style="font-size:9px;color:var(--mut);text-align:center">Recherche</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⬡</div><div style="font-size:9px;color:var(--mut);text-align:center">Commission</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">↗</div><div style="font-size:9px;color:var(--mut);text-align:center">Lien externe</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⬆</div><div style="font-size:9px;color:var(--mut);text-align:center">Téléverser</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⬇</div><div style="font-size:9px;color:var(--mut);text-align:center">Télécharger</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">🔔</div><div style="font-size:9px;color:var(--mut);text-align:center">Notif</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⚙</div><div style="font-size:9px;color:var(--mut);text-align:center">Réglages</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⇅</div><div style="font-size:9px;color:var(--mut);text-align:center">Synchro</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">📍</div><div style="font-size:9px;color:var(--mut);text-align:center">Localisation</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">✉</div><div style="font-size:9px;color:var(--mut);text-align:center">E-mail</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">🔒</div><div style="font-size:9px;color:var(--mut);text-align:center">Sécurité</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">⛶</div><div style="font-size:9px;color:var(--mut);text-align:center">Plein écran</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">↩</div><div style="font-size:9px;color:var(--mut);text-align:center">Sortie</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">◷</div><div style="font-size:9px;color:var(--mut);text-align:center">Direction</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">☑</div><div style="font-size:9px;color:var(--mut);text-align:center">Tâche</div></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:20px">👁</div><div style="font-size:9px;color:var(--mut);text-align:center">Lire</div></div>
+      </div>
+      <div style="margin-top:14px;font-size:11px;color:var(--mut);line-height:1.5">Règle : une icône ne voyage jamais seule pour une action critique - toujours accompagnée d'un libellé (sauf cibles universelles : fermer, retour, recherche).</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D7 BOUTONS -->
+    <section id="d7" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">07 - BOUTONS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Hiérarchie d'action claire</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">VARIANTES</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+            <div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px">Principal</div>
+            <div style="background:var(--surf);color:var(--ink);font-size:13px;font-weight:600;padding:10px 17px;border-radius:9px;border:1.5px solid var(--ink)">Secondaire</div>
+            <div style="background:transparent;color:var(--acc);font-size:13px;font-weight:600;padding:11px 14px;border-radius:9px">Fantôme</div>
+            <div style="background:var(--dng);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px">Danger</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px">
+            <div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px;display:flex;align-items:center;gap:7px">◉ Avec icône</div>
+            <div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center">+</div>
+            <div style="background:var(--accl);color:var(--acc2);font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px">Atténué</div>
+          </div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">TAILLES &amp; ÉTATS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px">
+            <div style="background:var(--acc);color:#fff;font-size:11px;font-weight:600;padding:7px 13px;border-radius:7px">Petit</div>
+            <div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px">Moyen</div>
+            <div style="background:var(--acc);color:#fff;font-size:15px;font-weight:600;padding:14px 24px;border-radius:11px">Grand · 48px</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+            <div style="background:var(--acc2);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px">Survol</div>
+            <div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px;box-shadow:0 0 0 3px var(--accl)">Focus</div>
+            <div style="background:var(--mut);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px;opacity:.5">Désactivé</div>
+            <div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:9px;display:flex;align-items:center;gap:8px"><span style="width:13px;height:13px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;display:inline-block"></span>Chargement</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--surf2);border:1px solid var(--line);border-radius:11px;padding:14px;font-size:11.5px;color:var(--mut);line-height:1.55"><strong style="color:var(--ink2)">Règle :</strong> un seul bouton principal par vue. Le bouton plein largeur (≥ 48px) est réservé aux écrans mobiles d'action (scanner, confirmer, valider). Le danger demande toujours une confirmation.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D8 FORMULAIRES -->
+    <section id="d8" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">08 - FORMULAIRES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Champs, sélecteurs, contrôles</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">CHAMPS DE SAISIE</div>
+          <div style="font-size:11px;color:var(--ink2);margin-bottom:5px">Champ standard</div>
+          <div style="height:40px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:var(--faint);margin-bottom:13px">Saisir…</div>
+          <div style="font-size:11px;color:var(--ink2);margin-bottom:5px">Focus (bleu)</div>
+          <div style="height:40px;border:1.5px solid var(--acc);border-radius:7px;display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:var(--ink);margin-bottom:13px;box-shadow:0 0 0 3px var(--accl)">prenom.nom@mail.fr</div>
+          <div style="font-size:11px;color:var(--ink2);margin-bottom:5px">Erreur + aide</div>
+          <div style="height:40px;border:1.5px solid var(--dng);border-radius:7px;display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:var(--ink)">code invalide</div>
+          <div style="font-size:10.5px;color:var(--dng);margin-top:5px">⚠ Ce code ne correspond pas. Réessayez.</div>
+          <div style="font-size:11px;color:var(--ink2);margin:13px 0 5px">Recherche</div>
+          <div style="height:40px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:var(--faint);gap:8px">🔍 Nom, code, téléphone…</div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">SÉLECTEURS &amp; CONTRÔLES</div>
+          <div style="font-size:11px;color:var(--ink2);margin-bottom:5px">Menu déroulant</div>
+          <div style="height:40px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-size:12.5px;color:var(--ink);margin-bottom:15px">Commission ▾</div>
+          <div style="display:flex;gap:22px;margin-bottom:15px">
+            <div><div style="font-size:11px;color:var(--ink2);margin-bottom:7px">Interrupteur</div><div style="display:flex;gap:8px;align-items:center"><div style="width:38px;height:22px;background:var(--acc);border-radius:20px;position:relative"><div style="position:absolute;right:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%"></div></div><div style="width:38px;height:22px;background:var(--line);border-radius:20px;position:relative"><div style="position:absolute;left:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%"></div></div></div></div>
+            <div><div style="font-size:11px;color:var(--ink2);margin-bottom:7px">Case à cocher</div><div style="display:flex;gap:8px;align-items:center"><div style="width:20px;height:20px;border-radius:5px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">✓</div><div style="width:20px;height:20px;border-radius:5px;border:1.5px solid var(--line)"></div></div></div>
+            <div><div style="font-size:11px;color:var(--ink2);margin-bottom:7px">Radio</div><div style="display:flex;gap:8px;align-items:center"><div style="width:20px;height:20px;border-radius:50%;border:1.5px solid var(--acc);display:flex;align-items:center;justify-content:center"><div style="width:10px;height:10px;border-radius:50%;background:var(--acc)"></div></div><div style="width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line)"></div></div></div>
+          </div>
+          <div style="font-size:11px;color:var(--ink2);margin-bottom:7px">Segmenté</div>
+          <div style="display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:15px"><div style="font-size:11.5px;padding:7px 14px;background:var(--acc);color:#fff">Mois</div><div style="font-size:11.5px;padding:7px 14px;color:var(--mut)">Semaine</div><div style="font-size:11.5px;padding:7px 14px;color:var(--mut)">Jour</div></div>
+          <div style="font-size:11px;color:var(--ink2);margin-bottom:7px">Code OTP (6 chiffres)</div>
+          <div style="display:flex;gap:6px"><div style="width:34px;height:40px;border:1.5px solid var(--acc);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">2</div><div style="width:34px;height:40px;border:1.5px solid var(--acc);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">9</div><div style="width:34px;height:40px;border:1.5px solid var(--acc);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">4</div><div style="width:34px;height:40px;border:1px solid var(--line);border-radius:8px"></div><div style="width:34px;height:40px;border:1px solid var(--line);border-radius:8px"></div><div style="width:34px;height:40px;border:1px solid var(--line);border-radius:8px"></div></div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D9 DONNÉES & CARTES -->
+    <section id="d9" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">09 - DONNÉES &amp; CARTES</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Badges, avatars, cartes, tableaux</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">BADGES &amp; PASTILLES DE STATUT</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+            <span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 9px;border-radius:20px">● ACTIF</span>
+            <span style="font-family:var(--fm);font-size:9px;background:var(--okbg);color:var(--ok);padding:3px 9px;border-radius:20px">✓ VÉRIFIÉ</span>
+            <span style="font-family:var(--fm);font-size:9px;background:var(--warnbg);color:var(--warn);padding:3px 9px;border-radius:20px">⚠ NON VÉRIFIÉ</span>
+            <span style="font-family:var(--fm);font-size:9px;background:var(--surf2);color:var(--mut);padding:3px 9px;border-radius:20px;border:1px solid var(--line)">○ INACTIF</span>
+            <span style="font-family:var(--fm);font-size:9px;background:var(--infobg);color:var(--info);padding:3px 9px;border-radius:20px">● EN LIGNE</span>
+            <span style="font-family:var(--fm);font-size:9px;background:var(--dngbg);color:var(--dng);padding:3px 9px;border-radius:20px">✕ RÉVOQUÉ</span>
+          </div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">TAGS &amp; COMPTEURS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+            <span style="font-size:10.5px;color:var(--ink2);background:var(--surf2);border:1px solid var(--line);padding:5px 10px;border-radius:7px">Commission Accueil</span>
+            <span style="font-size:10.5px;color:var(--ink2);background:var(--surf2);border:1px solid var(--line);padding:5px 10px;border-radius:7px">Groupe B</span>
+            <span style="font-size:10px;background:var(--acc);color:#fff;border-radius:20px;padding:2px 7px;font-family:var(--fm)">7</span>
+          </div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">AVATARS</div>
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--b200)"></div>
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--b300)"></div>
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--b400);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px">MK</div>
+            <div style="position:relative;width:44px;height:44px"><div style="width:44px;height:44px;border-radius:50%;background:var(--b500)"></div><div style="position:absolute;right:0;bottom:0;width:13px;height:13px;border-radius:50%;background:var(--ok);border:2px solid var(--surf)"></div></div>
+            <div style="display:flex"><div style="width:32px;height:32px;border-radius:50%;background:var(--b200);border:2px solid var(--surf)"></div><div style="width:32px;height:32px;border-radius:50%;background:var(--b300);border:2px solid var(--surf);margin-left:-10px"></div><div style="width:32px;height:32px;border-radius:50%;background:var(--acc);border:2px solid var(--surf);margin-left:-10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-family:var(--fm)">+5</div></div>
+          </div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">CARTE STANDARD</div>
+          <div style="border:1px solid var(--line);border-radius:11px;padding:13px;display:flex;align-items:center;gap:11px;box-shadow:0 1px 2px rgba(0,0,0,.05)"><div style="width:38px;height:38px;border-radius:9px;background:var(--acct);display:flex;align-items:center;justify-content:center;font-size:16px">⬡</div><div style="flex:1"><div style="font-size:12.5px;font-weight:600">Titre de carte</div><div style="font-size:10.5px;color:var(--mut)">Métadonnée secondaire</div></div><span style="color:var(--mut)">›</span></div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">TABLEAU DE DONNÉES</div>
+        <div style="border:1px solid var(--line);border-radius:9px;overflow:hidden">
+          <div style="display:flex;background:var(--surf2);padding:9px 14px;font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="width:34px"></div><div style="flex:1.4">MEMBRE</div><div style="flex:1">CODE</div><div style="flex:1">COMMISSION</div><div style="width:80px">STATUT</div><div style="width:60px">ASSID.</div></div>
+          <div style="display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)"><div style="width:34px"><div style="width:24px;height:24px;border-radius:50%;background:var(--b200)"></div></div><div style="flex:1.4;font-size:12px;font-weight:500">Marie K.</div><div style="flex:1;font-family:var(--fm);font-size:10px;color:var(--mut)">ADS-000123</div><div style="flex:1;font-size:11px;color:var(--ink2)">Accueil</div><div style="width:80px"><span style="font-family:var(--fm);font-size:8px;color:var(--ok)">● ACTIF</span></div><div style="width:60px;font-size:11px;font-weight:600">88%</div></div>
+          <div style="display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--accw)"><div style="width:34px"><div style="width:24px;height:24px;border-radius:50%;background:var(--b300)"></div></div><div style="flex:1.4;font-size:12px;font-weight:500">Jean D.</div><div style="flex:1;font-family:var(--fm);font-size:10px;color:var(--mut)">ADS-000124</div><div style="flex:1;font-size:11px;color:var(--ink2)">Mission</div><div style="width:80px"><span style="font-family:var(--fm);font-size:8px;color:var(--warn)">⚠ NON VÉR.</span></div><div style="width:60px;font-size:11px;font-weight:600">61%</div></div>
+          <div style="display:flex;align-items:center;padding:10px 14px"><div style="width:34px"><div style="width:24px;height:24px;border-radius:50%;background:var(--b200)"></div></div><div style="flex:1.4;font-size:12px;font-weight:500">Paul N.</div><div style="flex:1;font-family:var(--fm);font-size:10px;color:var(--mut)">ADS-000125</div><div style="flex:1;font-size:11px;color:var(--ink2)">Louange</div><div style="width:80px"><span style="font-family:var(--fm);font-size:8px;color:var(--mut)">○ INACTIF</span></div><div style="width:60px;font-size:11px;font-weight:600;color:var(--dng)">12%</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:11px;font-size:10.5px;color:var(--mut)"><span>1-3 sur 28 412</span><div style="display:flex;gap:4px;align-items:center"><span style="width:24px;height:24px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center">‹</span><span style="width:24px;height:24px;background:var(--acc);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center">1</span><span style="width:24px;height:24px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center">2</span><span style="width:24px;height:24px;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;justify-content:center">›</span></div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D10 NAVIGATION -->
+    <section id="d10" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">10 - NAVIGATION</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Rail repliable, barre d'onglets, barre haute</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">RAIL LATÉRAL · REPLIÉ ↔ DÉPLIÉ (DESKTOP)</div>
+          <div style="display:flex;gap:12px">
+            <div style="width:48px;background:var(--panel);border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:9px;padding:11px 0"><div style="width:22px;height:22px;border-radius:6px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:11px">A</div><div style="width:18px;height:18px;border-radius:5px;background:var(--acc)"></div><div style="width:18px;height:18px;border-radius:5px;background:var(--panelcard)"></div><div style="width:18px;height:18px;border-radius:5px;background:var(--panelcard)"></div><div style="margin-top:auto;color:var(--panelsub);font-size:12px">»</div></div>
+            <div style="flex:1;background:var(--panel);border-radius:10px;padding:11px 10px;display:flex;flex-direction:column;gap:5px"><div style="display:flex;align-items:center;gap:7px;margin-bottom:4px"><div style="width:18px;height:18px;border-radius:5px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:9px">A</div><span style="color:var(--panelink);font-family:var(--fd);font-weight:700;font-size:11px">ADSUM</span></div><div style="background:var(--acc);color:#fff;font-size:10.5px;border-radius:6px;padding:6px 9px">▦ Tableau de bord</div><div style="color:var(--panelsub);font-size:10.5px;padding:6px 9px">◷ Membres</div><div style="color:var(--panelsub);font-size:10.5px;padding:6px 9px">▤ Événements</div><div style="margin-top:auto;display:flex;justify-content:flex-end;color:var(--panelsub);font-size:12px">« 📌</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--mut);margin-top:11px;line-height:1.5">Replié par défaut (icônes), déployable au survol, épinglable. État mémorisé par utilisateur.</div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">BARRE D'ONGLETS (MOBILE)</div>
+          <div style="border:1px solid var(--line);border-radius:11px;overflow:hidden">
+            <div style="height:80px;background:var(--surf2);display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:11px">contenu</div>
+            <div style="display:flex;border-top:1px solid var(--line);padding:8px 0;background:var(--surf)">
+              <div style="flex:1;text-align:center;font-size:9px;color:var(--acc)"><div style="font-size:16px">▣</div>Carte</div>
+              <div style="flex:1;text-align:center;font-size:9px;color:var(--faint)"><div style="font-size:16px">▤</div>Activités</div>
+              <div style="flex:1;text-align:center;font-size:9px;color:var(--faint)"><div style="font-size:16px">↻</div>Historique</div>
+              <div style="flex:1;text-align:center;font-size:9px;color:var(--faint)"><div style="font-size:16px">◔</div>Profil</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--mut);margin-top:11px;line-height:1.5">4 entrées max, icône + libellé, onglet actif en bleu. Toujours visible, jamais masquée au scroll.</div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">BARRE HAUTE · FIL D'ARIANE · ONGLETS</div>
+        <div style="border:1px solid var(--line);border-radius:9px;padding:11px 14px;display:flex;align-items:center;gap:12px;margin-bottom:12px"><span style="font-size:15px;color:var(--mut)">☰</span><div style="flex:1;height:30px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;padding:0 11px;font-size:11px;color:var(--faint);gap:7px;max-width:280px">🔍 Recherche globale…</div><span style="font-family:var(--fm);font-size:9px;background:var(--acct);color:var(--acc2);padding:4px 9px;border-radius:20px">● Événement actif</span><div style="width:28px;height:28px;border-radius:50%;background:var(--b300)"></div></div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mut);margin-bottom:14px"><span>Membres</span><span style="color:var(--faint)">›</span><span>Annuaire</span><span style="color:var(--faint)">›</span><span style="color:var(--ink);font-weight:600">Marie K.</span></div>
+        <div style="display:flex;gap:18px;border-bottom:1px solid var(--line)"><span style="font-size:12px;font-weight:600;padding-bottom:9px;border-bottom:2px solid var(--acc);color:var(--acc)">Identité</span><span style="font-size:12px;color:var(--mut);padding-bottom:9px">Présences</span><span style="font-size:12px;color:var(--mut);padding-bottom:9px">QR &amp; historique</span><span style="font-size:12px;color:var(--mut);padding-bottom:9px">Engagements</span></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D11 RETOUR & OVERLAYS -->
+    <section id="d11" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">11 - RETOUR &amp; OVERLAYS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Modales, feuilles, toasts, alertes, progression</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">MODALE (DESKTOP)</div>
+          <div style="background:var(--board);border-radius:10px;padding:20px;display:flex;align-items:center;justify-content:center">
+            <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;width:90%;box-shadow:0 16px 40px -16px rgba(0,0,0,.32)"><div style="font-family:var(--fd);font-weight:600;font-size:14px;margin-bottom:6px">Révoquer le QR ?</div><div style="font-size:11.5px;color:var(--mut);line-height:1.5;margin-bottom:14px">Le code actuel sera invalidé immédiatement. Un nouveau pourra être réémis.</div><div style="display:flex;justify-content:flex-end;gap:8px"><div style="font-size:11.5px;color:var(--mut);border:1px solid var(--line);padding:8px 14px;border-radius:8px">Annuler</div><div style="font-size:11.5px;color:#fff;background:var(--dng);padding:8px 14px;border-radius:8px">Révoquer</div></div></div>
+          </div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">FEUILLE INFÉRIEURE (MOBILE)</div>
+          <div style="background:var(--board);border-radius:10px;padding:14px 14px 0;display:flex;align-items:flex-end;justify-content:center;height:150px">
+            <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px 13px 0 0;padding:16px;width:100%"><div style="width:34px;height:4px;background:var(--line);border-radius:3px;margin:0 auto 12px"></div><div style="font-family:var(--fd);font-weight:600;font-size:13px;margin-bottom:9px">Filtrer</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:10.5px;background:var(--acc);color:#fff;border-radius:7px;padding:5px 10px">Tous</span><span style="font-size:10.5px;border:1px solid var(--line);border-radius:7px;padding:5px 10px;color:var(--mut)">Actifs</span><span style="font-size:10.5px;border:1px solid var(--line);border-radius:7px;padding:5px 10px;color:var(--mut)">Non vérifiés</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">TOASTS</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="background:var(--panel);color:var(--panelink);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px"><span style="color:#7ed99a">✓</span><span style="font-size:12px">Présence enregistrée</span><span style="margin-left:auto;color:var(--panelsub);font-size:11px">Annuler</span></div>
+            <div style="background:var(--okbg);border:1px solid var(--ok);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px"><span style="color:var(--ok)">✓</span><span style="font-size:12px;color:var(--ink2)">Document envoyé</span></div>
+            <div style="background:var(--dngbg);border:1px solid var(--dng);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px"><span style="color:var(--dng)">✕</span><span style="font-size:12px;color:var(--ink2)">Échec de synchronisation</span></div>
+          </div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">BANDEAUX D'ALERTE</div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <div style="background:var(--infobg);border:1px solid var(--info);border-radius:9px;padding:10px 12px;font-size:11.5px;color:var(--ink2);line-height:1.45"><strong style="color:var(--info)">ⓘ</strong> Le terminal est hors-ligne. Les pointages sont conservés et synchronisés au retour du réseau.</div>
+            <div style="background:var(--warnbg);border:1px solid var(--warn);border-radius:9px;padding:10px 12px;font-size:11.5px;color:var(--ink2);line-height:1.45"><strong style="color:var(--warn)">⚠</strong> Cache de l'annuaire ancien (&gt; 24 h). Resynchronisez avant l'événement.</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">PROGRESSION &amp; ÉTAPES</div>
+        <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:center">
+          <div><div style="font-size:10.5px;color:var(--mut);margin-bottom:7px">Barre</div><div style="width:160px;height:7px;background:var(--line);border-radius:4px"><div style="width:64%;height:100%;background:var(--acc);border-radius:4px"></div></div><div style="font-size:9px;color:var(--mut);margin-top:4px">64 %</div></div>
+          <div><div style="font-size:10.5px;color:var(--mut);margin-bottom:7px">Cercle</div><div style="position:relative;width:46px;height:46px"><svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="19" fill="none" stroke="var(--line)" stroke-width="5"/><circle cx="23" cy="23" r="19" fill="none" stroke="var(--acc)" stroke-width="5" stroke-linecap="round" stroke-dasharray="119" stroke-dashoffset="34" transform="rotate(-90 23 23)"/></svg><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:11px">71%</div></div></div>
+          <div style="flex:1;min-width:220px"><div style="font-size:10.5px;color:var(--mut);margin-bottom:9px">Étapes (stepper)</div><div style="display:flex;align-items:center;gap:0"><div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center">✓</div><span style="font-size:8.5px;color:var(--ink2)">Profil</span></div><div style="flex:1;height:2px;background:var(--acc);margin:0 4px;margin-bottom:16px"></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center">✓</div><span style="font-size:8.5px;color:var(--ink2)">Pièces</span></div><div style="flex:1;height:2px;background:var(--line);margin:0 4px;margin-bottom:16px"></div><div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:22px;height:22px;border-radius:50%;border:1.5px solid var(--acc);color:var(--acc);font-size:10px;display:flex;align-items:center;justify-content:center">3</div><span style="font-size:8.5px;color:var(--acc)">Engagements</span></div></div></div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D12 ÉTATS -->
+    <section id="d12" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">12 - ÉTATS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Chaque écran sait dire où il en est</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:22px;text-align:center;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:26px;color:var(--faint);margin-bottom:9px">▢</div><div style="font-size:12.5px;font-weight:600;margin-bottom:4px">Vide</div><div style="font-size:11px;color:var(--mut);line-height:1.45">Aucune donnée pour l'instant + action suggérée</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:22px;text-align:center;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;margin-bottom:11px"></div><div style="font-size:12.5px;font-weight:600;margin-bottom:4px">Chargement</div><div style="font-size:11px;color:var(--mut);line-height:1.45">Spinner ou skeleton selon le contexte</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:22px;text-align:center;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:24px;color:var(--dng);margin-bottom:9px">⚠</div><div style="font-size:12.5px;font-weight:600;margin-bottom:4px">Erreur</div><div style="font-size:11px;color:var(--mut);line-height:1.45">Message clair + bouton « Réessayer »</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:22px;text-align:center;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:24px;color:var(--warn);margin-bottom:9px">⚡</div><div style="font-size:12.5px;font-weight:600;margin-bottom:4px">Hors-ligne</div><div style="font-size:11px;color:var(--mut);line-height:1.45">Bandeau + données en cache, rien n'est perdu</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:22px;text-align:center;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:24px;color:var(--faint);margin-bottom:9px">🔒</div><div style="font-size:12.5px;font-weight:600;margin-bottom:4px">Accès refusé</div><div style="font-size:11px;color:var(--mut);line-height:1.45">Rôle non habilité (RBAC), retour proposé</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:22px;text-align:center;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:24px;color:var(--ok);margin-bottom:9px">✓</div><div style="font-size:12.5px;font-weight:600;margin-bottom:4px">Succès</div><div style="font-size:11px;color:var(--mut);line-height:1.45">Confirmation franche, retour auto</div></div>
+      </div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:12px">SKELETON (CHARGEMENT PROGRESSIF)</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:11px"><div style="width:36px;height:36px;border-radius:50%;background:var(--line)"></div><div style="flex:1"><div style="height:9px;width:40%;background:var(--line);border-radius:4px"></div><div style="height:7px;width:25%;background:var(--surf2);border:1px solid var(--line);border-radius:4px;margin-top:7px"></div></div></div>
+          <div style="display:flex;align-items:center;gap:11px"><div style="width:36px;height:36px;border-radius:50%;background:var(--line)"></div><div style="flex:1"><div style="height:9px;width:55%;background:var(--line);border-radius:4px"></div><div style="height:7px;width:30%;background:var(--surf2);border:1px solid var(--line);border-radius:4px;margin-top:7px"></div></div></div>
+        </div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D13 COMPOSANTS ADSUM -->
+    <section id="d13" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">13 - COMPOSANTS PROPRES À ADSUM</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Les briques signature du produit</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">CARTE NUMÉRIQUE</div>
+          <div style="background:linear-gradient(150deg,var(--b700),var(--b900));border-radius:14px;padding:16px;color:#fff">
+            <div style="display:flex;justify-content:space-between;align-items:start"><div><div style="font-family:var(--fm);font-size:8px;color:var(--accb);letter-spacing:1px">SACERDOCE ROYAL</div><div style="font-family:var(--fd);font-weight:600;font-size:13px;margin-top:8px">Marie K.</div><div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:3px">Commission Accueil</div></div><div style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,.12)"></div></div>
+            <div style="background:#fff;border-radius:10px;padding:10px;margin-top:13px;display:flex;align-items:center;justify-content:center"><div style="width:88px;height:88px;background:repeating-linear-gradient(0deg,#1b1b19 0 4px,#fff 4px 8px),repeating-linear-gradient(90deg,#1b1b19 0 4px,transparent 4px 8px);background-blend-mode:multiply;border-radius:4px"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:11px;font-family:var(--fm);font-size:8px;color:var(--accb)"><span>ADS-000123</span><span style="color:#7ed99a">● ACTIF · VÉRIFIÉ</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">PASTILLES DE PRÉSENCE</div>
+          <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:16px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:center;gap:9px"><span style="width:9px;height:9px;border-radius:50%;background:var(--ink)"></span><span style="font-size:12px">Présent · salle</span><span style="margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--mut)">SALLE</span></div>
+            <div style="display:flex;align-items:center;gap:9px"><span style="width:9px;height:9px;border-radius:50%;background:var(--acc)"></span><span style="font-size:12px">Présent · en ligne</span><span style="margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--acc)">EN LIGNE</span></div>
+            <div style="display:flex;align-items:center;gap:9px"><span style="width:9px;height:9px;border-radius:50%;background:var(--line);border:1px solid var(--mut)"></span><span style="font-size:12px">Excusé</span><span style="margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--mut)">EXCUSÉ</span></div>
+            <div style="display:flex;align-items:center;gap:9px"><span style="width:9px;height:9px;border-radius:50%;background:var(--dngbg);border:1px solid var(--dng)"></span><span style="font-size:12px">Absent</span><span style="margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--dng)">ABSENT</span></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:10px">VISEUR DE SCAN</div>
+          <div style="background:#111;border-radius:13px;padding:16px;height:188px;position:relative;display:flex;align-items:center;justify-content:center">
+            <div style="width:120px;height:120px;position:relative">
+              <div style="position:absolute;top:0;left:0;width:26px;height:26px;border-top:3px solid #fff;border-left:3px solid #fff;border-radius:5px 0 0 0"></div><div style="position:absolute;top:0;right:0;width:26px;height:26px;border-top:3px solid #fff;border-right:3px solid #fff;border-radius:0 5px 0 0"></div><div style="position:absolute;bottom:0;left:0;width:26px;height:26px;border-bottom:3px solid #fff;border-left:3px solid #fff;border-radius:0 0 0 5px"></div><div style="position:absolute;bottom:0;right:0;width:26px;height:26px;border-bottom:3px solid #fff;border-right:3px solid #fff;border-radius:0 0 5px 0"></div>
+              <div style="position:absolute;left:5px;right:5px;top:50%;height:2px;background:var(--acc);box-shadow:0 0 10px var(--acc)"></div>
+            </div>
+            <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#cfcfc8;font-size:10px">Visez le QR</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;background:var(--surf2);border:1px solid var(--line);border-radius:11px;padding:14px;font-size:11.5px;color:var(--mut);line-height:1.55">Ces composants encapsulent les règles métier (statut de vérification, mode de présence, signature du QR) : ils sont identiques sur les 5 interfaces et garantissent une lecture immédiate, même par un bénévole.</div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+        <!-- D14 DATA-VIZ & MARQUE -->
+    <section id="d14" style="padding:40px 48px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">14 - VISUALISATION DE DONNÉES &amp; MARQUE</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 8px">Graphiques sobres, marque cohérente</h2>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:70ch;margin:0 0 22px">La plateforme est riche en tableaux de bord : les graphiques font partie du système. Bibliothèque open-source recommandée : <strong>Recharts</strong> ou <strong>Chart.js</strong> (gratuites). Palette de séries dérivée du bleu, neutres pour le secondaire, sémantique pour les seuils.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:12px">COURBE (ARRIVÉES)</div><div style="position:relative;height:80px;border-bottom:1px solid var(--line);border-left:1px solid var(--line)"><svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 200 80" preserveAspectRatio="none"><polyline points="0,72 30,60 60,36 90,26 120,15 150,18 200,8" fill="none" stroke="var(--acc)" stroke-width="2"/></svg></div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:12px">BARRES (PAR COMMISSION)</div><div style="display:flex;align-items:flex-end;gap:8px;height:80px"><div style="flex:1;height:82%;background:var(--acc);border-radius:4px 4px 0 0"></div><div style="flex:1;height:64%;background:var(--b400);border-radius:4px 4px 0 0"></div><div style="flex:1;height:71%;background:var(--b300);border-radius:4px 4px 0 0"></div><div style="flex:1;height:48%;background:var(--b200);border-radius:4px 4px 0 0"></div></div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:12px">ANNEAU (TAUX)</div><div style="display:flex;align-items:center;justify-content:center;height:80px"><div style="position:relative;width:72px;height:72px"><svg width="72" height="72" viewBox="0 0 72 72"><circle cx="36" cy="36" r="29" fill="none" stroke="var(--line)" stroke-width="9"/><circle cx="36" cy="36" r="29" fill="none" stroke="var(--acc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="182" stroke-dashoffset="49" transform="rotate(-90 36 36)"/></svg><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:15px">73%</div></div></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:12px">BARRE EMPILÉE (SALLE / EN LIGNE / ABSENTS)</div><div style="display:flex;height:26px;border-radius:7px;overflow:hidden"><div style="width:56%;background:var(--acc);display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">Salle 56%</div><div style="width:19%;background:var(--b300);display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">Ligne</div><div style="width:25%;background:var(--line);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:9px">Absents</div></div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px"><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:12px">CARTE-STAT &amp; SPARKLINE</div><div style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-family:var(--fm);font-size:8px;color:var(--mut)">TOTAL CONSOLIDÉ</div><div style="font-family:var(--fd);font-weight:700;font-size:24px">1 660</div><div style="font-size:9.5px;color:var(--ok)">↗ +12% vs sem. dernière</div></div><svg width="80" height="34" viewBox="0 0 80 34"><polyline points="0,28 16,22 32,24 48,12 64,16 80,6" fill="none" stroke="var(--acc)" stroke-width="2"/></svg></div></div>
+      </div>
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 12px">Marque &amp; logo</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:9px"><div style="width:44px;height:44px;border-radius:11px;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:22px;color:#fff">A</div><div style="font-size:10px;color:var(--mut)">Logo plein</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:9px"><div style="width:44px;height:44px;border-radius:11px;border:1.5px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:22px;color:var(--acc)">A</div><div style="font-size:10px;color:var(--mut)">Logo contour</div></div>
+        <div style="background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:9px"><div style="width:44px;height:44px;border-radius:11px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:22px;color:var(--acc)">A</div><div style="font-size:10px;color:var(--panelsub)">Sur fond sombre</div></div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:7px"><div style="display:flex;align-items:center;gap:8px"><div style="width:26px;height:26px;border-radius:7px;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:13px;color:#fff">A</div><span style="font-family:var(--fd);font-weight:700;font-size:15px">ADSUM</span></div><div style="font-size:10px;color:var(--mut)">Logotype</div></div>
+      </div>
+      <div style="background:var(--surf2);border:1px solid var(--line);border-radius:11px;padding:14px;font-size:11.5px;color:var(--mut);line-height:1.55;margin-bottom:24px"><strong style="color:var(--ink2)">Zone de protection</strong> : marge libre = hauteur du « A » autour du logo. Taille minimale 24 px. Ne jamais déformer, recolorer hors palette, ni ajouter d'ombre.</div>
+      <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 12px">Points de rupture responsive</h3>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;overflow:hidden">
+        <div style="display:flex;background:var(--surf2);padding:9px 16px;font-family:var(--fm);font-size:9px;color:var(--mut);letter-spacing:.5px;border-bottom:1px solid var(--line)"><div style="flex:1">PALIER</div><div style="width:120px">LARGEUR</div><div style="flex:1.4">DISPOSITION</div></div>
+        <div style="display:flex;padding:10px 16px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1;font-weight:600">Mobile</div><div style="width:120px;font-family:var(--fm);font-size:10px;color:var(--mut)">&lt; 640 px</div><div style="flex:1.4;color:var(--ink2)">1 colonne, tab bar bas, rail masqué</div></div>
+        <div style="display:flex;padding:10px 16px;border-bottom:1px solid var(--line);font-size:12px"><div style="flex:1;font-weight:600">Tablette</div><div style="width:120px;font-family:var(--fm);font-size:10px;color:var(--mut)">640-1024 px</div><div style="flex:1.4;color:var(--ink2)">2 colonnes, rail replié (icônes)</div></div>
+        <div style="display:flex;padding:10px 16px;font-size:12px"><div style="flex:1;font-weight:600">Desktop</div><div style="width:120px;font-family:var(--fm);font-size:10px;color:var(--mut)">&gt; 1024 px</div><div style="flex:1.4;color:var(--ink2)">Grille 12 col, rail dépliable/épinglable</div></div>
+      </div>
+    </section>
+    <div style="height:1px;background:var(--line);margin:0 48px"></div>
+
+    <!-- D15 MOTION / A11Y / TON -->
+    <section id="d15" style="padding:40px 48px 30px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">15 - MOTION · ACCESSIBILITÉ · VOIX &amp; TON</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 20px">Les règles transversales</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px"><span style="color:var(--acc)">⟳</span>Motion</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:12px;color:var(--ink2);line-height:1.5">
+            <div><strong>Durées :</strong> 120 ms (micro), 200 ms (transition), 320 ms (overlay).</div>
+            <div><strong>Courbe :</strong> ease-out à l'entrée, ease-in à la sortie.</div>
+            <div><strong>Sobriété :</strong> on anime l'opacité et la position, jamais la taille du texte. Respect de <span style="font-family:var(--fm);font-size:10.5px">prefers-reduced-motion</span>.</div>
+            <div><strong>Sens :</strong> le succès de scan « pulse » une fois ; rien ne clignote en continu.</div>
+          </div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px"><span style="color:var(--acc)">♿</span>Accessibilité</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:12px;color:var(--ink2);line-height:1.5">
+            <div><strong>Contraste :</strong> AA minimum (texte 4.5:1, gros 3:1).</div>
+            <div><strong>Cibles :</strong> ≥ 44 × 44 px, espacées.</div>
+            <div><strong>Focus :</strong> anneau bleu visible au clavier, jamais supprimé.</div>
+            <div><strong>Sémantique :</strong> libellés sur tous les champs, états annoncés (aria-live), navigation au clavier complète.</div>
+            <div><strong>Couleur :</strong> jamais seule porteuse de sens (icône + texte en plus).</div>
+          </div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:20px">
+          <h3 style="font-family:var(--fd);font-weight:600;font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px"><span style="color:var(--acc)">✎</span>Voix &amp; ton</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:12px;color:var(--ink2);line-height:1.5">
+            <div><strong>Clair &amp; direct :</strong> phrases courtes, verbes d'action (« Confirmer la présence »).</div>
+            <div><strong>Rassurant :</strong> on explique, on ne réprimande pas (« Rien n'est perdu, synchro en attente »).</div>
+            <div><strong>Respectueux :</strong> registre adapté à une fraternité, jamais familier.</div>
+            <div><strong>Orienté issue :</strong> chaque erreur propose une action.</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:18px;background:var(--panel);border-radius:14px;padding:24px;color:var(--panelink);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="font-family:var(--fm);font-size:11px;color:#7ed99a">● DESIGN SYSTEM v1.0 - COMPLET</div>
+        <div style="font-size:12.5px;color:var(--panelsub);flex:1;min-width:280px;line-height:1.5">Fondations, couleurs, typographie, espacement, composants, états et règles transversales sont posés. Prochaine étape : <strong style="color:var(--panelink)">phase 03 - écran-pilote en haute-fidélité</strong> (base bleue, style d'écriture conservé), puis extension aux parcours complets.</div>
+      </div>
+    </section>
+
+    <!-- D16 ANATOMIE & TOKENS -->
+    <section id="d16" style="padding:40px 48px 30px;max-width:1080px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:1.8px;color:var(--acc);margin-bottom:9px">16 - ANATOMIE DES COMPOSANTS &amp; JETONS</div>
+      <h2 style="font-family:var(--fd);font-weight:700;font-size:24px;letter-spacing:-.4px;margin:0 0 8px">Des valeurs exactes, prêtes à coder</h2>
+      <p style="font-size:13.5px;line-height:1.6;color:var(--ink2);max-width:74ch;margin:0 0 22px">Pour un livrable entreprise, chaque composant a une anatomie chiffrée et chaque décision visuelle est un <strong>jeton nommé</strong>. Un développeur n'invente rien : il lit les valeurs ci-dessous.</p>
+
+      <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-bottom:16px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">ANATOMIE · BOUTON PRINCIPAL</div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px"><div style="background:var(--acc);color:#fff;font-size:13px;font-weight:600;padding:0 18px;height:44px;display:flex;align-items:center;border-radius:9px">Confirmer la présence</div></div>
+          <div style="font-family:var(--fm);font-size:10.5px;line-height:1.9;color:var(--ink2)">hauteur <strong>44px</strong> (mobile 48-52) · padding-x <strong>18px</strong><br>radius <strong>9px</strong> · fond <strong>--acc</strong> · texte <strong>#fff</strong><br>poids <strong>600</strong> · taille <strong>13-15px</strong><br>focus <strong>anneau 3px --accl</strong> · actif <strong>--acc2</strong></div>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px">
+          <div style="font-family:var(--fm);font-size:10px;color:var(--mut);letter-spacing:.5px;margin-bottom:14px">ANATOMIE · CARTE</div>
+          <div style="border:1px solid var(--line);border-radius:13px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:14px"><div style="font-size:12px;font-weight:600">Titre</div><div style="font-size:10.5px;color:var(--mut);margin-top:3px">Contenu secondaire</div></div>
+          <div style="font-family:var(--fm);font-size:10.5px;line-height:1.9;color:var(--ink2)">padding <strong>14-16px</strong> · radius <strong>13px</strong><br>bordure <strong>1px --line</strong> · fond <strong>--surf</strong><br>ombre <strong>sm</strong> · gap interne <strong>8-12px</strong></div>
+        </div>
+      </div>
+
+      <div style="background:var(--panel);border-radius:14px;padding:20px;color:var(--panelink);margin-bottom:16px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--accb);letter-spacing:.5px;margin-bottom:12px">RÉFÉRENCE DES JETONS (EXTRAIT)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;font-family:var(--fm);font-size:10.5px;line-height:1.8">
+          <div style="color:var(--panelsub)">--acc<span style="color:var(--panelink)"> → bleu 600 #2A4FAD</span></div>
+          <div style="color:var(--panelsub)">--ink<span style="color:var(--panelink)"> → #16181D</span></div>
+          <div style="color:var(--panelsub)">--mut<span style="color:var(--panelink)"> → #676B73</span></div>
+          <div style="color:var(--panelsub)">--line<span style="color:var(--panelink)"> → #E3E5EA</span></div>
+          <div style="color:var(--panelsub)">--ok / --warn / --dng<span style="color:var(--panelink)"> → vert / ambre / rouge</span></div>
+          <div style="color:var(--panelsub)">--surf / --surf2<span style="color:var(--panelink)"> → surfaces</span></div>
+          <div style="color:var(--panelsub)">radius<span style="color:var(--panelink)"> → 6 / 9 / 13 / pill</span></div>
+          <div style="color:var(--panelsub)">space<span style="color:var(--panelink)"> → 4·8·12·16·24·32·48</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--panelsub);line-height:1.55;margin-top:13px">Tous les jetons basculent automatiquement en mode sombre (mêmes noms, valeurs adaptées). Aucune couleur n'est codée en dur dans les composants.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px">
+          <h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Règles de contenu</h3>
+          <ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>Verbes d'action sur les boutons (« Confirmer », pas « OK »)</li><li>Nombres : espace fin comme séparateur de milliers (1 660)</li><li>Dates : <code>16 juin 2026</code> · heures <code>09:41</code></li><li>Statuts toujours icône + texte (jamais couleur seule)</li><li>Vide : une phrase + une action suggérée</li></ul>
+        </div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:13px;padding:18px">
+          <h3 style="font-family:var(--fd);font-weight:600;font-size:14px;margin:0 0 10px">Densité &amp; tailles cibles</h3>
+          <ul style="margin:0;padding-left:16px;font-size:12px;line-height:1.7;color:var(--ink2)"><li>Cible tactile mobile ≥ <strong>44 × 44px</strong></li><li>Ligne de tableau desktop ≥ <strong>40px</strong></li><li>Texte courant mobile ≥ <strong>13px</strong>, desktop ≥ <strong>12px</strong></li><li>Largeur de lecture max ≈ <strong>70 caractères</strong></li><li>Contraste AA partout (4.5:1 texte, 3:1 gros)</li></ul>
+        </div>
+      </div>
+      <div style="margin-top:18px;background:var(--panel);border-radius:14px;padding:22px;color:var(--panelink);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="font-family:var(--fm);font-size:11px;color:#7ed99a">● DESIGN SYSTEM v1.1 - COMPLET &amp; CODABLE</div>
+        <div style="font-size:12.5px;color:var(--panelsub);flex:1;min-width:280px;line-height:1.5">Fondations, couleurs, typographie, espacement, composants, états, data-viz, marque, responsive, motion/a11y/ton, <strong style="color:var(--panelink)">anatomie &amp; jetons</strong>. Tout est chiffré et prêt à être implémenté.</div>
+      </div>
+    </section>
+
+    <footer style="padding:8px 48px 44px;max-width:1080px"><div style="font-family:var(--fm);font-size:9.5px;color:var(--faint);letter-spacing:.5px">ADSUM · DESIGN SYSTEM v1.1 · BASE BLEUE · SACERDOCE ROYAL · JUIN 2026</div></footer>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { theme:'light' };
+  componentDidMount(){
+    try{ const t=localStorage.getItem('adsum_ds_theme'); if(t) this.setState({theme:t}); }catch(e){}
+    this.apply();
+    const ids=['d0','d1','d2','d3','d4','d5','d6','d7','d8','d9','d10','d11','d12','d13','d14','d15','d16'];
+    const nav=document.getElementById('ds-nav');
+    const onScroll=()=>{ let cur=ids[0]; for(const id of ids){const el=document.getElementById(id); if(el&&el.getBoundingClientRect().top<=140)cur=id;} if(nav)nav.querySelectorAll('a').forEach(a=>a.setAttribute('data-on',a.getAttribute('data-sec')===cur?'1':'0')); };
+    this._on=onScroll; window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+  componentDidUpdate(){ this.apply(); }
+  componentWillUnmount(){ if(this._on) window.removeEventListener('scroll',this._on); }
+  apply(){ document.documentElement.setAttribute('data-theme',this.state.theme); try{localStorage.setItem('adsum_ds_theme',this.state.theme);}catch(e){} }
+  renderVals(){ return { toggleTheme:()=>this.setState(s=>({theme:s.theme==='light'?'dark':'light'})) }; }
+}
+</script>
+</body>
+</html>
