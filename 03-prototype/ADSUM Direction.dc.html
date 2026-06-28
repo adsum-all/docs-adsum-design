@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  :root{--fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --b400:#5b82d8;--b500:#3563c9;--b600:#2a4fad;--b700:#223f8a;--b900:#172a5a;
+    --ink:#16181d;--ink2:#3d4047;--mut:#676b73;--faint:#9498a1;--line:#e7e9ee;--surf:#fff;--bg:#f4f5f8;
+    --ok:#1f8a5b;--okbg:#e6f3ec;--warn:#b5731a;--dng:#c0392b;}
+  body{font-family:var(--fu);background:#0e1118;min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;padding:30px}
+</style>
+</helmet>
+<a href="../index.html" style="position:fixed;top:16px;left:16px;z-index:9999;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.92);color:#16181d;border:1px solid #d4d7de;border-radius:10px;padding:8px 13px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-decoration:none;box-shadow:0 6px 18px -8px rgba(0,0,0,.4)">← Accueil</a>
+<div style="width:1120px;max-width:100%;background:var(--bg);border-radius:16px;overflow:hidden;box-shadow:0 50px 100px -30px rgba(0,0,0,.7);border:1px solid #23262e">
+  <div style="background:var(--b900);color:#fff;padding:22px 26px;display:flex;justify-content:space-between;align-items:flex-end">
+    <div><div style="font-family:var(--fm);font-size:9px;color:#aac0ec;letter-spacing:1.5px">DIRECTION · TEMPS RÉEL</div><div style="font-family:var(--fd);font-weight:700;font-size:24px;margin-top:8px">Vue de pilotage</div><div style="font-size:11.5px;color:#9fb3df;margin-top:4px">Rencontre du dimanche · synchronisé il y a 4 s</div></div>
+    <div style="display:flex;gap:8px"><div style="font-size:11px;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 13px">Période ▾</div><div style="font-size:11px;color:var(--b900);background:#fff;border-radius:8px;padding:8px 13px;font-weight:600">Exporter PDF</div></div>
+  </div>
+  <div style="padding:24px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px">
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="font-family:var(--fm);font-size:8.5px;color:var(--mut)">PRÉSENTS SALLE</div><div style="font-family:var(--fd);font-weight:700;font-size:28px;margin-top:5px">1 248</div><div style="font-size:10px;color:var(--ok);margin-top:3px">↗ +6% vs dim. dernier</div></div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="font-family:var(--fm);font-size:8.5px;color:var(--mut)">EN LIGNE</div><div style="font-family:var(--fd);font-weight:700;font-size:28px;margin-top:5px">412</div><div style="font-size:10px;color:var(--ok);margin-top:3px">↗ +11%</div></div>
+      <div style="background:linear-gradient(150deg,var(--b600),var(--b900));border-radius:14px;padding:18px;color:#fff"><div style="font-family:var(--fm);font-size:8.5px;color:#aac0ec">TOTAL CONSOLIDÉ</div><div style="font-family:var(--fd);font-weight:700;font-size:28px;margin-top:5px">1 660</div><div style="font-size:10px;color:#7ed99a;margin-top:3px">dédoublonné · 1 = 1 présence</div></div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="font-family:var(--fm);font-size:8.5px;color:var(--mut)">ABSENTS</div><div style="font-family:var(--fd);font-weight:700;font-size:28px;margin-top:5px">614</div><div style="font-size:10px;color:var(--mut);margin-top:3px">taux présence 73%</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:14px">
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="font-size:12.5px;font-weight:600;margin-bottom:6px">Affluence - 6 derniers dimanches</div><div style="position:relative;height:148px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);margin-top:10px"><svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 400 148" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(42,79,173,.22)"/><stop offset="1" stop-color="rgba(42,79,173,0)"/></linearGradient></defs><polygon points="0,110 70,96 140,80 210,70 280,52 400,40 400,148 0,148" fill="url(#g)"/><polyline points="0,110 70,96 140,80 210,70 280,52 400,40" fill="none" stroke="var(--b600)" stroke-width="2.5"/></svg></div></div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="font-size:12.5px;font-weight:600;margin-bottom:12px">Répartition</div><div style="display:flex;height:24px;border-radius:7px;overflow:hidden;margin-bottom:14px"><div style="width:56%;background:var(--b600);display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">Salle 56%</div><div style="width:19%;background:var(--b400);display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px">19%</div><div style="width:25%;background:var(--line);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:9px">Abs. 25%</div></div><div style="display:flex;flex-direction:column;gap:9px;font-size:11px;color:var(--ink2)"><div style="display:flex;justify-content:space-between"><span>Durée moy. en ligne</span><strong>41 min</strong></div><div style="display:flex;justify-content:space-between"><span>Questionnaire complété</span><strong>73%</strong></div><div style="display:flex;justify-content:space-between"><span>Satisfaction moyenne</span><strong>4,3/5</strong></div></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="font-size:12.5px;font-weight:600;margin-bottom:12px">Par commission</div><div style="display:flex;align-items:center;gap:8px;margin-bottom:9px"><div style="width:74px;font-size:11px;color:var(--ink2)">Accueil</div><div style="flex:1;height:8px;background:var(--line);border-radius:4px"><div style="width:82%;height:100%;background:var(--b600);border-radius:4px"></div></div><span style="font-family:var(--fm);font-size:9px;color:var(--mut);width:30px;text-align:right">82%</span></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:9px"><div style="width:74px;font-size:11px;color:var(--ink2)">Mission</div><div style="flex:1;height:8px;background:var(--line);border-radius:4px"><div style="width:64%;height:100%;background:var(--b600);border-radius:4px"></div></div><span style="font-family:var(--fm);font-size:9px;color:var(--mut);width:30px;text-align:right">64%</span></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:9px"><div style="width:74px;font-size:11px;color:var(--ink2)">Louange</div><div style="flex:1;height:8px;background:var(--line);border-radius:4px"><div style="width:71%;height:100%;background:var(--b600);border-radius:4px"></div></div><span style="font-family:var(--fm);font-size:9px;color:var(--mut);width:30px;text-align:right">71%</span></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:9px"><div style="width:74px;font-size:11px;color:var(--ink2)">Intercession</div><div style="flex:1;height:8px;background:var(--line);border-radius:4px"><div style="width:58%;height:100%;background:var(--b600);border-radius:4px"></div></div><span style="font-family:var(--fm);font-size:9px;color:var(--mut);width:30px;text-align:right">58%</span></div></div>
+      <div style="background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:18px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="font-size:12.5px;font-weight:600">Membres en décrochage</div><span style="font-family:var(--fm);font-size:9px;color:var(--warn);background:#f7eede;padding:3px 8px;border-radius:20px">31 à relancer</span></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><div style="width:30px;height:30px;border-radius:50%;background:var(--b400)"></div><div style="flex:1"><div style="font-size:11.5px;font-weight:500">Jean Diallo</div><div style="font-size:9.5px;color:var(--mut)">Mission</div></div><span style="font-family:var(--fm);font-size:9px;color:var(--warn)">-42j</span></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><div style="width:30px;height:30px;border-radius:50%;background:var(--b400)"></div><div style="flex:1"><div style="font-size:11.5px;font-weight:500">Awa Traoré</div><div style="font-size:9.5px;color:var(--mut)">Louange</div></div><span style="font-family:var(--fm);font-size:9px;color:var(--warn)">-38j</span></div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0"><div style="width:30px;height:30px;border-radius:50%;background:var(--b400)"></div><div style="flex:1"><div style="font-size:11.5px;font-weight:500">Paul Nkemba</div><div style="font-size:9.5px;color:var(--mut)">Accueil</div></div><span style="font-family:var(--fm);font-size:9px;color:var(--warn)">-31j</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1150,&quot;height&quot;:680}}"></script>
+</body>
+</html>

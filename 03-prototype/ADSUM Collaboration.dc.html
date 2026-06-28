@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  :root{--fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --b400:#5b82d8;--b500:#3563c9;--b600:#2a4fad;--b700:#223f8a;--b900:#172a5a;
+    --ink:#16181d;--ink2:#3d4047;--mut:#676b73;--faint:#9498a1;--line:#e7e9ee;--surf:#fff;--bg:#f4f5f8;--sb:#161320;
+    --ok:#1f8a5b;--okbg:#e6f3ec;--warn:#b5731a;}
+  body{font-family:var(--fu);background:#0e1118;min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;padding:30px}
+  @keyframes fadein{0%{opacity:.5}100%{opacity:1}}
+  .tap{cursor:pointer;transition:background .14s} .pane{animation:fadein .2s ease}
+</style>
+</helmet>
+<a href="../index.html" style="position:fixed;top:16px;left:16px;z-index:9999;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.92);color:#16181d;border:1px solid #d4d7de;border-radius:10px;padding:8px 13px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-decoration:none;box-shadow:0 6px 18px -8px rgba(0,0,0,.4)">← Accueil</a>
+<div style="width:1120px;max-width:100%;height:700px;background:var(--surf);border-radius:16px;overflow:hidden;box-shadow:0 50px 100px -30px rgba(0,0,0,.7);display:flex;border:1px solid #23262e">
+  <div style="width:188px;background:var(--sb);color:#cfc6da;flex-shrink:0;display:flex;flex-direction:column;padding:16px 12px">
+    <div style="display:flex;align-items:center;gap:9px;padding:0 6px 16px"><div style="width:28px;height:28px;border-radius:8px;border:1.5px solid var(--b400);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:13px;color:var(--b400)">◇</div><div><div style="font-family:var(--fd);font-weight:700;font-size:13px;color:#fff">Comité</div><div style="font-family:var(--fm);font-size:7.5px;color:#6b6480;letter-spacing:1px">COLLABORATION</div></div></div>
+    <div onClick="{{ goCal }}" class="tap" style="font-size:12.5px;padding:9px 10px;border-radius:8px;margin-bottom:2px;background:{{ calBg }};color:{{ calCol }}">▤ Calendrier partagé</div>
+    <div onClick="{{ goFiche }}" class="tap" style="font-size:12.5px;padding:9px 10px;border-radius:8px;margin-bottom:2px;background:{{ ficheBg }};color:{{ ficheCol }}">▣ Fiche de préparation</div>
+    <div onClick="{{ goTasks }}" class="tap" style="font-size:12.5px;padding:9px 10px;border-radius:8px;background:{{ tasksBg }};color:{{ tasksCol }}">☑ Tâches</div>
+    <div style="margin-top:auto;border-top:1px solid #2a2536;padding-top:10px"><div style="font-family:var(--fm);font-size:7.5px;color:#6b6480;margin-bottom:7px">EN LIGNE</div><div style="display:flex"><div style="width:24px;height:24px;border-radius:50%;background:#5a4f67;border:1.5px solid var(--sb)"></div><div style="width:24px;height:24px;border-radius:50%;background:#7a6a8d;border:1.5px solid var(--sb);margin-left:-7px"></div><div style="width:24px;height:24px;border-radius:50%;background:var(--b500);border:1.5px solid var(--sb);margin-left:-7px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff">+3</div></div></div>
+  </div>
+  <div style="flex:1;min-width:0;background:var(--bg);overflow-y:auto;position:relative">
+    <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:200;background:#13151b;color:#fff;border-radius:11px;padding:12px 18px;font-size:12.5px;font-weight:500;box-shadow:0 16px 36px -12px rgba(0,0,0,.5);white-space:nowrap">{{ toast }}</div></sc-if>
+
+    <sc-if value="{{ isCal }}" hint-placeholder-val="{{ true }}">
+    <div class="pane" style="padding:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">Mars 2026</div><div style="display:flex;gap:6px"><span style="font-size:10.5px;background:var(--b600);color:#fff;border-radius:7px;padding:6px 12px">Mois</span><span style="font-size:10.5px;border:1px solid var(--line);background:var(--surf);color:var(--mut);border-radius:7px;padding:6px 12px">Semaine</span><span style="font-size:10.5px;border:1px solid var(--line);background:var(--surf);color:var(--mut);border-radius:7px;padding:6px 12px">Commission ▾</span></div></div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:7px">
+        <div style="grid-column:span 7;display:grid;grid-template-columns:repeat(7,1fr);gap:7px;font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:2px"><span>LUN</span><span>MAR</span><span>MER</span><span>JEU</span><span>VEN</span><span>SAM</span><span>DIM</span></div>
+        <div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--faint)"></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--faint)"><div style="height:4px;border-radius:2px;margin-top:3px;background:var(--b600)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--faint)"></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--faint)"></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">1<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--ink)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">2</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">3</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">4</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">5<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--b600)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">6</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">7</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">8<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--b600)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">9</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">10</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">11<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--ink)"></div></div><div style="aspect-ratio:1.25;border:1.5px solid var(--b600);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">12<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--b600)"></div><div style="height:4px;border-radius:2px;margin-top:3px;background:#7ab0c4"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">13</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">14</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">15<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--b600)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">16</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">17</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">18<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--ink)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">19</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">20</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">21</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">22<div style="height:4px;border-radius:2px;margin-top:3px;background:var(--b600)"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">23</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">24</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">25<div style="height:4px;border-radius:2px;margin-top:3px;background:#7ab0c4"></div></div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">26</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">27</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">28</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">29</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">30</div><div style="aspect-ratio:1.25;border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:6px;font-size:10px;color:var(--ink2)">31</div>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:14px;font-size:10.5px;color:var(--mut)"><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:3px;background:var(--b600)"></span>Rencontre</span><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:3px;background:var(--ink)"></span>Formation</span><span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:3px;background:#7ab0c4"></span>En ligne</span></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isFiche }}" hint-placeholder-val="{{ true }}">
+    <div class="pane" style="padding:24px;display:flex;gap:18px">
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:start"><div><div style="font-family:var(--fm);font-size:9px;color:var(--b600)">FICHE DE PRÉPARATION</div><div style="font-family:var(--fd);font-weight:700;font-size:20px;margin-top:7px">Rencontre du dimanche</div></div><div style="display:flex;align-items:center;gap:5px"><div style="width:24px;height:24px;border-radius:50%;background:#7a6a8d"></div><div style="width:24px;height:24px;border-radius:50%;background:var(--b500);margin-left:-7px"></div><span style="font-size:9px;color:var(--mut);margin-left:5px">2 éditent</span></div></div>
+        <div style="display:flex;gap:7px;margin:14px 0 16px"><span style="font-size:10px;color:var(--mut);background:var(--surf);border:1px solid var(--line);border-radius:7px;padding:5px 10px">📍 Salle principale</span><span style="font-size:10px;color:var(--mut);background:var(--surf);border:1px solid var(--line);border-radius:7px;padding:5px 10px">🕐 10:00-12:00</span><span style="font-size:10px;color:var(--mut);background:var(--surf);border:1px solid var(--line);border-radius:7px;padding:5px 10px">2 responsables</span></div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:8px">OBJECTIFS &amp; POINTS À PRÉPARER</div>
+        <div style="background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink2);line-height:1.6">Accueil des nouveaux · enseignement sur les Béatitudes · temps de louange · annonces de la semaine · prière d'intercession.</div>
+        <div onClick="{{ actPublish }}" class="tap" style="margin-top:16px;height:46px;background:linear-gradient(180deg,var(--b500),var(--b600));border-radius:12px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:13.5px;font-weight:600;gap:8px;padding:0 22px;box-shadow:0 10px 22px -10px rgba(42,79,173,.6)">▶ Publier en événement</div>
+      </div>
+      <div style="width:230px;flex-shrink:0">
+        <div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:10px">FIL DE DISCUSSION</div>
+        <div style="display:flex;gap:9px;margin-bottom:12px"><div style="width:26px;height:26px;border-radius:50%;background:#7a6a8d;flex-shrink:0"></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:9px;font-size:11px;color:var(--ink2);line-height:1.4">On prévoit 30 min de louange ?</div></div>
+        <div style="display:flex;gap:9px;margin-bottom:16px"><div style="width:26px;height:26px;border-radius:50%;background:var(--b500);flex-shrink:0"></div><div style="background:var(--surf);border:1px solid var(--line);border-radius:10px;padding:9px;font-size:11px;color:var(--ink2);line-height:1.4">Oui, et j'ajoute l'accueil.</div></div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:9px">HISTORIQUE</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:10.5px;color:var(--mut)"><div style="display:flex;gap:8px"><span style="color:var(--b600)">●</span>v.12 · il y a 2 min</div><div style="display:flex;gap:8px"><span>○</span>v.11 · restaurer</div><div style="display:flex;gap:8px"><span>○</span>v.10</div></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isTasks }}" hint-placeholder-val="{{ true }}">
+    <div class="pane" style="padding:24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="font-family:var(--fd);font-weight:700;font-size:22px">Préparation · tâches</div><div class="tap" style="font-size:11.5px;color:#fff;background:var(--b600);border-radius:8px;padding:9px 15px">+ Tâche</div></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:9px">À FAIRE · 2</div>
+          <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:9px"><div style="font-size:12px;font-weight:500">Préparer la feuille d'accueil</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><span style="font-family:var(--fm);font-size:8px;color:var(--warn)">échéance J-2</span><div style="width:20px;height:20px;border-radius:50%;background:#7a6a8d"></div></div></div>
+          <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px"><div style="font-size:12px;font-weight:500">Confirmer la sono</div><div style="display:flex;justify-content:flex-end;margin-top:10px"><div style="width:20px;height:20px;border-radius:50%;background:var(--b500)"></div></div></div>
+        </div>
+        <div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:9px">EN COURS · 1</div>
+          <div style="background:var(--surf);border:1px solid var(--line);border-radius:11px;padding:12px"><div style="font-size:12px;font-weight:500">Inviter les intervenants</div><div style="height:5px;background:var(--line);border-radius:3px;margin-top:10px"><div style="width:60%;height:100%;background:var(--b600);border-radius:3px"></div></div><div style="display:flex;justify-content:flex-end;margin-top:8px"><div style="width:20px;height:20px;border-radius:50%;background:var(--b500)"></div></div></div>
+        </div>
+        <div><div style="font-family:var(--fm);font-size:9px;color:var(--mut);margin-bottom:9px">FAIT · 3</div>
+          <div style="background:var(--okbg);border:1px solid #cfe6da;border-radius:11px;padding:12px;margin-bottom:9px;opacity:.85"><div style="display:flex;align-items:center;gap:7px"><span style="color:var(--ok)">✓</span><span style="font-size:12px;font-weight:500">Réserver la salle</span></div></div>
+          <div style="background:var(--okbg);border:1px solid #cfe6da;border-radius:11px;padding:12px;opacity:.85"><div style="display:flex;align-items:center;gap:7px"><span style="color:var(--ok)">✓</span><span style="font-size:12px;font-weight:500">Programme validé</span></div></div>
+        </div>
+      </div>
+      <div style="margin-top:18px;background:var(--okbg);border:1px solid var(--ok);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px"><div style="width:30px;height:30px;border-radius:50%;border:2px solid var(--ok);color:var(--ok);display:flex;align-items:center;justify-content:center">✓</div><div><div style="font-size:12.5px;font-weight:600;color:var(--ok)">Activité publiée en événement</div><div style="font-size:11px;color:var(--mut)">Session de pointage ouverte · responsables = gestionnaires</div></div></div>
+    </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1150,&quot;height&quot;:740}}">
+class Component extends DCLogic {
+  state={route:'cal',toast:''};
+  toastMsg(m){this.setState({toast:m});clearTimeout(this._tt);this._tt=setTimeout(()=>this.setState({toast:''}),2200);}
+  renderVals(){const r=this.state.route;const g=(x)=>()=>this.setState({route:x});const act=(m)=>()=>this.toastMsg(m);
+    return {isCal:r==='cal',isFiche:r==='fiche',isTasks:r==='tasks',
+      toast:this.state.toast,hasToast:!!this.state.toast,
+      actPublish:act('▶ Activité publiée · session de pointage ouverte'),
+      actAddTask:act('Tâche ajoutée'),
+      calBg:r==='cal'?'#2a2536':'transparent',calCol:r==='cal'?'#fff':'#a89eb8',
+      ficheBg:r==='fiche'?'#2a2536':'transparent',ficheCol:r==='fiche'?'#fff':'#a89eb8',
+      tasksBg:r==='tasks'?'#2a2536':'transparent',tasksCol:r==='tasks'?'#fff':'#a89eb8',
+      goCal:g('cal'),goFiche:g('fiche'),goTasks:g('tasks')};}
+}
+</script>
+</body>
+</html>
