@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  :root{--fd:'Space Grotesk',sans-serif;--fu:'IBM Plex Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
+    --blue:#1b62c4;--blue2:#114a99;--blued:#0e3a7a;--sky:#e9f1fd;--skyline:#cfe0f7;
+    --gold:#f4b521;--goldd:#d99a0c;--goldsoft:#fdf4d8;--red:#d8332e;--ok:#1f9d57;--okbg:#e7f6ec;
+    --ink:#15233f;--mut:#5d6b86;--line:#e3e9f4;--paper:#ffffff;--cream:#f6f9fe;}
+  body{margin:0;font-family:var(--fu);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .fm{font-family:var(--fm)} .fd{font-family:var(--fd)}
+  .gbar{height:6px;border-radius:4px;background:linear-gradient(90deg,var(--blue) 0 38%,var(--gold) 38% 70%,var(--red) 70% 100%)}
+  .wrap{max-width:1080px;margin:0 auto;padding:60px 48px 90px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px}
+  h2{font-family:var(--fd);font-weight:700;font-size:30px;letter-spacing:-.5px;margin:0 0 8px}
+  .ey{font-family:var(--fm);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--blue)}
+</style>
+</helmet>
+<div class="wrap">
+  <a href="../index.html" style="font-size:13px;color:var(--mut)">← Accueil</a>
+  <div style="display:flex;align-items:center;gap:13px;margin:18px 0 26px">
+    <div style="width:42px;height:42px;border-radius:11px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:21px">A</div>
+    <div><div class="fd" style="font-weight:700;font-size:20px;line-height:1">ADSUM</div><div class="fm" style="font-size:9px;letter-spacing:1.5px;color:var(--mut);margin-top:2px">SOUTENIR L'APPLICATION</div></div>
+  </div>
+  <div style="width:110px" class="gbar"></div>
+
+  <h1 class="fd" style="font-weight:700;font-size:46px;letter-spacing:-1px;margin:26px 0 14px;max-width:22ch">L'application est offerte. Aidons-la à vivre.</h1>
+  <p style="font-size:17px;line-height:1.6;color:var(--mut);max-width:64ch;margin:0 0 36px">ADSUM est livrée à la communauté, entièrement prête et gratuite. Pour qu'elle fonctionne au quotidien, elle a besoin d'être hébergée quelque part : un serveur, une base de données, des sauvegardes. C'est le seul coût - et il est modeste. Voici comment, ensemble, on peut le couvrir simplement.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px">
+    <div class="card" style="border-left:5px solid var(--ok)">
+      <div class="ey" style="color:var(--ok)">Offert à la communauté</div>
+      <h2 style="margin-top:10px">L'application</h2>
+      <ul style="margin:6px 0 0;padding-left:18px;font-size:14px;line-height:1.8;color:var(--ink)">
+        <li>L'application complète, sur téléphone et ordinateur</li>
+        <li>Toutes ses fonctionnalités &amp; ses mises à jour</li>
+        <li>Aucun abonnement à l'application, aucune licence</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:5px solid var(--gold)">
+      <div class="ey" style="color:var(--goldd)">Le seul coût</div>
+      <h2 style="margin-top:10px">L'hébergement</h2>
+      <ul style="margin:6px 0 0;padding-left:18px;font-size:14px;line-height:1.8;color:var(--ink)">
+        <li>Une base de données gérée &amp; sécurisée</li>
+        <li>Le serveur qui fait tourner l'application</li>
+        <li>Sauvegardes, nom de domaine, envoi des e-mails</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- coût réel -->
+  <h2 style="margin:0 0 6px">Ce que coûte l'hébergement, concrètement</h2>
+  <p style="font-size:14px;color:var(--mut);max-width:62ch;margin:0 0 16px">Estimation réaliste pour une base de données gérée (de type Supabase) et l'hébergement de l'application. Ordres de grandeur, à ajuster selon la taille réelle.</p>
+  <div class="card" style="margin-bottom:14px">
+    <div style="display:flex;background:var(--cream);border-radius:10px;padding:11px 16px;font-family:var(--fm);font-size:11px;letter-spacing:.5px;color:var(--mut)"><div style="flex:2">POSTE</div><div style="flex:1;text-align:right">PAR MOIS</div></div>
+    <div style="display:flex;padding:12px 16px;font-size:15px;border-top:1px solid var(--line)"><div style="flex:2">Base de données gérée (plan Pro)</div><div style="flex:1;text-align:right;font-weight:600">≈ 25 €</div></div>
+    <div style="display:flex;padding:12px 16px;font-size:15px;border-top:1px solid var(--line)"><div style="flex:2">Hébergement de l'application &amp; de l'API</div><div style="flex:1;text-align:right;font-weight:600">≈ 15 €</div></div>
+    <div style="display:flex;padding:12px 16px;font-size:15px;border-top:1px solid var(--line)"><div style="flex:2">E-mails, nom de domaine, divers</div><div style="flex:1;text-align:right;font-weight:600">≈ 10 €</div></div>
+    <div style="display:flex;padding:14px 16px;font-size:16px;border-top:2px solid var(--blue);background:var(--sky);border-radius:0 0 10px 10px"><div style="flex:2;font-weight:700">Total à couvrir</div><div style="flex:1;text-align:right;font-weight:700;color:var(--blue)">≈ 50 € / mois</div></div>
+  </div>
+  <p style="font-size:14px;color:var(--mut);margin:0 0 30px">Soit environ <strong>600 € par an</strong> pour faire vivre l'application de toute la communauté. C'est tout.</p>
+
+  <!-- proposition -->
+  <div class="card" style="background:var(--blue);color:#fff;border:none;margin-bottom:30px">
+    <div class="ey" style="color:var(--gold)">La proposition</div>
+    <h2 style="color:#fff;font-size:34px;margin-top:10px;max-width:26ch">Une petite contribution mensuelle, pour ceux qui le peuvent</h2>
+    <p style="font-size:16px;line-height:1.6;color:#dce8fb;max-width:62ch;margin:12px 0 22px">Si une partie des membres soutient l'application à hauteur d'<strong style="color:#fff">environ 1 € par mois</strong> - le prix d'un café - l'hébergement est largement couvert. C'est libre, jamais obligatoire, et ça n'enrichit personne : tout sert à faire tourner l'application.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:16px 22px"><div class="fd" style="font-weight:700;font-size:30px">≈ 1 € / mois</div><div style="font-size:13px;color:#cfe0f7;margin-top:4px">contribution suggérée, libre</div></div>
+      <div style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:16px 22px"><div class="fd" style="font-weight:700;font-size:30px">50 membres</div><div style="font-size:13px;color:#cfe0f7;margin-top:4px">suffisent à couvrir l'hébergement</div></div>
+      <div style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:12px;padding:16px 22px"><div class="fd" style="font-weight:700;font-size:30px">Le reste</div><div style="font-size:13px;color:#cfe0f7;margin-top:4px">consolide &amp; fait évoluer l'app</div></div>
+    </div>
+  </div>
+
+  <!-- effet d'échelle -->
+  <h2 style="margin:0 0 14px">Quelques contributions suffisent</h2>
+  <div class="card" style="margin-bottom:14px">
+    <div style="display:flex;background:var(--cream);border-radius:10px;padding:11px 16px;font-family:var(--fm);font-size:11px;letter-spacing:.5px;color:var(--mut)"><div style="flex:1.4">CONTRIBUTEURS À 1 € / MOIS</div><div style="flex:1;text-align:right">PAR MOIS</div><div style="flex:1.4;text-align:right">RÉSULTAT</div></div>
+    <div style="display:flex;padding:13px 16px;font-size:15px;border-top:1px solid var(--line);align-items:center"><div style="flex:1.4">50</div><div style="flex:1;text-align:right;font-weight:600">50 €</div><div style="flex:1.4;text-align:right;color:var(--mut)">hébergement couvert</div></div>
+    <div style="display:flex;padding:13px 16px;font-size:15px;border-top:1px solid var(--line);align-items:center;background:var(--sky)"><div style="flex:1.4">150</div><div style="flex:1;text-align:right;font-weight:600">150 €</div><div style="flex:1.4;text-align:right;color:var(--mut)">infra + marge de sécurité</div></div>
+    <div style="display:flex;padding:13px 16px;font-size:15px;border-top:1px solid var(--line);align-items:center"><div style="flex:1.4">300+</div><div style="flex:1;text-align:right;font-weight:600">300 €+</div><div style="flex:1.4;text-align:right;color:var(--mut)">infra + évolutions &amp; nouveautés</div></div>
+  </div>
+  <p style="font-size:13px;color:var(--mut);margin:0 0 30px">Sur une communauté de plusieurs milliers de membres, il suffit qu'une petite partie contribue pour que l'application vive sereinement.</p>
+
+  <!-- comment soutenir -->
+  <h2 style="margin:0 0 14px">Comment soutenir, en quelques secondes</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px">
+    <div class="card"><div class="fd" style="font-weight:700;font-size:24px;color:var(--blue)">01</div><div style="font-size:15px;font-weight:600;margin:10px 0 6px">Dans l'application</div><div style="font-size:13px;color:var(--mut);line-height:1.5">Un bouton « Soutenir mon application » dans l'espace membre.</div></div>
+    <div class="card"><div class="fd" style="font-weight:700;font-size:24px;color:var(--blue)">02</div><div style="font-size:15px;font-weight:600;margin:10px 0 6px">Mobile money / carte</div><div style="font-size:13px;color:var(--mut);line-height:1.5">Les moyens de paiement locaux, simplement.</div></div>
+    <div class="card"><div class="fd" style="font-weight:700;font-size:24px;color:var(--blue)">03</div><div style="font-size:15px;font-weight:600;margin:10px 0 6px">Mensuel ou ponctuel</div><div style="font-size:13px;color:var(--mut);line-height:1.5">Chacun donne ce qu'il veut, quand il veut.</div></div>
+  </div>
+
+  <div class="card" style="background:var(--goldsoft);border:1px solid var(--gold);display:flex;align-items:center;gap:18px">
+    <div style="font-size:30px">🤝</div>
+    <div style="font-size:16px;line-height:1.55;color:var(--ink)"><strong>En résumé :</strong> l'application est un cadeau à la communauté. Pour la faire vivre, il suffit que quelques membres la soutiennent d'environ 1 € par mois. Simple, libre, et à la portée de tous.</div>
+  </div>
+
+  <div class="fm" style="font-size:9.5px;color:var(--mut);letter-spacing:.5px;margin-top:40px">ADSUM · SOUTENIR L'APPLICATION · JUIN 2026</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1400}}"></script>
+</body>
+</html>
